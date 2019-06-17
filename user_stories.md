@@ -42,7 +42,7 @@
 
 3. As a user: When I click a button called "checkout", I am redirected to /fetch/checkout
 
-4. As a user: If my cart is emty, I should see Your "Shopping Cart is empty." and link to the route route
+4. As a user: If my cart is emty, I should see Your "Shopping Cart is Empty." and link to the route route
 
 # Checkout Page
 
@@ -56,13 +56,13 @@
 
 # Login/ Resigration
 
-1. As a user: when I visit /user/login I see a "Log In" form, and a "Register" form.
+1. As a user: when I visit /login I see a "Log In" form, and a "Register" form.
 
 2. As a user: if I enter invalid credentials into the login form & submit, I am redirected back to the login page.
 
 3. As a user: if I enter valid credentials into the login form & submit I am redirected to /myFlights (watchlist)
 
-4. As a user: if I am not logged in and try to visit /myFlights (or any route that stems from it) I am redirected to     /user/login
+4. As a user: if I am not logged in and try to visit /myFlights (or any route that stems from it) I am redirected to     /login
 
 * (Stretch) Add additional fields to the "Contact and Billing Information" form and "User Resgistration" form. (e.g. address, city, state, postal code, phone-number)  
 
@@ -77,6 +77,10 @@
 4. (stretch) Include a list of previous flights
 
 5. (stretch) Include a map that displays a pin on previous destinations
+
+# Loading Page
+
+1. As a user: I am aware when my page is loading because I see some sort of animation or text.
 
 # Stretch
 
