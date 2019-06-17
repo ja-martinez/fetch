@@ -11,7 +11,7 @@
 
 6. As a user: when I scroll down further, I should see an about us section(footer)
 
-* (Stretch) Under the suggestions, I should see a visual representation of average flight prices in according to country or state from my location. (there should be an input for current location)
+* (Stretch) Under the suggestions, I should see a visual representation of average flight prices according to country or state from my location. (there should be an input for current location)
 
 * (Stretch) Navbar should also have a link to the cart
 
@@ -24,15 +24,15 @@
 
 3. As a user: I should see a "View" button on each of the flights listed. When clicked, this should take me to /fetch/flights/:id
 
-4. As a user: I should see an "Add to Watchlist" button on each of the flights listed. When clicked, this should add the fight to the watchlist table, and alert "watchlist updated" (stretch: use a Bootstrap Modal);
+4. As a user: I should see an "Add to Watchlist" button on each of the flights listed. When clicked, this should add the flight to the watchlist table, and alert "Watchlist Updated" (stretch: use a Bootstrap Modal);
 
 * (Stretch) As a user: I should see an option to sort flights by other parameters such as duration 
 
 # Individual Flight Page
 
-1. As a user: I should see the following information about the flight: Price, Carrier, Carrier IMG, Departure time, Arrival time, Origin Airport, Destination Airport, Duration , status.
+1. As a user: I should see the following information about the flight: Price, Carrier, Carrier IMG, Departure time, Arrival time, Origin Airport, Destination Airport, and Duration.
 
-2. As a user: When I click a button called "add to cart" I am redirect to /fetch/cart
+2. As a user: When I click a button called "Add to Cart", I am redirect to /fetch/cart
 
 # Cart Page
 
@@ -42,27 +42,27 @@
 
 3. As a user: When I click a button called "checkout", I am redirected to /fetch/checkout
 
-4. As a user: If my cart is emty, I should see Your "Shopping Cart is empty." and link to the route route
+4. As a user: If my cart is emty, I should see "Shopping Cart is Empty." and a link to the root route
 
 # Checkout Page
 
-1. As a user: I should be able to review my order Itinerary and Price
+1. As a user: I should be able to review my order: Itinerary and Price
 
-2. As a user: See a "Contact and Billing Information" form consisting of: Email, First Name, Last Name
+2. As a user: I should see a "Contact and Billing Information" form consisting of: Email, First Name, Last Name
 
-3. As a user: I have already logged in, I should the "Contact and Billing Information" form already filled out.
+3. As a user: If I have already logged in, I should the "Contact and Billing Information" form already filled out.
 
 4. As a user: I should see a "Payment Information" form consisting of Card Holder's Name, Card Number, Experation Date, and Card CVC (Security Code)
 
 # Login/ Resigration
 
-1. As a user: when I visit /user/login I see a "Log In" form, and a "Register" form.
+1. As a user: when I visit /login I see a "Log In" form, and a "Register" form.
 
 2. As a user: if I enter invalid credentials into the login form & submit, I am redirected back to the login page.
 
 3. As a user: if I enter valid credentials into the login form & submit I am redirected to /myFlights (watchlist)
 
-4. As a user: if I am not logged in and try to visit /myFlights (or any route that stems from it) I am redirected to     /user/login
+4. As a user: if I am not logged in and try to visit /myFlights I am redirected to /login
 
 * (Stretch) Add additional fields to the "Contact and Billing Information" form and "User Resgistration" form. (e.g. address, city, state, postal code, phone-number)  
 
@@ -78,8 +78,13 @@
 
 5. (stretch) Include a map that displays a pin on previous destinations
 
+# Loading Page
+
+1. As a user: I am aware when my page is loading because I see some sort of animation or text.
+
 # Stretch
 
 1. Add advertisements 
+
 
 
