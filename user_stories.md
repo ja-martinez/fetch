@@ -28,13 +28,13 @@
 
 * (Stretch) As a user: I should see an option to sort flights by other parameters such as duration 
 
-#Individual Flight Page
+# Individual Flight Page
 
 1. As a user: I should see the following information about the flight: Price, Carrier, Carrier IMG, Departure time, Arrival time, Origin Airport, Destination Airport, Duration , status.
 
 2. As a user: When I click a button called "add to cart" I am redirect to /fetch/cart
 
-#Cart Page
+# Cart Page
 
 1. As a user: I should see a list of all of the flights that I have added to my cart
 
@@ -44,7 +44,7 @@
 
 4. As a user: If my cart is emty, I should see Your "Shopping Cart is empty." and link to the route route
 
-#Checkout Page
+# Checkout Page
 
 1. As a user: I should be able to review my order Itinerary and Price
 
@@ -78,7 +78,7 @@
 
 5. (stretch) Include a map that displays a pin on previous destinations
 
-#Stretch
+# Stretch
 
 1. Add advertisements 
 
