@@ -31,3 +31,6 @@ A search engine to help users minimize travel cost
 * Have a monthly view for a destination with the lowest price available for each date
 * make a map of all destinations a user has been to
 * have a world map of the cheapest locations to travel to separated by color
+* Detects where a user is by their IP address
+* google ads integration
+  
