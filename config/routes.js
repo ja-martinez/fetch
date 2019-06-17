@@ -4,14 +4,17 @@ const flights = require("../controllers/watchList.js")
 module.exports = function(app){
 
   app.get('/', flights.goHome);
-  app.get('/user/login', flights.getLogin);
-  app.get('/user/:id', flights.getFlight);
-  app.post('/user/:id', appointments.create);
-  app.post('/register', flights.register);
+  app.get('/fetch/flights', flights.getFights);
+  app.get('/fetch/flights/:id', flights.getOne);
+  app.get('/login', flights.getLogin);
+  app.get('/fetch/cart', flights.getCart);
+  app.get('/fetch/checkout', flights.getCheckout)
   app.post('/login', flights.login);
+  app.post('/register', flights.register);
   app.use(authMiddleware);
+  app.post('/fetch/checkout', flights.purchase)
   app.get('/myFlights',watchList.myFlights)
-
+  app.post('/fetch/flights/:id', watchList.Add);
 }
 
 function authMiddleware(req, res, next){
