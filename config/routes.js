@@ -4,7 +4,7 @@ const flights = require("../controllers/watchList.js")
 module.exports = function(app){
 
   app.get('/', flights.goHome);
-  app.get('/fetch/flights', flights.getFights);
+  app.get('/fetch/flights', flights.getFlights);
   app.get('/fetch/flights/:id', flights.getOne);
   app.get('/login', flights.getLogin);
   app.get('/fetch/cart', flights.getCart);
