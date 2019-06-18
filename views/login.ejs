@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Fetch/Login</title>
+    <style media="screen"></style>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      href="../public/assests/index.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div id="formBox" class="container flex formBox">
+      <div class="row">
+        <h3>Log In</h3>
+        <form action="/login" method="post">
+          <input class="col" type="email" name="email" placeholder="Email" />
+          <input
+            class="col"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          <button class=" col btn btn-secondary my-2 my-sm-0" type="submit">
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="container flex formBox">
+      <div class="row"></div>
+      <h3 class="col">Register</h3>
+      <form action="/register" method="post">
+        <input class="col" type="name" name="name" placeholder="Name" />
+        <br />
+        <input class="col" type="email" name="email" placeholder="Email" />
+        <br />
+        <input
+          class="col"
+          type="password"
+          placeholder="Password"
+          id="password1"
+          required
+        />
+        <br />
+        <input
+          class="col"
+          type="password"
+          name="password"
+          placeholder="Confirm Password"
+          id="password2"
+          required
+        />
+        <br />
+        <script type="text/javascript">
+          window.onload = function() {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+          };
+          function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+              document
+                .getElementById("password2")
+                .setCustomValidity("Passwords Don't Match");
+            else document.getElementById("password2").setCustomValidity("");
+          }
+        </script>
+        <button class=" col btn my-2" type="submit">
+          Register
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
