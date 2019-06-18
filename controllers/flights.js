@@ -1,4 +1,5 @@
 const knex = require("../db/knex.js");
+const unirest = require('unirest');
 let flights = [];
 
 module.exports = {
@@ -23,6 +24,8 @@ module.exports = {
     const destinationPlace = req.body.destination;
     const outboundDate = req.body.outboundDate;
     const inboundDate = req.body.inboundDate;
+
+    const flightType = req.body.flightType
     
 
     unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
