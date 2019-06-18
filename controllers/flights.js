@@ -7,7 +7,11 @@ module.exports = {
     res.render("index")
   },
 
-  getLogin: (req, res) => {
+  register: (req, res) => {
+    res.render('register');
+  },
+
+  getFlights: (req, res) => {
     const cabinClass = req.body.cabinClass;
     const adults = req.body.adults;
     const children = req.body.children;
@@ -99,7 +103,7 @@ module.exports = {
               }
               flights.push(flight);
             }
-            res.render("login", {flights: flights});
+            res.render("flights", {flights: flights});
           });
       })
   }
