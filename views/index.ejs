@@ -21,7 +21,7 @@
 <body>
 
     <!-- HEADER -->
-    <header role="header">
+    <header role="header" class="fixed-top">
 
         <div class="container-fluid">
             <!-- NAV -->
@@ -45,15 +45,54 @@
     </header>
 
     <!-- MAIN -->
-    <main role="main" class="d-flex justify-content-between align-items-center">
-        <div class="container">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">First and last name</span>
-                </div>
-                <input type="text" aria-label="First name" class="form-control">
-                <input type="text" aria-label="Last name" class="form-control">
+    <main role="main">
+        <div class="container main_wrapper d-flex flex-column justify-content-center align-items-center">
+
+            <!-- CAPTION -->
+            <div class="header_caption mb-5">
+                <h1 class="display-4">To travel is to live</h1>
+                <p class="lead">Where you want to go, with what you want to spend.</p>
             </div>
+
+            <!-- FORM -->
+            <form action="#" class="form">
+                <div class="d-flex justify-content-center align-items-end">
+                
+                    <div class="origin">
+                        <div><label for="origin">From</label></div>
+                        <input type="text" name="origin" id="origin" placeholder="Phoenix" class="col p-3 leftBorder">
+                    </div>
+    
+                    <div class="destination">
+                        <div><label for="destination">To</label></div>
+                        <input type="text" name="destination" id="destination" placeholder="New York" class="col p-3">
+                    </div>
+    
+                    <div class="outboundDate">
+                        <div><label for="outboundDate">Depart</label></div>
+                        <input type="date" name="outboundDate" id="outboundDate" placeholder="06/18/19" class="col p-3">
+                    </div> 
+
+                    <div class="inboundDate">
+                        <div><label for="inboundDate">Return</label></div>
+                        <input type="date" name="inboundDate" id="inboundDate" placeholder="07/18/19" class="col p-3">
+                    </div>  
+
+                    <div class="adults">
+                        <div><label for="adults">Passengers</label></div>
+                        <input type="number" name="adults" id="adults" value="1" class="col p-3">
+                    </div> 
+
+                    <div class="return">
+                        <div><label for="depart">Cabin class</label></div>
+                        <input type="text" name="return" placeholder="Economy" class="col p-3">
+                    </div>  
+    
+                    <input type="submit" name="submit" class="col-1 p-3 bg-light rightBorder">
+                    
+                </div>
+            </form>
+
         </div>
     </main>
 

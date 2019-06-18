@@ -1,10 +1,12 @@
 html, body, a {
-    color: #666;
+    color: #fff;
+    width: 100%;
+    height: 100%;
 }
 
 /* HEADER */
 header {
-    background: #000;
+    background: none;
 }
 
 .brand {
@@ -12,18 +14,12 @@ header {
 }
 
 /* MAIN */
-/* main {
-    -webkit-filter: grayscale(100%); 
-    filter: grayscale(100%);
-} */
-
 main {
     position: relative;
     width: 100%;
-    height: 100vh;
-    background: url('https://images.unsplash.com/photo-1483449720373-5d67a7f26fdb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80') center center no-repeat;
-    background-size: cover
-    
+    height: 100%;
+    background: url("https://bit.ly/2KZyDFs") no-repeat;
+    background-size: cover;
 }
 main:before {
     content: '';
@@ -33,5 +29,32 @@ main:before {
     bottom: 0;
     left: 0;
     background-image: linear-gradient(to bottom right,#111,#000);
-    opacity: .7; 
+    opacity: .2; 
+}
+
+.main_wrapper {
+    padding-bottom: 10em;
+    height: 100%;
+}
+
+.header_caption {
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    /* background: #000; */
+}
+
+form input {
+    border: none;
+}
+
+.leftBorder {
+    border-top-left-radius: .2em; 
+    border-bottom-left-radius: .2em; 
+}
+.rightBorder {
+    border-top-right-radius: .2em; 
+    border-bottom-right-radius: .2em; 
 }
