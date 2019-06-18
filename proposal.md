@@ -12,6 +12,7 @@ A search engine to help users minimize travel cost
 * Node.js
 * Express.js
 * Knex
+* unirest
 
 ## Features
 
