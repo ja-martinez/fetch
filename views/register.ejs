@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Fetch/Login</title>
+    <title>Fetch/Register</title>
     <style media="screen"></style>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link href="assets/login.css" rel="stylesheet" type="text/css" />
+    <link href="assets/register.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id="main" class="container ">
@@ -35,7 +35,7 @@
                   <input
                     type="password"
                     name="password"
-                    id="inputPassword"
+                    id="password1"
                     class="form-control"
                     placeholder="Password"
                     required
@@ -43,17 +43,18 @@
                   <label for="inputPassword">Password</label>
                 </div>
 
-                <!-- Remember Password -->
-                <!-- <div class="custom-control custom-checkbox mb-3">
+                <div class="form-label-group">
                   <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customCheck1"
+                    type="password"
+                    name="password"
+                    id="password2"
+                    class="form-control"
+                    placeholder="Password"
+                    required
                   />
-                  <label class="custom-control-label" for="customCheck1"
-                    >Remember password</label
-                  >
-                </div> -->
+                  <label for="inputPassword">Password</label>
+                </div>
+
                 <button
                   class="btn btn-lg btn-primary btn-block text-uppercase"
                   type="submit"
@@ -62,7 +63,7 @@
                 </button>
                 <hr class="my-4" />
                 <div class="container text-center">
-                  <a href="/register">Register</a>
+                  <a href="/login">Sign In</a>
                 </div>
               </form>
             </div>
@@ -70,19 +71,31 @@
         </div>
       </div>
     </div>
+    <script src="assets/register.css"></script>
   </body>
 </html>
 
-<!-- Sign in Via Facebook or Google -->
+<!-- Sign up with Facebook or Google -->
 <!-- <button
 class="btn btn-lg btn-google btn-block text-uppercase"
 type="submit"
 >
-<i class="fab fa-google mr-2"></i> Sign in with Google
+<i class="fab fa-google mr-2"></i> Sign up with Google
 </button>
 <button
 class="btn btn-lg btn-facebook btn-block text-uppercase"
 type="submit"
 >
-<i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook
+<i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook
 </button> -->
+
+<!-- Remember Password -->
+<!-- <div class="custom-control custom-checkbox mb-3">
+  <input
+    type="checkbox"
+    class="custom-control-input"
+    id="customCheck1"
+  />
+  <label class="custom-control-label" for="customCheck1"
+>Remember password</label>
+ </div> -->
