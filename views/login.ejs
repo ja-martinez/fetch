@@ -8,74 +8,81 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link
-      href="../public/assests/index.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="assets/login.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="formBox" class="container flex formBox">
+    <div id="main" class="container ">
       <div class="row">
-        <h3>Log In</h3>
-        <form action="/login" method="post">
-          <input class="col" type="email" name="email" placeholder="Email" />
-          <input
-            class="col"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-          <button class=" col btn btn-secondary my-2 my-sm-0" type="submit">
-            Login
-          </button>
-        </form>
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center ">Sign In</h5>
+              <form class="form-signin">
+                <div class="form-label-group" action="/login" method="post">
+                  <input
+                    type="email"
+                    name="email"
+                    id="inputEmail"
+                    class="form-control"
+                    placeholder="Email address"
+                    required
+                    autofocus
+                  />
+                  <label for="inputEmail">Email address</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input
+                    type="password"
+                    name="password"
+                    id="inputPassword"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                  <label for="inputPassword">Password</label>
+                </div>
+
+                <!-- Remember Password -->
+                <!-- <div class="custom-control custom-checkbox mb-3">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="customCheck1"
+                  />
+                  <label class="custom-control-label" for="customCheck1"
+                    >Remember password</label
+                  >
+                </div> -->
+                <button
+                  class="btn btn-lg btn-primary btn-block text-uppercase"
+                  type="submit"
+                >
+                  Sign in
+                </button>
+                <hr class="my-4" />
+                <div class="container text-center">
+                  <a href="/register">Register</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="container flex formBox">
-      <div class="row"></div>
-      <h3 class="col">Register</h3>
-      <form action="/register" method="post">
-        <input class="col" type="name" name="name" placeholder="Name" />
-        <br />
-        <input class="col" type="email" name="email" placeholder="Email" />
-        <br />
-        <input
-          class="col"
-          type="password"
-          placeholder="Password"
-          id="password1"
-          required
-        />
-        <br />
-        <input
-          class="col"
-          type="password"
-          name="password"
-          placeholder="Confirm Password"
-          id="password2"
-          required
-        />
-        <br />
-        <script type="text/javascript">
-          window.onload = function() {
-            document.getElementById("password1").onchange = validatePassword;
-            document.getElementById("password2").onchange = validatePassword;
-          };
-          function validatePassword() {
-            var pass2 = document.getElementById("password2").value;
-            var pass1 = document.getElementById("password1").value;
-            if (pass1 != pass2)
-              document
-                .getElementById("password2")
-                .setCustomValidity("Passwords Don't Match");
-            else document.getElementById("password2").setCustomValidity("");
-          }
-        </script>
-        <button class=" col btn my-2" type="submit">
-          Register
-        </button>
-      </form>
     </div>
   </body>
 </html>
+
+<!-- Sign in Via Facebook or Google -->
+<!-- <button
+class="btn btn-lg btn-google btn-block text-uppercase"
+type="submit"
+>
+<i class="fab fa-google mr-2"></i> Sign in with Google
+</button>
+<button
+class="btn btn-lg btn-facebook btn-block text-uppercase"
+type="submit"
+>
+<i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook
+</button> -->
