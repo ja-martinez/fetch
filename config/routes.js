@@ -5,7 +5,7 @@ module.exports = function(app){
 
   app.get('/', flights.home);
   app.get('/flights/search"', flights.getFlights);
-  app.get('/flights/:carrier/:flightNumber', flights.getOne);
+  app.get('/flights/:flightsIndex', flights.getOne);
   app.get('/register', flights.getLogin);
   app.get('/cart', flights.getCart);
   app.get('/checkout', flights.getCheckout)

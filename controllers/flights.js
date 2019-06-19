@@ -292,5 +292,9 @@ module.exports = {
             }
           })
       });
+  },
+
+  getOne: (req, res) => {
+    res.render('one-flight', {flight: flights[req.params.flightsIndex]})
   }
 }
