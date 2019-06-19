@@ -125,6 +125,12 @@ unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apis
               }
             }
 
+            flight.flyingTime = 0;
+            for (let j=0; j<flight.legs.length; j++) {
+              flight.flyingTime += flight.legs[j].duration;
+            }
+            flight.layoverTime = flight.duration - flight.flyingTime;
+
             flights.push(flight);
             console.log(flight)
           }
@@ -254,6 +260,18 @@ unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apis
                 }
               }
             }
+            flight.outboundFlyingTime = 0;
+            flight.inboundFlyingTime = 0;
+
+            for (let j=0; j<flight.outboundLegs.length; j++) {
+              flight.outboundFlyingTime += flight.outboundLegs[j].duration;
+            }
+            flight.outboundLayoverTime = flight.duration - flight.outboundFlyingTime;
+
+            for (let j=0; j<flight.inboundLegs.length; j++) {
+              flight.inboundFlyingTime += flight.inboundLegs[j].duration;
+            }
+            flight.inboundLayoverTime = flight.duration - flight.inboundFlyingTime;
 
             flights.push(flight);
             console.log(flight)
