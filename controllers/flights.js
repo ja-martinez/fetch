@@ -59,54 +59,122 @@ module.exports = {
             let destinationId = '';
             let carrierId = '';
 
-            for (let i = 0; i < itineraries.length; i++) {
-              let flight = {};
-              const agentId = itineraries[i].PricingOptions[0].Agents[0];
-              flight.price = itineraries[i].PricingOptions[0].Price;
-              const legId = itineraries[i].OutboundLegId;
-
-
-              for (let j = 0; j < legs.length; j++) {
-                if (legs[j].Id === legId) {
-                  originId = legs[j].OriginStation;
-                  destinationId = legs[j].DestinationStation;
-                  flight.departureTime = legs[j].Departure;
-                  flight.arrivalTime = legs[j].Arrival;
-                  flight.duration = legs[j].Duration;
-                  flight.numStops = legs[j].Stops.length;
-                  carrierId = legs[j].FlightNumbers[0].CarrierId;
-                  flight.flightNumber = legs[j].FlightNumbers[0].FlightNumber;
-                  break;
+            if (flightType === 'one-way') {
+              for (let i = 0; i < itineraries.length; i++) {
+                let flight = {};
+                const agentId = itineraries[i].PricingOptions[0].Agents[0];
+                flight.price = itineraries[i].PricingOptions[0].Price;
+                const legId = itineraries[i].OutboundLegId;
+  
+  
+                for (let j = 0; j < legs.length; j++) {
+                  if (legs[j].Id === legId) {
+                    originId = legs[j].OriginStation;
+                    destinationId = legs[j].DestinationStation;
+                    flight.departureTime = legs[j].Departure;
+                    flight.arrivalTime = legs[j].Arrival;
+                    flight.duration = legs[j].Duration;
+                    flight.numStops = legs[j].Stops.length;
+                    carrierId = legs[j].FlightNumbers[0].CarrierId;
+                    flight.flightNumber = legs[j].FlightNumbers[0].FlightNumber;
+                    break;
+                  }
                 }
-              }
-
-              for (let j = 0; j < carriers.length; j++) {
-                if (carriers[j].Id === carrierId) {
-                  flight.carrierName = carriers[j].Name;
-                  flight.carrierImgUrl = carriers[j].ImageUrl
-                  break;
+  
+                for (let j = 0; j < carriers.length; j++) {
+                  if (carriers[j].Id === carrierId) {
+                    flight.carrierName = carriers[j].Name;
+                    flight.carrierImgUrl = carriers[j].ImageUrl
+                    break;
+                  }
                 }
-              }
-
-              for (let j = 0; j < agents.length; j++) {
-                if (agents[j].Id === agentId) {
-                  flight.agentName = agents[j].Name;
-                  flight.agentImgUrl = agents[j].ImageUrl;
-                  break;
+  
+                for (let j = 0; j < agents.length; j++) {
+                  if (agents[j].Id === agentId) {
+                    flight.agentName = agents[j].Name;
+                    flight.agentImgUrl = agents[j].ImageUrl;
+                    break;
+                  }
                 }
-              }
-
-              for (let j = 0; j < places.length; j++) {
-                if (places[j].Id === originId) {
-                  flight.originName = places[j].Name;
-                } else if (places[j].Id === destinationId) {
-                  flight.destinationName = places[j].Name;
+  
+                for (let j = 0; j < places.length; j++) {
+                  if (places[j].Id === originId) {
+                    flight.originName = places[j].Name;
+                  } else if (places[j].Id === destinationId) {
+                    flight.destinationName = places[j].Name;
+                  }
+  
                 }
-
+                flights.push(flight);
               }
-              flights.push(flight);
+            } else if (flightType === 'round') {
+              for (let i = 0; i < itineraries.length; i++) {
+                let flight = {};
+                const agentId = itineraries[i].PricingOptions[0].Agents[0];
+                flight.price = itineraries[i].PricingOptions[0].Price;
+                const outboundLegId = itineraries[i].OutboundLegId;
+                const inboundLegId = itineraries[i].InboundLegId;
+  
+  
+                for (let j = 0; j < legs.length; j++) {
+                  if (legs[j].Id === outboundLegId) {
+                    outboundOriginId = legs[j].OriginStation;
+                    outboundDestinationId = legs[j].DestinationStation;
+                    flight.outboundDepartureTime = legs[j].Departure;
+                    flight.outboundArrivalTime = legs[j].Arrival;
+                    flight.outboundDuration = legs[j].Duration;
+                    flight.outboundNumStops = legs[j].Stops.length;
+                    outboundCarrierId = legs[j].FlightNumbers[0].CarrierId;
+                    flight.outboundFlightNumber = legs[j].FlightNumbers[0].FlightNumber;
+                  } else if (legs[j].Id === inboundLegId) {
+                    inboundOriginId = legs[j].OriginStation;
+                    inboundDestinationId = legs[j].DestinationStation;
+                    flight.inboundDepartureTime = legs[j].Departure;
+                    flight.inboundArrivalTime = legs[j].Arrival;
+                    flight.inboundDuration = legs[j].Duration;
+                    flight.inboundNumStops = legs[j].Stops.length;
+                    inboundCarrierId = legs[j].FlightNumbers[0].CarrierId;
+                    flight.inboundFlightNumber = legs[j].FlightNumbers[0].FlightNumber;
+                  }
+                }
+  
+                for (let j = 0; j < carriers.length; j++) {
+                  if (carriers[j].Id === outboundCarrierId) {
+                    flight.outboundCarrierName = carriers[j].Name;
+                    flight.outboundCarrierImgUrl = carriers[j].ImageUrl;
+                  } else if (carriers[j].Id === inboundCarrierId) {
+                    flight.inboundCarrierName = carriers[j].Name;
+                    flight.inboundCarrierImgUrl = carriers[j].ImageUrl;
+                  }
+                }
+  
+                for (let j = 0; j < agents.length; j++) {
+                  if (agents[j].Id === outboundAgentId) {
+                    flight.outboundAgentName = agents[j].Name;
+                    flight.outboundAgentImgUrl = agents[j].ImageUrl;
+                  } else if (agents[j].Id === inboundAgentId) {
+                    flight.inboundAgentName = agents[j].Name;
+                    flight.inboundAgentImgUrl = agents[j].ImageUrl;
+                  }
+                }
+  
+                for (let j = 0; j < places.length; j++) {
+                  if (places[j].Id === outboundOriginId) {
+                    flight.outboundOriginName = places[j].Name;
+                  } else if (places[j].Id === outboundDestinationId) {
+                    flight.outboundDestinationName = places[j].Name;
+                  } else if (places[j].Id === inboundOriginId) {
+                    flight.inboundOriginName = places[j].Name;
+                  } else if (places[j].Id === inboundDestinationId) {
+                    flight.inboundDestinationName = places[j].Name;
+                  }
+                }
+                flights.push(flight);
+              }
             }
-            res.render("flights", {flights: flights});
+
+            
+            res.render("flights", {flights: flights, flightType: flightType});
           });
       })
   }
