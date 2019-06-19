@@ -6,99 +6,14 @@ html,body{
     letter-spacing: .02em;
     max-height: 100%;
     max-width: 100%;
+    font-size: 1em;
+    color: #666;
     padding: 0;
     margin: 0;
 }
 
-/* HEADER */
-header {
-    background: none;
-    font-size: 1.4em;
-    color: #eee;
-}
-
-header a {
-    color: #eee;
-}
-header a:hover {
-    text-decoration: none;
-    color: #6b5;
-}
-
-.header_caption {
-    color: #eee;
-}
-
-.brand {
-    width: 6em;
-}
-
-.signIn {
-    border: .05em solid #333;
-    border-radius: .15em;
-    padding: .1em .3em;
-}
-
-.signIn:hover {
-    text-decoration: none;
-    background: #6b5;
-    color: #fff;
-}
-
-/* .fold */
-.fold {
-    background: url("https://bit.ly/2KZyDFs") center top no-repeat;
-    background-size: cover;
-    position: relative;
-    height: 100vh;
-    width: 100%;
-}
-.fold:before {
-    background-image: linear-gradient(to bottom right,#111,#000);
-    position: absolute;
-    opacity: .2; 
-    content: '';
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
-}
-
-.fold_wrapper {
-    padding-bottom: 5em;
-    height: 100vh;
-}
-
-.header_caption {
-    text-align: center;
-}
-
-.query-form input {
-    border: none;
-}
-
-.query-form [type="submit"] {
-    color: #fff;
-}
-
-.query-form [type="number"], 
-.query-form [type="text"],
-.query-form [type="submit"] {
-    padding: 1.04em !important;
-}
-
-.leftBorder {
-    border-bottom-left-radius: .2em; 
-    border-top-left-radius: .2em; 
-}
-.rightBorder {
-    border-bottom-right-radius: .2em; 
-    border-top-right-radius: .2em; 
-}
-
-/* ABOUT */
-
 .con-full-width {
+    background: #6b5;
     max-width: 100%;
     color: #fff;
 }
@@ -112,16 +27,7 @@ header a:hover {
     display: flex;
     padding: 1em;
 }
-
-.our-team {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height: 100vh;
-    color: #666
-}
-
-.card-wrapper {
+.team-card-wrapper {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -129,7 +35,7 @@ header a:hover {
     width: 100%;
 }
 
-.card-item {
+.con-item {
     box-shadow: 0 0 15px -2px #ccc;
     justify-content: space-evenly;
     flex-direction: column;
@@ -197,7 +103,6 @@ header a:hover {
 /* FOOTER */
 footer {
     background: #222;
-    padding: 2em 0;
     color: #333
 }
 
@@ -246,23 +151,10 @@ footer a {
     font-size: 1.8em;
 }
 
-.body-text, .header_caption p {
+.body-text {
     letter-spacing: .05em;
     font-size: 1.4em;
     font-weight: 300;
-}
-
-label {
-    color: #eee;
-    font-size: 1.4em;
-}
-
-.our-mission {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    background: #6b5;
 }
 
 .mission-statement{
