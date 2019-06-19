@@ -185,7 +185,8 @@ header a:hover {
 }
 
 .action:hover {
-    background: #333;
+    text-decoration: none;
+    background: #444;
     color: #6b5;
 }
 
