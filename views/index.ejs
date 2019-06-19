@@ -53,6 +53,10 @@
       background-color: DodgerBlue !important;
       color: #ffffff;
     }
+
+    #flight-type {
+      color: #ffffff;
+    }
   </style>
 
   <title>Flight Fetch | Home</title>
@@ -132,6 +136,10 @@
 
         <!-- QUERY FORM -->
         <form action="#" autocomplete="off" class="query-form">
+          <div class="mb-3 justify-content-center" id="flight-type">
+            <span class="mr-3"><input class="mr-1" type="radio" name="flightType" value="one-way" checked>One-way</span> 
+            <input type="radio" name="flightType" value="round"> Round Trip
+          </div>
           <div class="d-flex justify-content-center align-items-end">
 
             <input type="hidden" name="cabinClass" id="cabinClass" value="economy">
