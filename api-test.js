@@ -12,6 +12,8 @@ const destinationPlace = 'NYCA-sky';
 const outboundDate = '2019-09-01';
 const inboundDate = '';
 
+const flightType = 'one-way'
+
 
 unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
   .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
