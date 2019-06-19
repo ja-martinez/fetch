@@ -10,9 +10,9 @@ const locale = 'en-US';
 const originPlace = 'SFO-sky';
 const destinationPlace = 'NYCA-sky';
 const outboundDate = '2019-09-01';
-const inboundDate = '2019-09-10';
+const inboundDate = '';
 
-const flightType = 'round'
+const flightType = 'one-way'
 
 
 unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
@@ -50,53 +50,83 @@ unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apis
         if (flightType === 'one-way') {
           let originId = '';
           let destinationId = '';
-          let carrierId = '';
+
           for (let i = 0; i < itineraries.length; i++) {
             let flight = {};
+            flight.isRound = false;
+            flight.legs = [];
             const agentId = itineraries[i].PricingOptions[0].Agents[0];
             flight.price = itineraries[i].PricingOptions[0].Price;
             const legId = itineraries[i].OutboundLegId;
-
-
-            for (let j = 0; j < legs.length; j++) {
-              if (legs[j].Id === legId) {
-                originId = legs[j].OriginStation;
-                destinationId = legs[j].DestinationStation;
-                flight.departureTime = legs[j].Departure;
-                flight.arrivalTime = legs[j].Arrival;
-                flight.duration = legs[j].Duration;
-                flight.numStops = legs[j].Stops.length;
-                carrierId = legs[j].FlightNumbers[0].CarrierId;
-                flight.flightNumber = legs[j].FlightNumbers[0].FlightNumber;
-                break;
-              }
-            }
-
-            for (let j = 0; j < carriers.length; j++) {
-              if (carriers[j].Id === carrierId) {
-                flight.carrierName = carriers[j].Name;
-                flight.carrierImgUrl = carriers[j].ImageUrl
-                break;
-              }
-            }
 
             for (let j = 0; j < agents.length; j++) {
               if (agents[j].Id === agentId) {
                 flight.agentName = agents[j].Name;
                 flight.agentImgUrl = agents[j].ImageUrl;
-                break;
+              }
+            }
+
+            for (let j = 0; j < legs.length; j++) {
+              if (legs[j].Id === legId) {
+                originId = legs[j].OriginStation;
+                destinationId = legs[j].DestinationStation;
+                flight.departure = legs[j].Departure;
+                flight.arrival = legs[j].Arrival;
+                flight.duration = legs[j].Duration;
+                flight.numStops = legs[j].Stops.length;
+                segmentIds = legs[j].SegmentIds;
+              } 
+            }
+
+            
+
+            for (let j=0; j<segments.length; j++) {
+              for (let k=0; k<segmentIds.length; k++) {
+                if (segments[j].Id === segmentIds[k]) {
+                  let leg = {};
+                  leg.originId = segments[j].OriginStation;
+                  leg.destinationId = segments[j].DestinationStation;
+                  leg.departure = segments[j].DepartureDateTime;
+                  leg.arrival = segments[j].DepartureDateTime;
+                  leg.duration = segments[j].Duration
+                  leg.carrierId = segments[j].Carrier
+                  leg.flightNumber = segments[j].FlightNumber;
+                  flight.legs.push(leg);
+                }
+              }
+            }
+
+            for (let j = 0; j < carriers.length; j++) {
+              for (let k=0; k<flight.legs.length; k++) {
+                if (carriers[j].Id === flight.legs[k].carrierId) {
+                  flight.legs[k].carrierName = carriers[j].Name;
+                  flight.legs[k].carrierImgUrl = carriers[j].ImageUrl
+                  delete flight.legs[k].carrierId
+                }
               }
             }
 
             for (let j = 0; j < places.length; j++) {
               if (places[j].Id === originId) {
-                flight.originName = places[j].Name;
-              } else if (places[j].Id === destinationId) {
-                flight.destinationName = places[j].Name;
+                flight.origin = places[j].Name;
+              } 
+              if (places[j].Id === destinationId) {
+                flight.destination = places[j].Name;
+              } 
+              for (let k=0; k<flight.legs.length; k++) {
+                if (places[j].Id === flight.legs[k].originId) {
+                  flight.legs[k].origin = places[j].Name;
+                  delete flight.legs[k].originId;
+                }
+                if (places[j].Id === flight.legs[k].destinationId) {
+                  flight.legs[k].destination = places[j].Name;
+                  delete flight.legs[k].destinationId
+                }
               }
-
             }
+
             flights.push(flight);
+            console.log(flight)
           }
         } else if (flightType === 'round') {
           let outboundOriginId = '';
@@ -107,6 +137,7 @@ unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apis
 
           for (let i = 0; i < itineraries.length; i++) {
             let flight = {};
+            flight.isRound = true;
             flight.outboundLegs = [];
             flight.inboundLegs = [];
             const agentId = itineraries[i].PricingOptions[0].Agents[0];
