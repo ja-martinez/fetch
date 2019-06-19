@@ -1,13 +1,13 @@
 window.onload = function() {
-  document.getElementById("password1").onchange = validatePassword;
-  document.getElementById("password2").onchange = validatePassword;
+  document.getElementById("inputPassword").onchange = validatePassword;
+  document.getElementById("inputConfirmPassword").onchange = validatePassword;
 };
 function validatePassword() {
-  var pass2 = document.getElementById("password2").value;
-  var pass1 = document.getElementById("password1").value;
+  var pass2 = document.getElementById("inputConfirmPassword").value;
+  var pass1 = document.getElementById("inputPassword").value;
   if (pass1 != pass2)
     document
-      .getElementById("password2")
+      .getElementById("inputConfirmPassword")
       .setCustomValidity("Passwords Don't Match");
-  else document.getElementById("password2").setCustomValidity("");
+  else document.getElementById("inputConfirmPassword").setCustomValidity("");
 }
