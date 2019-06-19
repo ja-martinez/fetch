@@ -1,212 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <!-- MATA DATA -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- MATA DATA -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- BOOTSTRAP STYLES -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- FETCH STYLES -->
-    <link rel="stylesheet" href="assets/index.css">
+  <!-- BOOTSTRAP STYLES -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- FETCH STYLES -->
+  <link rel="stylesheet" href="assets/index.css">
 
-    <!-- FETCH FAVICON -->
-    <link rel="shortcut icon" type="image/png" href="assets/brand/fetch-favicon.png"/>
+  <!-- FETCH FAVICON -->
+  <link rel="shortcut icon" type="image/png" href="assets/brand/fetch-favicon.png" />
 
-    <title>Flight Fetch | Home</title>
+  <style>
+    .autocomplete {
+      /*the container must be positioned relative:*/
+      position: relative;
+      display: inline-block;
+    }
+    
+    .autocomplete-items {
+      position: absolute;
+      border: 1px solid #d4d4d4;
+      border-bottom: none;
+      border-top: none;
+      z-index: 99;
+      /*position the autocomplete items to be the same width as the container:*/
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #fff;
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .autocomplete-items div:hover {
+      /*when hovering an item:*/
+      background-color: #e9e9e9;
+    }
+
+    .autocomplete-active {
+      /*when navigating through the items using the arrow keys:*/
+      background-color: DodgerBlue !important;
+      color: #ffffff;
+    }
+  </style>
+
+  <title>Flight Fetch | Home</title>
 
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <header role="header" class="fixed-top">
-        <div class="container-fluid">
+  <!-- HEADER -->
+  <header role="header" class="fixed-top">
+    <div class="container-fluid">
 
-            <nav>
-                <div class="container">
-                    <div class="d-flex flex-row p-3 justify-content-between align-items-center">
-                        <!-- BRAND -->
-                        <div>
-                            <a href="#"><img class="brand" src="assets/brand/fetch-logo.png" alt="brand"></a>
-                        </div>
-                        <!-- NAV-LINKS -->
-                        <div>
-                            <a class="mr-3" href="#">About</a>
-                            <a href="#" class="mr-3">Feature</a>
-                            <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign In</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+      <nav>
+        <div class="container">
+          <div class="d-flex flex-row p-3 justify-content-between align-items-center">
+            <!-- BRAND -->
+            <div>
+              <a href="#"><img class="brand" src="assets/brand/fetch-logo.png" alt="brand"></a>
+            </div>
+            <!-- NAV-LINKS -->
+            <div>
+              <a class="mr-3" href="#">About</a>
+              <a href="#" class="mr-3">Feature</a>
+              <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign
+                In</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main role="main">
+    <section class="fold d-flex flex-column justify-content-center align-items-center">
+      <div class="container main_wrapper d-flex flex-column justify-content-center align-items-center">
+
+        <!-- CAPTION -->
+        <div class="header_caption mb-5">
+          <h1 class="display-4">To travel is to live</h1>
+          <p class="lead">Where you want to go, with what you want to spend.</p>
+        </div>
+
+        <!-- SIGN IN FORM -->
+        <div class="modal mt-5 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-success">
+                <img class="brand" src="assets/brand/fetch-w-logo.png" alt="brand">
+                <h5 class="ml-3 modal-title" id="exampleModalLabel">Sign In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="email" class="col-form-label">email:</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email"
+                      required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-form-label">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control"
+                      placeholder="Enter your password" required>
+                  </div>
+                </form>
+              </div>
+              <div class="button">
+                <button type="button" class="col btn btn-success">Sign In</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUERY FORM -->
+        <form action="#" autocomplete="off" class="query-form">
+          <div class="d-flex justify-content-center align-items-end">
+
+            <input type="hidden" name="cabinClass" id="cabinClass" value="economy">
+            <input type="hidden" name="children" id="children" value="0">
+            <input type="hidden" name="infants" id="infants" value="0">
+            <input type="hidden" name="country" id="country" value="US">
+            <input type="hidden" name="currency" id="currency" value="USD">
+            <input type="hidden" name="locale" id="locale" value="en-US">
+
+            <div class="origin">
+              <div><label for="origin">From</label></div>
+              <div class="autocomplete">
+                <input type="text" name="origin" id="origin" placeholder="Phoenix" class="col-auto p-3 leftBorder">
+              </div>
+            </div>
+
+            <div class="destination">
+              <div><label for="destination">To</label></div>
+              <div class="autocomplete">
+                <input type="text" name="destination" id="destination" placeholder="New York" class="col-auto p-3">
+              </div>
+            </div>
+
+            <div class="outboundDate">
+              <div><label for="outboundDate">Depart</label></div>
+              <input type="date" name="outboundDate" id="outboundDate" placeholder="06/18/19" class="col-auto p-3">
+            </div>
+
+            <div class="inboundDate">
+              <div><label for="inboundDate">Return</label></div>
+              <input type="date" name="inboundDate" id="inboundDate" placeholder="07/18/19" class="col-auto p-3">
+            </div>
+
+            <div class="adults">
+              <div><label for="adults">Passengers</label></div>
+              <input type="number" name="adults" id="adults" min="1" value="1" class="col p-3">
+            </div>
+
+            <input type="submit" name="submit" class="bg-success col-1 p-3 rightBorder">
+
+          </div>
+        </form>
+
+      </div>
+    </section>
+    <section class="our-mission">
+      <div class="con-full-width">
+        <div class="v-con">
+          <h1 class="headline">FETCH MISSION</h1>
+          <p class="body-text mission-statement">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem
+            sapiente excepturi quae, animi temporibus quibusdam in porro ducimus officiis laudantium iure sint mollitia
+            praesentium ut aut, ab laborum! Sunt, obcaecati.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="our-team">
+      <div class="v-con">
+        <h1 class="headline">TEAM FETCH</h1>
+        <p class="body-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        <div class="card-wrapper">
+
+          <div class="card-item">
+            <div class="graphic graphic-one"></div>
+            <span class="card-title">Seth Ortiz</span>
+            <small>Follow me on social media</small>
+            <div class="action-group">
+              <a class="action" href="https://bit.ly/2IpZQiY" target="_blank">LinkedIn</a>
+              <a href="https://github.com/SethOrtiz" target="_blank" class="action">Github</a>
+            </div>
+          </div>
+          <div class="card-item">
+            <div class="graphic graphic-two"></div>
+            <span class="card-title">Clarance Farley</span>
+            <small>Follow me on social media</small>
+            <div class="action-group">
+              <a class="action" href="https://bit.ly/2L04MN9" target="_blank">LinkedIn</a>
+              <a href="https://github.com/claranceatgalvanize" target="_blank" class="action">Github</a>
+            </div>
+          </div>
+          <div class="card-item">
+            <div class="graphic graphic-three"></div>
+            <span class="card-title">Alejandro Martinez</span>
+            <small>Follow me on social media</small>
+            <div class="action-group">
+              <a class="action" href="https://bit.ly/2x1QFyH" target="_blank">LinkedIn</a>
+              <a href="https://github.com/ja-martinez" target="_blank" class="action">Github</a>
+            </div>
+          </div>
 
         </div>
-    </header>
-
-    <!-- MAIN -->
-    <main role="main">
-        <section class="fold d-flex flex-column justify-content-center align-items-center">
-            <div class="container main_wrapper d-flex flex-column justify-content-center align-items-center">
-    
-                <!-- CAPTION -->
-                <div class="header_caption mb-5">
-                    <h1 class="display-4">To travel is to live</h1>
-                    <p class="lead">Where you want to go, with what you want to spend.</p>
-                </div>
-    
-                <!-- SIGN IN FORM -->
-                <div class="modal mt-5 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-success">
-                                <img class="brand" src="assets/brand/fetch-w-logo.png" alt="brand">
-                                <h5 class="ml-3 modal-title" id="exampleModalLabel">Sign In</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="email" class="col-form-label">email:</label>
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password" class="col-form-label">Password:</label>
-                                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="button">
-                                <button type="button" class="col btn btn-success">Sign In</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- QUERY FORM -->
-                <form action="#" class="query-form">
-                    <div class="d-flex justify-content-center align-items-end">
-                    
-                        <div class="origin">
-                            <div><label for="origin">From</label></div>
-                            <input type="text" name="origin" id="origin" placeholder="Phoenix" class="col-auto p-3 leftBorder">
-                        </div>
-        
-                        <div class="destination">
-                            <div><label for="destination">To</label></div>
-                            <input type="text" name="destination" id="destination" placeholder="New York" class="col-auto p-3">
-                        </div>
-        
-                        <div class="outboundDate">
-                            <div><label for="outboundDate">Depart</label></div>
-                            <input type="date" name="outboundDate" id="outboundDate" placeholder="06/18/19" class="col-auto p-3">
-                        </div> 
-    
-                        <div class="inboundDate">
-                            <div><label for="inboundDate">Return</label></div>
-                            <input type="date" name="inboundDate" id="inboundDate" placeholder="07/18/19" class="col-auto p-3">
-                        </div>  
-    
-                        <div class="adults">
-                            <div><label for="adults">Passengers</label></div>
-                            <input type="number" name="adults" id="adults" min="1" value="1" class="col p-3">
-                        </div> 
-    
-                        <input type="submit" name="submit" class="bg-success col-1 p-3 rightBorder">
-                        
-                    </div>
-                </form>
-                
-            </div>
-        </section>
-        <section class="our-mission">
-            <div class="con-full-width">
-                <div class="v-con">
-                    <h1 class="headline">FETCH MISSION</h1>
-                    <p class="body-text mission-statement">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem sapiente excepturi quae, animi temporibus quibusdam in porro ducimus officiis laudantium iure sint mollitia praesentium ut aut, ab laborum! Sunt, obcaecati.</p>
-                </div>
-            </div>
-        </section>
-    
-        <section class="our-team">
-            <div class="v-con">
-                <h1 class="headline">TEAM FETCH</h1>
-                <p class="body-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                <div class="card-wrapper">
-    
-                    <div class="card-item">
-                        <div class="graphic graphic-one"></div>
-                        <span class="card-title">Seth Ortiz</span>
-                        <small>Follow me on social media</small>
-                        <div class="action-group">
-                            <a class="action" href="https://bit.ly/2IpZQiY" target="_blank">LinkedIn</a>
-                            <a href="https://github.com/SethOrtiz" target="_blank" class="action">Github</a>
-                        </div>
-                    </div>
-                    <div class="card-item">
-                        <div class="graphic graphic-two"></div>
-                        <span class="card-title">Clarance Farley</span>
-                        <small>Follow me on social media</small>
-                        <div class="action-group">
-                            <a class="action" href="https://bit.ly/2L04MN9" target="_blank">LinkedIn</a>
-                            <a href="https://github.com/claranceatgalvanize" target="_blank" class="action">Github</a>
-                        </div>
-                    </div>
-                    <div class="card-item">
-                        <div class="graphic graphic-three"></div>
-                        <span class="card-title">Alejandro Martinez</span>
-                        <small>Follow me on social media</small>
-                        <div class="action-group">
-                            <a class="action" href="https://bit.ly/2x1QFyH" target="_blank">LinkedIn</a>
-                            <a href="https://github.com/ja-martinez" target="_blank" class="action">Github</a>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
-        </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
 </body>
 <footer role="footer">
-    
-    <div class="footer-body">
-        <div class="v-con">
-            
-            <ul>
-                <li class="about flex-2">
-                    <h3><img class="footer-brand" src="assets/brand/fetch-logo.png" alt=""></h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque aspernatur eaque laborum voluptatibus amet. adipisicing elit.</p>
-                </li>
-                <li class="flex">
-                    <h3>Github</h3>
-                    <a class="contact-link" href="">Alejandro</a>
-                    <a class="contact-link" href="">Clarance</a>
-                    <a class="contact-link" href="">Seth</a>
-                </li>
-                <li class="flex">
-                    <h3>LikedIn</h3>
-                    <a class="contact-link" href="">Alejandro</a>
-                    <a class="contact-link" href="">Clarance</a>
-                    <a class="contact-link" href="">Seth</a>
-                </li>
-                <li class="flex">
-                    <h3>Getting Started</h3>
-                    <a class="contact-link" href="">Support</a>
-                    <a class="contact-link" href="">How to!</a>
-                    <a class="contact-link" href="">Doc</a>
-                </li>
-            </ul>
-            
-        </div>
+
+  <div class="footer-body">
+    <div class="v-con">
+
+      <ul>
+        <li class="about flex-2">
+          <h3><img class="footer-brand" src="assets/brand/fetch-logo.png" alt=""></h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque aspernatur eaque laborum voluptatibus amet.
+            adipisicing elit.</p>
+        </li>
+        <li class="flex">
+          <h3>Github</h3>
+          <a class="contact-link" href="">Alejandro</a>
+          <a class="contact-link" href="">Clarance</a>
+          <a class="contact-link" href="">Seth</a>
+        </li>
+        <li class="flex">
+          <h3>LikedIn</h3>
+          <a class="contact-link" href="">Alejandro</a>
+          <a class="contact-link" href="">Clarance</a>
+          <a class="contact-link" href="">Seth</a>
+        </li>
+        <li class="flex">
+          <h3>Getting Started</h3>
+          <a class="contact-link" href="">Support</a>
+          <a class="contact-link" href="">How to!</a>
+          <a class="contact-link" href="">Doc</a>
+        </li>
+      </ul>
+
     </div>
-    
-    <!-- BOOTSTRAP SCRIPT -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </div>
+
+  <!-- BOOTSTRAP SCRIPT -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      function autocomplete(inp) {
+        /*the autocomplete function takes two arguments,
+        the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function (e) {
+          var a, b, i, val = this.value;
+          /*close any already open lists of autocompleted values*/
+          closeAllLists();
+          if (!val) {
+            return false;
+          }
+          currentFocus = -1;
+          /*create a DIV element that will contain the items (values):*/
+          a = document.createElement("DIV");
+          a.setAttribute("id", this.id + "autocomplete-list");
+          a.setAttribute("class", "autocomplete-items");
+          /*append the DIV element as a child of the autocomplete container:*/
+          this.parentNode.appendChild(a);
+          /*for each item in the array...*/
+
+          fetch(
+              `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?query=${val}`, {
+                headers: {
+                  "X-RapidAPI-Host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                  "X-RapidAPI-Key": "4f35d21e85mshd99b830c3d8fc00p1bb8d5jsn462cba9bbdea"
+                }
+              })
+            .then(result => result.json())
+            .then((result) => {
+              places = result.Places;
+              for (i = 0; i < places.length; i++) {
+                /*create a DIV element for each matching element:*/
+                b = document.createElement("DIV");
+                /*make the matching letters bold:*/
+                b.innerHTML = `${places[i].PlaceName} ${places[i].PlaceId}`
+                /*insert a input field that will hold the current array item's value:*/
+                b.innerHTML += "<input type='hidden' value='" + places[i].PlaceId + "'>";
+                /*execute a function when someone clicks on the item value (DIV element):*/
+                b.addEventListener("click", function (e) {
+                  /*insert the value for the autocomplete text field:*/
+                  inp.value = this.getElementsByTagName("input")[0].value;
+                  /*close the list of autocompleted values,
+                  (or any other open lists of autocompleted values:*/
+                  closeAllLists();
+                });
+                a.appendChild(b);
+              }
+              /*execute a function presses a key on the keyboard:*/
+              inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                  /*If the arrow DOWN key is pressed,
+                  increase the currentFocus variable:*/
+                  currentFocus++;
+                  /*and and make the current item more visible:*/
+                  addActive(x);
+                } else if (e.keyCode == 38) { //up
+                  /*If the arrow UP key is pressed,
+                  decrease the currentFocus variable:*/
+                  currentFocus--;
+                  /*and and make the current item more visible:*/
+                  addActive(x);
+                } else if (e.keyCode == 13) {
+                  /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                  e.preventDefault();
+                  if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                  }
+                }
+              });
+
+            });
+        });
+
+
+        function addActive(x) {
+          /*a function to classify an item as "active":*/
+          if (!x) return false;
+          /*start by removing the "active" class on all items:*/
+          removeActive(x);
+          if (currentFocus >= x.length) currentFocus = 0;
+          if (currentFocus < 0) currentFocus = (x.length - 1);
+          /*add class "autocomplete-active":*/
+          x[currentFocus].classList.add("autocomplete-active");
+        }
+
+        function removeActive(x) {
+          /*a function to remove the "active" class from all autocomplete items:*/
+          for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+          }
+        }
+
+        function closeAllLists(elmnt) {
+          /*close all autocomplete lists in the document,
+          except the one passed as an argument:*/
+          var x = document.getElementsByClassName("autocomplete-items");
+          for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+              x[i].parentNode.removeChild(x[i]);
+            }
+          }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+          closeAllLists(e.target);
+        });
+      }
+
+      autocomplete(document.getElementById("origin"));
+      autocomplete(document.getElementById("destination"));
+    })
+  </script>
 </footer>
 
 </html>
