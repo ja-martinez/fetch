@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900&display=swap');
+
+/* GLOBAL */
+html,body{
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: .02em;
+    max-height: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* HEADER */
+header {
+    background: none;
+    font-size: 1.4em;
+    color: #eee;
+}
+
+header a {
+    color: #eee;
+}
+header a:hover {
+    text-decoration: none;
+    color: #6b5;
+}
+
+.header_caption {
+    color: #eee;
+}
+
+.brand {
+    width: 6em;
+}
+
+
+
+/* ABOUT */
+
+.con-full-width {
+    max-width: 100%;
+    color: #fff;
+}
+
+.v-con {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0em 8em;
+    max-width: 100%;
+    display: flex;
+    padding: 1em;
+}
+
+/* FOOTER */
+footer {
+    background: #222;
+    padding: 2em 0;
+    color: #333
+}
+
+footer:hover {
+    color: #444
+}
+
+.footer-brand {
+    display: block;
+    width: 4em;
+}
+
+footer ul {
+    justify-content: space-evenly;
+    text-decoration: none;
+    align-items: center;
+    list-style: none;
+    display: flex;
+}
+
+footer a {
+    text-decoration: none;
+    display: flex;
+    color: #333
+}
+
+.flex-2 {
+    flex: 2;
+}
+.flex {
+    flex: 1;
+}
+
+.contact-link:hover {
+    color: #6b5;
+}

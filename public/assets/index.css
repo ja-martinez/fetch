@@ -69,8 +69,9 @@ header a:hover {
     height: 100vh;
 }
 
-.header_caption {
+.header_caption, .display-4 {
     text-align: center;
+    font-weight: 700;
 }
 
 .query-form input {

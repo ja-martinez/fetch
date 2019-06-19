@@ -295,6 +295,6 @@ module.exports = {
   },
 
   getOne: (req, res) => {
-    res.render('one-flight', {flight: flights[req.params.flightsIndex]})
+    res.render('singleflight', {flight: flights[req.params.flightsIndex]})
   }
 }
