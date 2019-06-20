@@ -284,8 +284,8 @@ footer a {
     color: #444;
 }
 
-.modal button {
-    font-size: 1.3em;
+.modal-click {
+    font-size: 1em;
     color: #eee;
     border: none;
 }
