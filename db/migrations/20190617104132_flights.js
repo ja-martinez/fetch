@@ -1,11 +1,17 @@
 exports.up = (knex, Promise) => {
     return knex.schema.createTable("flights", table => {
         table.increments().notNullable();
-        table.integer("flightNumber").notNullable();
-        table.string("from").notNullable();
-        table.string("to").notNullable();
-        table.integer("currentPrice").notNullable();
-        table.integer("duration").notNullable();
+        table.string('cabinClass');
+        table.integer('adults');
+        table.integer('children');
+        table.integer('infants');
+        table.string('country');
+        table.string('currency');
+        table.string('locale');
+        table.string('originPlace');
+        table.string('destinationPlace');
+        table.string('outboundDate');
+        table.string('inboundDate');
         table.timestamps(true, true)
     })
   };

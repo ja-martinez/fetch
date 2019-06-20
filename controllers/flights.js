@@ -1,15 +1,43 @@
 const knex = require("../db/knex.js");
 const unirest = require('unirest');
 let flights = [];
+let query = {};
 
 module.exports = {
-  // CHANGE ME TO AN ACTUAL FUNCTION
+  
   home: (req, res) => {
     res.render("index")
   },
 
-  register: (req, res) => {
+  getRegister: (req, res) => {
     res.render('register');
+  },
+
+  register: (req, res) => {
+    knex('users')
+    .insert([{
+      email: req.body.email,
+      password: req.body.password
+    }])
+    .then(() => {
+      res.redirect('/')
+    })
+  },
+
+  login: (req, res) => {
+    knex('users')
+    .where({
+      email: req.body.email
+    })
+    .then(result => {
+      let user = result[0];
+      if (user.password === req.body.password) {
+        req.session.user = user;
+        res.redirect('/');
+      } else {
+        res.redirect('/')
+      }
+    })
   },
 
   getFlights: (req, res) => {
@@ -23,7 +51,19 @@ module.exports = {
     const originPlace = req.body.origin;
     const destinationPlace = req.body.destination;
     const outboundDate = req.body.outboundDate;
-    const inboundDate = req.body.inboundDate;
+    const inboundDate = ''//req.body.inboundDate;
+
+    query.cabinClass = req.body.cabinClass;
+    query.adults = req.body.adults;
+    query.children = req.body.children;
+    query.infants = req.body.infants;
+    query.country = req.body.country;
+    query.currency = req.body.currency;
+    query.locale = req.body.locale;
+    query.originPlace = req.body.origin;
+    query.destinationPlace = req.body.destination;
+    query.outboundDate = req.body.outboundDate;
+    query.inboundDate = req.body.inboundDate;
 
     const flightType = req.body.flightType
 
@@ -44,7 +84,7 @@ module.exports = {
       .send(`inboundDate=${inboundDate}`)
       .send(`adults=${adults}`)
       .end(function (result) {
-
+        console.log(result.body, query)
         const sessionKey = result.headers.location.slice(-36);
 
         unirest.get(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/${sessionKey}?sortType=price&sortOrder=asc&pageIndex=0&pageSize=10`)
@@ -290,6 +330,8 @@ module.exports = {
                 flights.push(flight);
               }
             }
+
+            res.render('flights', {flights:flights})
           })
       });
   },

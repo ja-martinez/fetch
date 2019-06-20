@@ -55,6 +55,10 @@
       background-color: #6b5 !important;
       color: #ffffff;
     }
+
+    #flight-type {
+      color: #ffffff;
+    }
   </style>
 
   <title>Flight Fetch | Home</title>
@@ -72,13 +76,20 @@
           <div class="d-flex flex-row p-3 justify-content-between align-items-center">
             <!-- BRAND -->
             <div>
-              <a href="#"><img class="brand" src="assets/brand/fetch-logo.png" alt="brand"></a>
+              <a href="#fold"><img class="brand" src="assets/brand/fetch-logo.png" alt="brand"></a>
             </div>
             <!-- NAV-LINKS -->
             <div>
+<<<<<<< HEAD
               <a class="mr-3" href="#">About</a>
               <a href="#" class="mr-3">Feature</a>
               <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign In</a>
+=======
+              <a class="mr-3" href="#our-mission">Fetch Mission</a>
+              <a href="#our-team" class="mr-3">Fetch Team</a>
+              <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign
+                In</a>
+>>>>>>> 131767ed5dc3401079d1b19dccc1f244db01674a
             </div>
           </div>
         </div>
@@ -89,7 +100,7 @@
 
   <!-- MAIN -->
   <main role="main">
-    <section class="fold d-flex flex-column justify-content-center align-items-center">
+    <section id="fold" class="fold d-flex flex-column justify-content-center align-items-center">
       <div class="container main_wrapper d-flex flex-column justify-content-center align-items-center">
 
         <!-- CAPTION -->
@@ -109,8 +120,13 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+<<<<<<< HEAD
               <div class="modal-body p-5 ">
                 <form>
+=======
+              <div class="modal-body">
+                <form action="/login">
+>>>>>>> 131767ed5dc3401079d1b19dccc1f244db01674a
                   <div class="form-group">
                     <label for="email" class="col-form-label">email:</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email"
@@ -123,16 +139,27 @@
                   </div>
                 </form>
               </div>
+<<<<<<< HEAD
               <div class="button d-flex">
                 <button type="button" class="py-3 rounded-0  modal-btn col btn btn-dark">Sign In</button>
                 <button type="button" class="py-3 rounded-0  modal-btn col btn btn-dark">Sign Up</button>
+=======
+              <div class="button">
+                <a class="col btn btn-success" href="/register">Register</a>
+                <button type="button" class="col btn btn-success">Sign In</button>
+>>>>>>> 131767ed5dc3401079d1b19dccc1f244db01674a
               </div>
             </div>
           </div>
         </div>
 
         <!-- QUERY FORM -->
-        <form action="#" autocomplete="off" class="query-form">
+        <form action="/flights/search" method="POST" autocomplete="off" class="query-form">
+          <div class="mb-3 justify-content-center" id="flight-type">
+            <span class="mr-3"><input class="mr-1" id="flightType" type="radio" name="flightType" value="one-way" checked>One-way</span> 
+            <input type="radio" id="flightType" name="flightType" value="round"> Round Trip
+            
+          </div>
           <div class="d-flex justify-content-center align-items-end">
 
             <input type="hidden" name="cabinClass" id="cabinClass" value="economy">
@@ -178,7 +205,7 @@
 
       </div>
     </section>
-    <section class="our-mission">
+    <section id="our-mission" class="our-mission">
       <div class="con-full-width">
         <div class="v-con">
           <h1 class="headline">FETCH MISSION</h1>
@@ -189,7 +216,7 @@
       </div>
     </section>
 
-    <section class="our-team">
+    <section id="our-team" class="our-team">
       <div class="v-con">
         <h1 class="headline">TEAM FETCH</h1>
         <p class="body-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
@@ -276,6 +303,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      let flightType = document.querySelector('#flightType');
+
       function autocomplete(inp) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/

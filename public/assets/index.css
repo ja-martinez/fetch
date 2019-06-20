@@ -53,7 +53,7 @@ header a:hover {
     height: 100vh;
     width: 100%;
 }
-.fold:before {
+/* .fold:before {
     background-image: linear-gradient(to bottom right,#111,#000);
     position: absolute;
     opacity: .2; 
@@ -62,7 +62,12 @@ header a:hover {
     right: 0;
     left: 0;
     top: 0;
-}
+} */
+
+/* .fold {
+    background: #444;
+    height: 100vh;
+} */
 
 .fold_wrapper {
     padding-bottom: 5em;

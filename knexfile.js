@@ -3,7 +3,7 @@ module.exports = {
       client: 'pg',
       connection: {
         database: "flightFetch",
-        host: "localhost"
+        host: "localhost",
       },
       migrations: {
           directory: __dirname + '/db/migrations',
