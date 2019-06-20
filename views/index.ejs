@@ -115,9 +115,9 @@
                 </button>
               </div>
               <div class="modal-body p-5 ">
-                <form>
+                <form action="/login" method="POST" >
                   <div class="form-group">
-                    <label for="email" class="col-form-label">email:</label>
+                    <label for="email" class="col-form-label">Email:</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email"
                       required>
                   </div>
@@ -126,11 +126,11 @@
                     <input type="password" name="password" id="password" class="form-control"
                       placeholder="Enter your password" required>
                   </div>
+                  <div class="button d-flex">
+                    <button type="submit" class="py-3 rounded-0 modal-click col btn btn-dark">Sign In</button>
+                    <a href="/register" class="py-3 rounded-0 modal-click col btn btn-dark"> Register</a>
+                  </div>
                 </form>
-              </div>
-              <div class="button d-flex">
-                <button type="button" class="py-3 rounded-0  modal-btn col btn btn-dark">Sign In</button>
-                <button type="button" class="py-3 rounded-0  modal-btn col btn btn-dark">Sign Up</button>
               </div>
             </div>
           </div>
@@ -405,5 +405,4 @@
     })
   </script>
 </footer>
-
 </html>
