@@ -254,7 +254,7 @@ footer a {
     font-weight: 300;
 }
 
-label {
+.query-form label {
     color: #eee;
     font-size: 1.4em;
 }
@@ -267,7 +267,20 @@ label {
     background: #6b5;
 }
 
-.mission-statement{
+.mission-statement {
     padding: 0 5em;
     text-align: center;
+}
+
+.modal form {
+    border-radius: .5em;
+    overflow: hidden;
+    font-size: 1.3em;
+    color: #444;
+}
+
+.modal button {
+    font-size: 1.3em;
+    color: #eee;
+    border: none;
 }

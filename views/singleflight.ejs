@@ -46,24 +46,62 @@
 
     <!-- MAIN -->
     <main role="main">
-        <section class="fold d-flex flex-column justify-content-center align-items-center">
-            <div class="container main_wrapper d-flex flex-column justify-content-center align-items-center">
-    
-                <!-- CAPTION -->
-                <div class="header_caption mb-5">
-                    <h1 class="display-4">To travel is to live</h1>
-                    <p class="lead">Where you want to go, with what you want to spend.</p>
+
+        <section class="main">
+            <div class="container cont">
+
+                <div class="trip-info">
+                    <% for(let i = 0; i < flight.legs.lenght; i++) { %>
+                        <img src="<%= flight.legs[i].carrierImgUrl %>" alt="carrier" class="carrier">
+                        <div class="card">
+                            <div class="mini-card">
+                                <span><%= flight.legs[i].departure %></span>
+                                <h3><%= flight.legs[i].origin %></h3>
+                                <span><%= flight.legs[i].departure %></span>
+                            </div>
+                            <hr>
+                            <div class="mini-card">
+                                <span><%= flight.legs[i].arrival %></span>
+                                <h3><%= flight.legs[i].destination %></h3>
+                                <span><%= flight.legs[i].arrival %></span>
+                            </div>
+                        </div>
+                    <%}%>
                 </div>
 
             </div>
         </section>
+        <!-- <div class="passenger-info">
+            <table>
+                <tr>
+                    <td>Deals</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td>Transfer</td>
+                    <td>Self</td>
+                </tr>
+                <tr>
+                    <td>Passengers</td>
+                    <td>2 adults</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>1000 $</td>
+                </tr>
+            </table>
+        </div> -->
     
     </main>
 
-    <!-- BOOTSTRAP SCRIPT -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- SCRIPT -->
+    <div class="script">
+        <!-- BOOTSTRAP SCRIPT -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </div>
+
 </body>
 <footer role="footer">
     
@@ -71,7 +109,7 @@
         <div class="v-con">
             
             <ul>
-                <li class="about flex-2">
+                <li class="footer-about flex-2">
                     <h3><img class="footer-brand" src="/assets/brand/fetch-logo.png" alt=""></h3>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque aspernatur eaque laborum voluptatibus amet. adipisicing elit.</p>
                 </li>
