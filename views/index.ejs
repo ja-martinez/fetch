@@ -136,10 +136,10 @@
         </div>
 
         <!-- QUERY FORM -->
-        <form action="/flights/search" autocomplete="off" class="query-form">
+        <form action="/flights/search" method="POST" autocomplete="off" class="query-form">
           <div class="mb-3 justify-content-center" id="flight-type">
-            <span class="mr-3"><input class="mr-1" type="radio" name="flightType" value="one-way" checked>One-way</span> 
-            <input type="radio" name="flightType" value="round"> Round Trip
+            <span class="mr-3"><input class="mr-1" id="flightType" type="radio" name="flightType" value="one-way" checked>One-way</span> 
+            <input type="radio" id="flightType" name="flightType" value="round"> Round Trip
             
           </div>
           <div class="d-flex justify-content-center align-items-end">
@@ -285,6 +285,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      let flightType = document.querySelector('#flightType');
+
       function autocomplete(inp) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/

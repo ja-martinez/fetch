@@ -51,7 +51,7 @@ module.exports = {
     const originPlace = req.body.origin;
     const destinationPlace = req.body.destination;
     const outboundDate = req.body.outboundDate;
-    const inboundDate = req.body.inboundDate;
+    const inboundDate = ''//req.body.inboundDate;
 
     query.cabinClass = req.body.cabinClass;
     query.adults = req.body.adults;
@@ -84,7 +84,7 @@ module.exports = {
       .send(`inboundDate=${inboundDate}`)
       .send(`adults=${adults}`)
       .end(function (result) {
-
+        console.log(result.body, query)
         const sessionKey = result.headers.location.slice(-36);
 
         unirest.get(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/${sessionKey}?sortType=price&sortOrder=asc&pageIndex=0&pageSize=10`)
@@ -330,6 +330,8 @@ module.exports = {
                 flights.push(flight);
               }
             }
+
+            res.render('flights', {flights:flights})
           })
       });
   },

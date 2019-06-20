@@ -4,7 +4,7 @@ const watchList = require("../controllers/watchList.js")
 module.exports = function(app){
 
   app.get('/', flights.home);
-  app.get('/flights/search"', flights.getFlights);
+  app.post('/flights/search', flights.getFlights);
   app.get('/flights/:flightsIndex', flights.getOne);
   app.get('/register', flights.getRegister);
   // app.get('/cart', flights.getCart);

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- MATA DATA -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <!-- BOOTSTRAP STYLES -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <!-- FETCH STYLES -->
+  <link rel="stylesheet" href="/assets/flights.css" />
+
+  <!-- FETCH FAVICON -->
+  <link rel="shortcut icon" type="image/png" href="assets/brand/fetch-favicon.png" />
+
+  <title>Flight Fetch | Flights</title>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header role="header" class="fixed-top">
+    <nav>
+      <div>
+        <div class="d-flex flex-row p-3 justify-content-between align-items-center">
+          <!-- BRAND -->
+          <div>
+            <a href="#"><img class="brand" src="/assets/brand/fetch-logo.png" alt="brand" /></a>
+          </div>
+          <!-- NAV-LINKS -->
+          <div>
+            <a class="mr-3" href="#">About</a>
+            <a href="#" class="mr-3">Feature</a>
+            <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="container-fluid fold">
+    <!-- ADD TO WATCHLIST -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div id="watchlist" class="container-fluid">
+            <h1>Flights</h1>
+            <button>Add to Watchlist</button>
+          </div>
+        </div>
+        <!-- FLIGHT CONTAINER -->
+        <div class="row">
+          <section id="deck" class="container">
+            <%for (let i=0; i<flights.length; i++) {%>
+              <!-- FLIGHT CARD START -->
+            <div class="flight">
+                <div class="airline">
+                  <div class="container">
+                    <img
+                      src="<%=flights[i].agentImgUrl%>"
+                      alt="Agent_img" />
+                  </div>
+                  <div class="agent">
+                    <h6>Agent:</h6>
+                    <p><%=flights[i].agentName%></p>
+                  </div>
+                </div>
+                <div class="flight-info">
+                  <div>
+                    <h6>Departure Date</h6>
+                    <p><%=flights[i].departure.split('T')[0]%></p>
+                    <h6>Departure Time</h6>
+                    <p><%=flights[i].departure.split('T')[1]%></p>
+                  </div>
+                  <div>
+                    <h6>Arrival Date</h6>
+                    <p><%=flights[i].arrival.split('T')[0]%></p>
+                    <h6>Arrival Time</h6>
+                    <p><%=flights[i].arrival.split('T')[1]%></p>
+                  </div>
+                  <div>
+                    <h6>Origin</h6>
+                    <p><%=flights[i].origin%></p>
+                    <h6>Destination</h6>
+                    <p><%=flights[i].destination%></p>
+                  </div>
+                </div>
+                <div class="price-view">
+                  <h6>Price</h6>
+                  <p>$<%=flights[i].price%> USD</p>
+                  <a href="#">View</a>
+                </div>
+              </div>
+              <!-- FLIGHT CARD END -->
+            <%}%>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer role="footer">
+    <div class="footer-body">
+      <div class="v-con">
+        <ul>
+          <li class="about flex-2">
+            <h3>
+              <img class="footer-brand" src="../public/assets/brand/fetch-logo.png" alt="" />
+            </h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+              aspernatur eaque laborum voluptatibus amet. adipisicing elit.
+            </p>
+          </li>
+          <li class="flex">
+            <h3>Github</h3>
+            <a class="contact-link" href="">Alejandro</a>
+            <a class="contact-link" href="">Clarance</a>
+            <a class="contact-link" href="">Seth</a>
+          </li>
+          <li class="flex">
+            <h3>LikedIn</h3>
+            <a class="contact-link" href="">Alejandro</a>
+            <a class="contact-link" href="">Clarance</a>
+            <a class="contact-link" href="">Seth</a>
+          </li>
+          <li class="flex">
+            <h3>Getting Started</h3>
+            <a class="contact-link" href="">Support</a>
+            <a class="contact-link" href="">How to!</a>
+            <a class="contact-link" href="">Doc</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  </footer>
+</body>
+
+</html>
+
+<!-- FLIGHT SORTING DROPDOWN -->
+<!-- <div class="row">
+  <div id="sort" class="container-fluid">
+    <div class="dropdown">
+      <button
+        class="dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Sort
+      </button>
+      <div
+        class="dropdown-menu"
+        aria-labelledby="dropdownMenuButton"
+      >
+        <a class="dropdown-item" href="#">Price</a>
+        <a class="dropdown-item" href="#">Duration</a>
+        <a class="dropdown-item" href="#">Stops</a>
+      </div>
+    </div>
+  </div>
+</div> -->
