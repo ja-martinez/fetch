@@ -5,13 +5,50 @@
   
   body {
     background: #6b5;
-    background: linear-gradient(to right, #6b5, #75c166);
+    background: linear-gradient(to left, #6b5, rgb(62, 114, 52));
+  }
+  
+  header {
+    font-size: 3vh;
+    color: #eee;
+  }
+  
+  header a {
+    color: #eee;
+  }
+  header a:hover {
+    text-decoration: none;
+    color: #6b5;
+  }
+  
+  nav {
+    background-color: #444;
+    width: 100%;
+  }
+
+  h5{
+    font-weight: bold
+  }
+  
+  .header_caption {
+    color: #eee;
+  }
+  
+  .brand {
+    width: 6em;
+  }
+  
+  .home {
+    border: 0.05em solid #333;
+    border-radius: 0.15em;
+    padding: 0.1em 0.3em;
   }
   
   .card-signin {
     border: 0;
     border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
   
   .card-signin .card-title {
@@ -19,14 +56,16 @@
     font-weight: 300;
     font-size: 1.5rem;
   }
-  
+
   .card-signin .card-body {
     padding: 2rem;
+    overflow: hidden;
   }
   
   .form-signin {
     width: 100%;
   }
+
   
   .form-signin .btn {
     font-size: 80%;
@@ -109,10 +148,23 @@
     background-color: #3b5998;
   }
   
-  #main{
-      margin-top: 12%;
+  #submit {
+    background: #555
   }
-  
+
+  #main{
+      margin-top: 20vh;
+  }
+
+  #sign{
+    color: #333;
+  }
+
+  #sign:hover{
+    color: #6b5;
+  }
+
+
   /* Fallback for Edge
     -------------------------------------------------- */
   
