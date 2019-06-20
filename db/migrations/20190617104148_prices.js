@@ -8,7 +8,6 @@ exports.up = (knex, Promise) => {
         .onDelete('CASCADE')
         .index();
         table.integer("price").notNullable();
-        table.integer("time")
         table.timestamps(true, true)
     })
   };

@@ -44,6 +44,19 @@ module.exports = {
     res.render('server-crash');
   },
 
+  addToWatchlist: (req, res) => {
+    knex('flights')
+      .insert([query], ['id'])
+      .then((flightId) => {
+        flightId = flightId[0].id;
+        knex('watchList')
+          .insert([{user_id: req.session.user.id, flight_id: flightId}])
+          .then(() => {
+            res.redirect('/');
+          })
+      })
+  },
+
   getFlights: (req, res) => {
     const cabinClass = req.body.cabinClass;
     const adults = req.body.adults;
@@ -55,7 +68,7 @@ module.exports = {
     const originPlace = req.body.origin;
     const destinationPlace = req.body.destination;
     const outboundDate = req.body.outboundDate;
-    const inboundDate = '' //req.body.inboundDate;
+    const inboundDate = req.body.inboundDate;
 
     query.cabinClass = req.body.cabinClass;
     query.adults = req.body.adults;
@@ -92,7 +105,6 @@ module.exports = {
           res.redirect('/error');
           return false;
         }
-        console.log(result.body);
         const sessionKey = result.headers.location.slice(-36);
 
         setTimeout(() => {
@@ -194,7 +206,6 @@ module.exports = {
                   flight.layoverTime = flight.duration - flight.flyingTime;
 
                   flights.push(flight);
-                  console.log(flight)
                 }
               } else if (flightType === 'round') {
                 let outboundOriginId = '';
@@ -339,7 +350,6 @@ module.exports = {
                   flights.push(flight);
                 }
               }
-              console.log(flights);
               res.render('flights', {
                 flights: flights
               })
@@ -349,7 +359,6 @@ module.exports = {
   },
 
   getOne: (req, res) => {
-    console.log(res)
     res.render('singleflight', {
       flight: flights[req.params.flightsIndex]
     })
