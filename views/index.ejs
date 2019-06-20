@@ -37,6 +37,8 @@
     }
 
     .autocomplete-items div {
+      height: 4em;
+      overflow: hidden;
       padding: 10px;
       cursor: pointer;
       background-color: #fff;
@@ -50,7 +52,7 @@
 
     .autocomplete-active {
       /*when navigating through the items using the arrow keys:*/
-      background-color: DodgerBlue !important;
+      background-color: #6b5 !important;
       color: #ffffff;
     }
 
@@ -78,10 +80,16 @@
             </div>
             <!-- NAV-LINKS -->
             <div>
+<<<<<<< HEAD
+              <a class="mr-3" href="#">About</a>
+              <a href="#" class="mr-3">Feature</a>
+              <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign In</a>
+=======
               <a class="mr-3" href="#our-mission">Fetch Mission</a>
               <a href="#our-team" class="mr-3">Fetch Team</a>
               <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign
                 In</a>
+>>>>>>> 131767ed5dc3401079d1b19dccc1f244db01674a
             </div>
           </div>
         </div>
@@ -102,19 +110,23 @@
         </div>
 
         <!-- SIGN IN FORM -->
-        <div class="modal mt-5 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header bg-success">
+              <div class="modal-header p-5 text-center rounded-0 bg-success">
                 <img class="brand" src="assets/brand/fetch-w-logo.png" alt="brand">
-                <h5 class="ml-3 modal-title" id="exampleModalLabel">Sign In</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+<<<<<<< HEAD
+              <div class="modal-body p-5 ">
+                <form>
+=======
               <div class="modal-body">
                 <form action="/login">
+>>>>>>> 131767ed5dc3401079d1b19dccc1f244db01674a
                   <div class="form-group">
                     <label for="email" class="col-form-label">email:</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email"
@@ -127,9 +139,15 @@
                   </div>
                 </form>
               </div>
+<<<<<<< HEAD
+              <div class="button d-flex">
+                <button type="button" class="py-3 rounded-0  modal-btn col btn btn-dark">Sign In</button>
+                <button type="button" class="py-3 rounded-0  modal-btn col btn btn-dark">Sign Up</button>
+=======
               <div class="button">
                 <a class="col btn btn-success" href="/register">Register</a>
                 <button type="button" class="col btn btn-success">Sign In</button>
+>>>>>>> 131767ed5dc3401079d1b19dccc1f244db01674a
               </div>
             </div>
           </div>

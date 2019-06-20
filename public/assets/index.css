@@ -46,14 +46,14 @@ header a:hover {
 }
 
 /* .fold */
-/* .fold {
+.fold {
     background: url("https://bit.ly/2KZyDFs") center top no-repeat;
     background-size: cover;
     position: relative;
     height: 100vh;
     width: 100%;
 }
-.fold:before {
+/* .fold:before {
     background-image: linear-gradient(to bottom right,#111,#000);
     position: absolute;
     opacity: .2; 
@@ -64,10 +64,10 @@ header a:hover {
     top: 0;
 } */
 
-.fold {
+/* .fold {
     background: #444;
     height: 100vh;
-}
+} */
 
 .fold_wrapper {
     padding-bottom: 5em;
@@ -259,7 +259,7 @@ footer a {
     font-weight: 300;
 }
 
-label {
+.query-form label {
     color: #eee;
     font-size: 1.4em;
 }
@@ -272,7 +272,20 @@ label {
     background: #6b5;
 }
 
-.mission-statement{
+.mission-statement {
     padding: 0 5em;
     text-align: center;
+}
+
+.modal form {
+    border-radius: .5em;
+    overflow: hidden;
+    font-size: 1.3em;
+    color: #444;
+}
+
+.modal button {
+    font-size: 1.3em;
+    color: #eee;
+    border: none;
 }

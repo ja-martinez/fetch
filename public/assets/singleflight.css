@@ -1,6 +1,6 @@
+/* ==================================== GLOBAL */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900&display=swap');
 
-/* GLOBAL */
 html,body{
     font-family: 'Source Sans Pro', sans-serif;
     letter-spacing: .02em;
@@ -10,58 +10,81 @@ html,body{
     margin: 0;
 }
 
-/* HEADER */
+.cont {
+    margin-top: 4.65em;
+    padding: 8em 1em; 
+}
+
+.trip-info, .mini-card {
+    display: flex;
+}
+.trip-info {
+    margin-bottom: 1em;
+}
+
+.card {
+    padding: 0 1em;
+    /* border-left: .08em dashed #999; */
+}
+
+.mini-card {
+    width: 20em;
+    padding: 1em 0;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.carrier {
+    background: #6b5;
+    border-radius: .2em;
+    overflow: hidden;
+    /* border-right: .1em dashed #999; */
+}
+
+hr {
+    border: .02em dashed #ccc;
+    margin: 0 1em;
+    width: 100%;
+}
+
+/* ==================================== HEADER */
 header {
-    background: none;
+    background: #222;
     font-size: 1.4em;
     color: #eee;
 }
 
-header a {
-    color: #eee;
-}
 header a:hover {
     text-decoration: none;
     color: #6b5;
 }
 
-.header_caption {
-    color: #eee;
+header a { color: #eee }
+.brand { width: 6em }
+
+/* ==================================== MAIN */
+.main {
+    background: #eee;
+    height: 100vh;
+    width: 100%;
+
 }
 
-.brand {
-    width: 6em;
-}
-
-
-
-/* ABOUT */
-
-.con-full-width {
-    max-width: 100%;
-    color: #fff;
-}
-
-.v-con {
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 0em 8em;
-    max-width: 100%;
-    display: flex;
-    padding: 1em;
-}
-
-/* FOOTER */
+/* ==================================== FOOTER */
 footer {
     background: #222;
     padding: 2em 0;
     color: #333
 }
 
-footer:hover {
-    color: #444
+footer h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: .5em;
 }
+
+.footer-about { padding: 0 4em 0 0 }
+footer:hover { color: #444 }
 
 .footer-brand {
     display: block;
@@ -82,13 +105,10 @@ footer a {
     color: #333
 }
 
-.flex-2 {
-    flex: 2;
-}
-.flex {
-    flex: 1;
-}
+.flex-2 { flex: 2 }
+.flex { flex: 1 }
 
 .contact-link:hover {
+    text-decoration: none;
     color: #6b5;
 }
