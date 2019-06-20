@@ -1,0 +1,61 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: 0.75rem;
+}
+
+body {
+  background: #6b5;
+  background: linear-gradient(to left, #6b5, rgb(62, 114, 52));
+}
+
+header {
+  font-size: 3vh;
+  color: #eee;
+}
+
+header a {
+  color: #eee;
+}
+header a:hover {
+  text-decoration: none;
+  color: #6b5;
+}
+
+nav {
+  background-color: #444;
+  width: 100%;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+.header_caption {
+  color: #eee;
+}
+
+.brand {
+  width: 6em;
+}
+
+.home {
+  border: 0.05em solid #333;
+  border-radius: 0.15em;
+  padding: 0.1em 0.3em;
+}
+
+#main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+    color: #333;
+}
