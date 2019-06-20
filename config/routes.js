@@ -7,6 +7,7 @@ module.exports = function(app){
   app.post('/flights/search', flights.getFlights);
   app.get('/flights/:flightsIndex', flights.getOne);
   app.get('/register', flights.getRegister);
+  app.get('/error', flights.error)
   // app.get('/cart', flights.getCart);
   // app.get('/checkout', flights.getCheckout)
   app.post('/login', flights.login);
