@@ -46,7 +46,7 @@ header a:hover {
 }
 
 /* .fold */
-.fold {
+/* .fold {
     background: url("https://bit.ly/2KZyDFs") center top no-repeat;
     background-size: cover;
     position: relative;
@@ -62,6 +62,11 @@ header a:hover {
     right: 0;
     left: 0;
     top: 0;
+} */
+
+.fold {
+    background: #444;
+    height: 100vh;
 }
 
 .fold_wrapper {
