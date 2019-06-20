@@ -18,7 +18,7 @@ module.exports = function(app){
 }
 
 function authMiddleware(req, res, next){
-  if(!req.session.user_id){
+  if(!req.session.user){
     res.redirect("/user_login");
     
   }else{

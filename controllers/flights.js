@@ -13,11 +13,30 @@ module.exports = {
   },
 
   register: (req, res) => {
-
+    knex('users')
+    .insert([{
+      email: req.body.email,
+      password: req.body.password
+    }])
+    .then(() => {
+      res.redirect('/')
+    })
   },
 
   login: (req, res) => {
-
+    knex('users')
+    .where({
+      email: req.body.email
+    })
+    .then(result => {
+      let user = result[0];
+      if (user.password === req.body.password) {
+        req.session.user = user;
+        res.redirect('/');
+      } else {
+        res.redirect('/')
+      }
+    })
   },
 
   getFlights: (req, res) => {
