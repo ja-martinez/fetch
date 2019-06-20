@@ -114,7 +114,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form>
+                <form action="/login">
                   <div class="form-group">
                     <label for="email" class="col-form-label">email:</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email"
@@ -128,6 +128,7 @@
                 </form>
               </div>
               <div class="button">
+                <a class="col btn btn-success" href="/register">Register</a>
                 <button type="button" class="col btn btn-success">Sign In</button>
               </div>
             </div>
@@ -135,7 +136,7 @@
         </div>
 
         <!-- QUERY FORM -->
-        <form action="#" autocomplete="off" class="query-form">
+        <form action="/flights/search" autocomplete="off" class="query-form">
           <div class="mb-3 justify-content-center" id="flight-type">
             <span class="mr-3"><input class="mr-1" type="radio" name="flightType" value="one-way" checked>One-way</span> 
             <input type="radio" name="flightType" value="round"> Round Trip

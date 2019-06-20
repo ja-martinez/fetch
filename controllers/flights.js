@@ -3,13 +3,21 @@ const unirest = require('unirest');
 let flights = [];
 
 module.exports = {
-  // CHANGE ME TO AN ACTUAL FUNCTION
+  
   home: (req, res) => {
     res.render("index")
   },
 
-  register: (req, res) => {
+  getRegister: (req, res) => {
     res.render('register');
+  },
+
+  register: (req, res) => {
+
+  },
+
+  login: (req, res) => {
+
   },
 
   getFlights: (req, res) => {
