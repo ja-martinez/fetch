@@ -1,0 +1,352 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900&display=swap");
+
+/* GLOBAL */
+html,
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  letter-spacing: 0.02em;
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+
+p {
+  margin: 0px;
+  border: 0px;
+}
+
+aside {
+  margin: 0px;
+  border: 0px;
+}
+
+/* HEADER */
+header {
+  font-size: 3vh;
+  color: #eee;
+}
+
+header a {
+  color: #eee;
+}
+header a:hover {
+  text-decoration: none;
+  color: #6b5;
+}
+
+nav {
+  background-color: none;
+  width: 100%;
+}
+
+.header_caption {
+  color: #eee;
+}
+
+.brand {
+  width: 6em;
+}
+
+.signIn {
+  border: 0.05em solid #333;
+  border-radius: 0.15em;
+  padding: 0.1em 0.3em;
+}
+
+.signIn:hover {
+  text-decoration: none;
+  background: #6b5;
+  color: #fff;
+}
+
+.fold {
+  background: url("https://bit.ly/2MYEbTo") center top no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.fold:before {
+  background-image: linear-gradient(to bottom right, #111, #000);
+  position: absolute;
+  opacity: 0.2;
+  content: "";
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.fold_wrapper {
+  padding-bottom: 5em;
+  height: 100vh;
+}
+
+/* TITLE */
+
+#watchlist {
+  color: white;
+  height: 14vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+#watchlist h1 {
+  font-size: 4vh;
+}
+
+#watchlist button {
+  color: white;
+  display: flex;
+  width: 10em;
+  background-color: #6b5;
+  height: 3em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  margin: 0;
+  border: none;
+}
+/* MAIN */
+main {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+main:before {
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #111, #000);
+  opacity: 0.2;
+}
+
+/* SORT  */
+
+#sort {
+  display: flex;
+  justify-content: flex-end;
+  height: 4em;
+  padding: 0px;
+}
+
+#sort button {
+  color: white;
+  display: flex;
+  width: 10em;
+  background-color: black;
+  height: 3em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  margin: 0;
+  border: none;
+}
+
+/* FLIGHT CARD */
+#deck {
+  margin-top: 5vh;
+  padding: 2% 5% 0% 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  object-fit: fit;
+}
+
+.flight {
+  border-radius: 2em;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 100%;
+  height: 6em;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  background-color: white;
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+
+.flight:hover {
+  transform: scale(1.05);
+  transition: 0.6s;
+}
+
+.flight h6 {
+  margin-bottom: 0px;
+  color: #999;
+  font-size: 90%;
+}
+.airline {
+  height: 100%;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-items: last baseline;
+}
+
+.airline img {
+  border-radius: 1em;
+  object-fit: fill;
+  height: 3em;
+  width: 8em;
+  margin-top: 1em;
+  justify-self: center;
+}
+
+.agent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 10em;
+}
+
+.flight-info {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  order: 2;
+  flex-shrink: inherit;
+}
+
+.price-view {
+  height: 100%;
+  width: 20%;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-view a {
+  display: flex;
+  order: 3;
+  background-color: black;
+  width: 6em;
+  height: 2em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5em;
+  color: white;
+}
+
+.action-group {
+  width: 100%;
+  display: flex;
+}
+
+/* ADVERTISMENTS
+
+#advert {
+  background-color: #fff;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2em;
+} */
+
+.addBox {
+  background: red;
+  height: 20em;
+  width: 100%;
+  margin: none;
+  overflow: hidden;
+}
+
+.addBox img {
+  height: 20em;
+  width: 100%;
+  object-fit: fill;
+}
+/* FOOTER */
+footer {
+  background: #222;
+  padding: 2em 0;
+  color: #333;
+}
+
+footer:hover {
+  color: #444;
+}
+
+.footer-brand {
+  display: block;
+  width: 4em;
+}
+
+footer ul {
+  justify-content: space-evenly;
+  text-decoration: none;
+  align-items: center;
+  list-style: none;
+  display: flex;
+}
+
+footer a {
+  text-decoration: none;
+  display: flex;
+  color: #333;
+}
+
+.flex-2 {
+  flex: 2;
+}
+.flex {
+  flex: 1;
+}
+
+.contact-link:hover {
+  color: #6b5;
+}
+
+.about {
+  padding: 0 4em 0 0;
+}
+
+/* TYPOGRAPY */
+
+.headline {
+  letter-spacing: 0.15em;
+  font-size: 1.8em;
+}
+
+.body-text,
+.header_caption p {
+  letter-spacing: 0.05em;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+label {
+  color: #eee;
+  font-size: 1.4em;
+}
+
+.our-mission {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background: #6b5;
+}
+
+.mission-statement {
+  padding: 0 5em;
+  text-align: center;
+}
