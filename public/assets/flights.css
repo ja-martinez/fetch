@@ -162,7 +162,7 @@ main:before {
 }
 
 .flight {
-  padding: 2em 1em;
+  padding: 1.5em;
   border-radius: 0.2em;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 100%;
@@ -182,54 +182,28 @@ main:before {
 }
 
 .flight small {
-  margin-bottom: 0px;
   color: #6b5;
-  /* font-size: 90%; */
-}
-.airline {
-  height: 100%;
-  order: 1;
-  display: flex;
-  flex-direction: column;
-  justify-items: last baseline;
 }
 
 .airline img {
-  border-radius: 1em;
-  object-fit: fill;
-  height: 3em;
-  width: 8em;
-  margin-top: 1em;
-  justify-self: center;
-}
-
-.agent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 10em;
+  width: 100%;
+  flex: flex;
 }
 
 .flight-info {
-  height: 100%;
-  width: 60%;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  order: 2;
-  flex-shrink: inherit;
+  margin: 0 2.5em;
+  display: flex;
+  flex: 2;
 }
 
 .price-view {
-  height: 100%;
-  width: 20%;
-  order: 2;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  display: flex;
+  flex: flex;
 }
 
 .price-view a {
