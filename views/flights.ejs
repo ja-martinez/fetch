@@ -62,32 +62,32 @@
                       alt="Agent_img" />
                   </div>
                   <div class="agent">
-                    <h6>Agent:</h6>
+                    <small>Agent:</small>
                     <p><%=flights[i].agentName%></p>
                   </div>
                 </div>
                 <div class="flight-info">
                   <div>
-                    <h6>Departure Date</h6>
+                    <small>Departure Date</small>
                     <p><%=flights[i].departure.split('T')[0]%></p>
-                    <h6>Departure Time</h6>
+                    <small>Departure Time</small>
                     <p><%=flights[i].departure.split('T')[1]%></p>
                   </div>
                   <div>
-                    <h6>Arrival Date</h6>
+                    <small>Arrival Date</small>
                     <p><%=flights[i].arrival.split('T')[0]%></p>
-                    <h6>Arrival Time</h6>
+                    <small>Arrival Time</small>
                     <p><%=flights[i].arrival.split('T')[1]%></p>
                   </div>
                   <div>
-                    <h6>Origin</h6>
+                    <small>Origin</small>
                     <p><%=flights[i].origin%></p>
-                    <h6>Destination</h6>
+                    <small>Destination</small>
                     <p><%=flights[i].destination%></p>
                   </div>
                 </div>
                 <div class="price-view">
-                  <h6>Price</h6>
+                  <small>Price</small>
                   <p>$<%=flights[i].price%> USD</p>
                   <a href="#">View</a>
                 </div>
