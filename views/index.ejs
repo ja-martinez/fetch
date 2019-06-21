@@ -81,7 +81,7 @@
             <!-- NAV-LINKS -->
             <div>
               <a class="mr-3" href="#our-mission">Fetch Mission</a>
-              <a href="#our-team" class="mr-3">Fetch Team</a>
+              <a href="#our-team" class="mr-3">Team Fetch</a>
               <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign
                 In</a>
             </div>
@@ -104,7 +104,7 @@
         </div>
 
         <!-- SIGN IN FORM -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal p-0 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -114,20 +114,20 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body p-5 ">
-                <form action="/login" method="POST" >
+              <div class="modal-body ">
+                <form class="rounded-0" action="/login" method="POST" >
                   <div class="form-group">
-                    <label for="email" class="col-form-label">Email:</label>
+                    <label for="email" class="col-form-label">Email</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email"
                       required>
                   </div>
-                  <div class="form-group">
-                    <label for="password" class="col-form-label">Password:</label>
+                  <div class="form-group mb-4">
+                    <label for="password" class="col-form-label">Password</label>
                     <input type="password" name="password" id="password" class="form-control"
                       placeholder="Enter your password" required>
                   </div>
                   <div class="button d-flex">
-                    <button type="submit" class="py-3 rounded-0 modal-click col btn btn-dark">Sign In</button>
+                    <a href="" class="py-3 rounded-0 modal-click col btn btn-dark">Sign In</a>
                     <a href="/register" class="py-3 rounded-0 modal-click col btn btn-dark"> Register</a>
                   </div>
                 </form>
