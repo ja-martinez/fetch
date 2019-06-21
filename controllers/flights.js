@@ -1,5 +1,6 @@
 const knex = require("../db/knex.js");
 const unirest = require('unirest');
+let query = {};
 
 module.exports = {
 
@@ -96,7 +97,7 @@ module.exports = {
       const destinationPlace = req.body.destination;
       const outboundDate = req.body.outboundDate;
       const inboundDate = req.body.inboundDate;
-      let query = {};
+      
       query.cabinClass = req.body.cabinClass;
       query.adults = req.body.adults;
       query.children = req.body.children;

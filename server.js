@@ -54,14 +54,14 @@ setInterval(() => {
                 knex('prices')
                   .insert([{flight_id: query.id, price: price}], ['price'])
                   .then(() => {
-                    console.log(`price: ${price}`)
+                    // console.log(`price: ${price}`)
                     
                   })
               })
           });
       })
     })
-}, 60000)
+}, 100000)
 
 app.listen(port, function () {
   console.log('Listening on', port);

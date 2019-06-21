@@ -125,7 +125,6 @@ section {
 
 .price-view {
   border-left: .08em dashed #ccc;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   padding: 0em 2em;
