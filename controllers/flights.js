@@ -94,6 +94,7 @@ module.exports = {
       const outboundDate = req.body.outboundDate;
       const inboundDate = req.body.inboundDate;
 
+      query = {};
       query.cabinClass = req.body.cabinClass;
       query.adults = req.body.adults;
       query.children = req.body.children;

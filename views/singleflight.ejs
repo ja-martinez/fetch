@@ -46,9 +46,64 @@
     <main role="main">
 
         <section class="main">
-            <div class="container cont">
+            <div class="container">
+                <% for (let i = 0; i < flight.legs.length; i++) {%> 
+                    
+                    <div class="flight-wrapper d-flex justify-content-between">
+
+                        <div class="flight mr-3 flex">
+    
+                            <div class="airline">
+                                <img src="<%= flight.legs[i].carrierName %>" alt="Agent_img" />
+                            </div>
+    
+                            <div class="flight-info">
                 
-                <h1>is it working yet?</h1>
+                                <div class="origin d-flex justify-content-between">
+                                    
+                                    <div class="col1 origin-info flex">
+                                        <small>Origin</small>
+                                        <p><%= flight.legs[i].origin %></p>
+                                    </div>
+                                    <div class="origin-info flex">
+                                        <small>Departure Date</small>
+                                        <p><%= flight.legs[i].departure.split('T')[0] %></p>                    
+                                    </div>
+                                    <div class="origin-info flex">
+                                        <small>Departure Time</small>
+                                        <p><%= flight.legs[i].departure.split('T')[1] %></p>
+                                    </div>
+                
+                                </div>
+                
+                                <div class="destination d-flex justify-content-between">
+                                    
+                                    <div class="col1 destination-info flex">
+                                        <small>Destination</small>
+                                        <p><%= flight.legs[i].destination %></p>
+                                    </div>
+                                    <div class="destination-info flex">
+                                        <small>Arrival Date</small>
+                                        <p><%= flight.legs[i].arrival.split('T')[0] %></p>
+                                    </div>
+                                    <div class="destination-info flex">
+                                        <small>Arrival Time</small>
+                                        <p><%= flight.legs[i].arrival.split('T')[1] %></p>
+                                    </div>
+                
+                                </div>
+                
+                            </div>
+                  
+                        </div>
+                        <div class="price-card">
+                            
+                        </div>
+
+
+                    </div>
+
+                <%}%>
 
             </div>
         </section>

@@ -54,7 +54,7 @@ setInterval(() => {
                 knex('prices')
                   .insert([{flight_id: query.id, price: price}], ['price'])
                   .then(() => {
-                    console.log(`price: ${price}`)
+                    // console.log(`price: ${price}`)
                     
                   })
               })
