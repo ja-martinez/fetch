@@ -42,7 +42,10 @@
   <main role="main" class="mb-5">
     
     <!-- main header -->
-    <a href="#" class="main-header" id="watchlist"><small>Add flights to watch list</small></a>    
+    <header class="main-header" id="watchlist">
+      <form action="/flights/add-to-watchlist" method="POST" id="watchlist-form"></form>
+     <button type="submit" form="watchlist-form"><small>Add flights to watch list</small></button>    
+    </header>
     <!-- main header end -->
     
     <!-- section -->

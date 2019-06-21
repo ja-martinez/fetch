@@ -46,7 +46,7 @@ section {
   margin: 5em 0em 0 0em; 
 }
 
-.main-header {
+.main-header button {
   transform: rotate(-90deg);
   border-radius: .3em;
   background: #222;

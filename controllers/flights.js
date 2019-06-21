@@ -57,6 +57,22 @@ module.exports = {
       })
   },
 
+  getWatchlist: (req, res) => {
+    knex.select('flight_id')
+      .from('watchlist')
+      .where('user_id', req.session.user.id)
+      .then(flight_ids => {
+        flight_id = flight_id[0].flight_id;
+        knex.select('*')
+          .from('prices')
+          .where('flight_id', flight_id)
+          .fullOuterJoin('flights', 'prices.flight_id', 'flights.id')
+          .then(flights => {
+            res.render('watchlist', {flights: flights})
+          })
+      })
+  },
+
   getFlights: (req, res) => {
     const cabinClass = req.body.cabinClass;
     const adults = req.body.adults;
@@ -130,7 +146,8 @@ module.exports = {
                   flight.isRound = false;
                   flight.legs = [];
                   const agentId = itineraries[i].PricingOptions[0].Agents[0];
-                  flight.price = itineraries[i].PricingOptions[0].Price;
+                  let price = itineraries[i].PricingOptions[0].Price;
+                  flight.price = Number.parseFloat(price).toFixed(2);
                   const legId = itineraries[i].OutboundLegId;
 
                   for (let j = 0; j < agents.length; j++) {
