@@ -23,6 +23,7 @@ module.exports = {
   },
 
   login: (req, res) => {
+    console.log('tryinnn')
     knex('users')
       .where({
         email: req.body.email
@@ -42,9 +43,10 @@ module.exports = {
     res.render('server-crash');
   },
 
-  addToWatchlist: (req, res) => {
-    knex('flights')
-      .insert([query], ['id'])
+  addToWatchlist: (app) => {
+    return (req, res) => {
+      knex('flights')
+      .insert([app.get('query')], ['id'])
       .then((flightId) => {
         flightId = flightId[0].id;
         knex('watchList')
@@ -56,6 +58,7 @@ module.exports = {
             res.redirect('/');
           })
       })
+    }
   },
 
   getWatchlist: (req, res) => {
@@ -93,7 +96,7 @@ module.exports = {
       const destinationPlace = req.body.destination;
       const outboundDate = req.body.outboundDate;
       const inboundDate = req.body.inboundDate;
-
+      let query = {};
       query.cabinClass = req.body.cabinClass;
       query.adults = req.body.adults;
       query.children = req.body.children;
@@ -107,8 +110,7 @@ module.exports = {
       query.inboundDate = req.body.inboundDate;
       app.set('query', query);
 
-      const flightType = req.body.flightType
-
+      const flightType = req.body.flightType;
 
       unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
         .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")

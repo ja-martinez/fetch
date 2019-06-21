@@ -11,14 +11,14 @@ module.exports = function(app){
   app.post('/login', flights.login);
   app.post('/register', flights.register);
   app.use(authMiddleware);
-  app.post('/flights/add-to-watchlist', flights.addToWatchlist)
+  app.post('/flights/add-to-watchlist', flights.addToWatchlist(app));
   // app.get('/myFlights',watchList.getWatchlist)
 }
 
 function authMiddleware(req, res, next){
   if(!req.session.user){
     res.redirect("/");
-    
+    console.log('nope');
   }else{
     next();
   }
