@@ -282,6 +282,7 @@ footer a {
     overflow: hidden;
     font-size: 1.3em;
     color: #444;
+    width: 100%;
 }
 
 .modal-click {

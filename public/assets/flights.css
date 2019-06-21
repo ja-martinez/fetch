@@ -26,6 +26,7 @@ aside {
 header {
   font-size: 3vh;
   color: #eee;
+  background: #222;
 }
 
 header a {
@@ -61,40 +62,29 @@ nav {
   color: #fff;
 }
 
-/* .fold {
-  background: url("https://bit.ly/2MYEbTo") center top no-repeat;
-  background-size: cover;
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-.fold:before {
-  background-image: linear-gradient(to bottom right, #111, #000);
-  position: absolute;
-  opacity: 0.2;
-  content: "";
-  bottom: 0;
-  right: 0;
-  left: 0;
-  top: 0;
-} */
-
 .fold_wrapper {
-  padding-bottom: 5em;
+  padding-bottom: 10em;
   height: 100vh;
 }
 
 /* TITLE */
 
-#watchlist {
-  color: white;
-  height: 14vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10vh;
-  background-color: rgba(0, 0, 0, 0.32);
+.main-header {
+  position: relative;
+  margin: 5em 0em 0 0em; 
+  /* display: flex; */
+}
+
+.main-header a {
+  transform: rotate(-90deg);
+  border-radius: .3em;
+  background: #222;
+  padding: .5em 1em;
+  position: fixed;
+  color: #fff;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 6em;
 }
 
 #watchlist h1 {

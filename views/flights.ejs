@@ -24,7 +24,7 @@
   <header role="header" class="fixed-top">
     <nav>
       <div>
-        <div class="d-flex flex-row p-3 justify-content-between align-items-center">
+        <div class="container d-flex flex-row p-3 justify-content-between align-items-center">
           <!-- BRAND -->
           <div>
             <a href="/"><img class="brand" src="/assets/brand/fetch-logo.png" alt="brand" /></a>
@@ -38,161 +38,217 @@
     </nav>
   </header>
 
-  <!-- Main -->
-  <main class="container-fluid fold">
-    <!-- ADD TO WATCHLIST -->
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row">
-          <div id="watchlist" class="container-fluid">
-            <form id="add-to-watchlist" action="/flights/add-to-watchlist" method="POST"></form>
-            <h1>Flights</h1>
-            <button type="submit" form="add-to-watchlist">Add to Watchlist</button>
-          </div>
-        </div>
-        <!-- FLIGHT CONTAINER -->
-        <div class="row">
-          <section id="deck" class="container">
-            <%for (let i=0; i<flights.length; i++) {%>
-              <!-- FLIGHT CARD START -->
-              <div class="flight">
-                <div class="departNreturn-wrapper">
-                  <div class="depart">
-                    <div class="airline">
-                        <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
-                    </div>
-                    <div class="flight-info">
-                      <div>
-                        <small>Departure Date</small>
-                        <p><%=flights[i].departure.split('T')[0]%></p>
-                        <small>Departure Time</small>
-                        <p><%=flights[i].departure.split('T')[1]%></p>
-                      </div>
-                      <div>
-                        <small>Arrival Date</small>
-                        <p><%=flights[i].arrival.split('T')[0]%></p>
-                        <small>Arrival Time</small>
-                        <p><%=flights[i].arrival.split('T')[1]%></p>
-                      </div>
-                      <div>
-                        <small>From</small>
-                        <p><%=flights[i].origin%></p>
-                        <small>Destination</small>
-                        <p><%=flights[i].destination%></p>
-                      </div>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="return">
-                    <div class="airline">
-                        <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
-                    </div>
-                    <div class="flight-info">
-                      <div>
-                        <small>Departure Date</small>
-                        <p><%=flights[i].departure.split('T')[0]%></p>
-                        <small>Departure Time</small>
-                        <p><%=flights[i].departure.split('T')[1]%></p>
-                      </div>
-                      <div>
-                        <small>Arrival Date</small>
-                        <p><%=flights[i].arrival.split('T')[0]%></p>
-                        <small>Arrival Time</small>
-                        <p><%=flights[i].arrival.split('T')[1]%></p>
-                      </div>
-                      <div>
-                        <small>Origin</small>
-                        <p><%=flights[i].origin%></p>
-                        <small>Destination</small>
-                        <p><%=flights[i].destination%></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="price-view">
-                  <p class="lead"><span>$</span><%=flights[i].price%></p>
-                  <a href="#">View</a>
-                </div>
+  <!-- MAIN-->
+  <main role="main">
+    
+    <!-- main header -->
+    <header class="main-header" id="watchlist">
+     <a href="#"><small>Add flights to Watchlist</small></a>    
+    </header>
+    <!-- main header end -->
+    
+    <!-- section -->
+    <section id="deck" class="container">
+
+      <!-- card generator -->
+      <%for (let i=0; i<flights.length; i++) {%>
+
+        <!-- cards outermost container -->
+        <div class="flight">
+          <!-- cards inner container -->
+          <div class="departNreturn-wrapper">
+
+            <!-- card one (depart) -->
+            <div class="depart">
+
+              <div class="airline">
+                  <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
               </div>
-              <%}%>
-              <!-- FLIGHT CARD END -->
-            
-          </section>
+
+              <div class="flight-info">
+
+                <div>
+                  <small>From</small>
+                  <p><%=flights[i].origin%></p>
+                  <small>Destination</small>
+                  <p><%=flights[i].destination%></p>
+                </div>
+
+                <div>
+                  <small>Departure Date</small>
+                  <p><%=flights[i].departure.split('T')[0]%></p>
+                  <small>Departure Time</small>
+                  <p><%=flights[i].departure.split('T')[1]%></p>
+                </div>
+
+                <div>
+                  <small>Arrival Date</small>
+                  <p><%=flights[i].arrival.split('T')[0]%></p>
+                  <small>Arrival Time</small>
+                  <p><%=flights[i].arrival.split('T')[1]%></p>
+                </div>                      
+
+              </div>
+
+            </div> 
+            <!-- card one end (depart) -->
+          </div> 
+          <!-- cards inner container end -->
+
+          <!-- card price -->
+          <div class="price-view">
+            <p class="lead"><span>$</span><%=flights[i].price%></p>
+            <a href="#">View</a>
+          </div>
+          <!-- card price end -->
+
         </div>
-      </div>
-    </div>
+        <!--  single card outermost container end -->
+
+        <!-- multiple cards outermost container -->
+        <div class="flight">
+          <!-- multiple cards inner container -->
+          <div class="departNreturn-wrapper">
+
+            <!-- card one (depart) -->
+            <div class="depart">
+
+              <div class="airline">
+                  <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+              </div>
+
+              <div class="flight-info">
+
+                <div>
+                  <small>From</small>
+                  <p><%=flights[i].origin%></p>
+                  <small>Destination</small>
+                  <p><%=flights[i].destination%></p>
+                </div>
+
+                <div>
+                  <small>Departure Date</small>
+                  <p><%=flights[i].departure.split('T')[0]%></p>
+                  <small>Departure Time</small>
+                  <p><%=flights[i].departure.split('T')[1]%></p>
+                </div>
+
+                <div>
+                  <small>Arrival Date</small>
+                  <p><%=flights[i].arrival.split('T')[0]%></p>
+                  <small>Arrival Time</small>
+                  <p><%=flights[i].arrival.split('T')[1]%></p>
+                </div>                      
+
+              </div>
+
+            </div> 
+            <!-- card one end (depart) -->
+
+            <hr>
+
+            <!-- card two (return) -->
+            <div class="return">
+
+              <div class="airline">
+                  <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+              </div>
+
+              <div class="flight-info">
+
+                <div>
+                  <small>Origin</small>
+                  <p><%=flights[i].origin%></p>
+                  <small>Destination</small>
+                  <p><%=flights[i].destination%></p>
+                </div>                      
+
+                <div>
+                  <small>Departure Date</small>
+                  <p><%=flights[i].departure.split('T')[0]%></p>
+                  <small>Departure Time</small>
+                  <p><%=flights[i].departure.split('T')[1]%></p>
+                </div>
+
+                <div>
+                  <small>Arrival Date</small>
+                  <p><%=flights[i].arrival.split('T')[0]%></p>
+                  <small>Arrival Time</small>
+                  <p><%=flights[i].arrival.split('T')[1]%></p>
+                </div>
+
+              </div>
+
+            </div> 
+            <!-- card two end (return) -->
+
+          </div> 
+          <!-- cards inner container end -->
+
+          <!-- card price -->
+          <div class="price-view">
+            <p class="lead"><span>$</span><%=flights[i].price%></p>
+            <a href="#">View</a>
+          </div>
+          <!-- card price end -->
+
+        </div>
+        <!-- multiple cards outermost container end -->
+
+      <%}%>
+      
+    </section>
+    <!-- section end -->
+          
   </main>
-  <footer role="footer">
-    <div class="footer-body">
-      <div class="v-con">
-        <ul>
-          <li class="about flex-2">
-            <h3>
-              <img class="footer-brand" src="../public/assets/brand/fetch-logo.png" alt="" />
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-              aspernatur eaque laborum voluptatibus amet. adipisicing elit.
-            </p>
-          </li>
-          <li class="flex">
-            <h3>Github</h3>
-            <a class="contact-link" href="">Alejandro</a>
-            <a class="contact-link" href="">Clarance</a>
-            <a class="contact-link" href="">Seth</a>
-          </li>
-          <li class="flex">
-            <h3>LikedIn</h3>
-            <a class="contact-link" href="">Alejandro</a>
-            <a class="contact-link" href="">Clarance</a>
-            <a class="contact-link" href="">Seth</a>
-          </li>
-          <li class="flex">
-            <h3>Getting Started</h3>
-            <a class="contact-link" href="">Support</a>
-            <a class="contact-link" href="">How to!</a>
-            <a class="contact-link" href="">Doc</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- BOOTSTRAP SCRIPT -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-  </footer>
+
+  <!-- BOOTSTRAP SCRIPT -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
 </body>
 
-</html>
-
-<!-- FLIGHT SORTING DROPDOWN -->
-<!-- <div class="row">
-  <div id="sort" class="container-fluid">
-    <div class="dropdown">
-      <button
-        class="dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Sort
-      </button>
-      <div
-        class="dropdown-menu"
-        aria-labelledby="dropdownMenuButton"
-      >
-        <a class="dropdown-item" href="#">Price</a>
-        <a class="dropdown-item" href="#">Duration</a>
-        <a class="dropdown-item" href="#">Stops</a>
-      </div>
+<footer role="footer">
+  <div class="footer-body">
+    <div class="v-con">
+      <ul>
+        <li class="about flex-2">
+          <h3>
+            <img class="footer-brand" src="/assets/brand/fetch-logo.png" alt="" />
+          </h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+            aspernatur eaque laborum voluptatibus amet. adipisicing elit.
+          </p>
+        </li>
+        <li class="flex">
+          <h3>Github</h3>
+          <a class="contact-link" href="">Alejandro</a>
+          <a class="contact-link" href="">Clarance</a>
+          <a class="contact-link" href="">Seth</a>
+        </li>
+        <li class="flex">
+          <h3>LikedIn</h3>
+          <a class="contact-link" href="">Alejandro</a>
+          <a class="contact-link" href="">Clarance</a>
+          <a class="contact-link" href="">Seth</a>
+        </li>
+        <li class="flex">
+          <h3>Getting Started</h3>
+          <a class="contact-link" href="">Support</a>
+          <a class="contact-link" href="">How to!</a>
+          <a class="contact-link" href="">Doc</a>
+        </li>
+      </ul>
     </div>
   </div>
-</div> -->
+</footer>
+
+</html>
