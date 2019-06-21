@@ -72,7 +72,6 @@ nav {
 .main-header {
   position: relative;
   margin: 5em 0em 0 0em; 
-  /* display: flex; */
 }
 
 .main-header a {
@@ -87,22 +86,10 @@ nav {
   margin-top: 10em;
 }
 
-#watchlist h1 {
-  font-size: 4vh;
+.dollas-sign {
+  font-size: .6em;
 }
 
-#watchlist button {
-  color: white;
-  display: flex;
-  width: 10em;
-  background-color: #6b5;
-  height: 3em;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1em;
-  margin: 0;
-  border: none;
-}
 /* MAIN */
 main {
   width: 100%;
@@ -202,7 +189,7 @@ main:before {
   justify-content: center;
   margin: -2em -2em -2em 0;
   align-items: center;
-  background: #6b5;
+  background: #222;
   padding: 0em 3em;
   display: flex;
   color: #fff;
@@ -210,16 +197,24 @@ main:before {
 }
 .price-view p {
   font-size: 2em;
+  font-weight: 300;
 }
 
-.price-view a {
+.price-view hidden {
   position: absolute;
-  bottom: 3em;
+  /* bottom: 3em; */
   border-radius: .5em;
   padding: .3em 1em;
   text-align: center;
   color: #fff;
   width: 100%;
+}
+
+.price-view:hover {
+  background: #6b5;
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
 }
 
 /* .action-group {
