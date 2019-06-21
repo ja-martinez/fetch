@@ -5,23 +5,20 @@ module.exports = function(app){
 
   app.get('/', flights.home);
   app.post('/flights/search', flights.getFlights);
-  app.post('/flights/add-to-watchlist', flights.addToWatchlist)
+  
   app.get('/flights/:flightsIndex', flights.getOne);
   app.get('/register', flights.getRegister);
   app.get('/error', flights.error)
-  // app.get('/cart', flights.getCart);
-  // app.get('/checkout', flights.getCheckout)
   app.post('/login', flights.login);
   app.post('/register', flights.register);
-  // app.use(authMiddleware);
-  // app.post('/checkout', flights.purchase)
-  // app.get('/myFlights',watchList.myFlights)
-  // app.post('/flights/:origin/:destination/:date', watchList.Add);
+  app.use(authMiddleware);
+  app.post('/flights/add-to-watchlist', flights.addToWatchlist)
+  // app.get('/myFlights',watchList.getWatchlist)
 }
 
 function authMiddleware(req, res, next){
   if(!req.session.user){
-    res.redirect("/user_login");
+    res.redirect("/");
     
   }else{
     next();
