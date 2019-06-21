@@ -22,8 +22,7 @@ routes_setter(app);
 setInterval(() => {
   knex('flights')
     .then(queries => {
-      for (let i = 0; i < queries.length; i++) {
-        query = queries[i];
+      queries.forEach(query => {
 
         unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
           .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
@@ -56,10 +55,11 @@ setInterval(() => {
                   .insert([{flight_id: query.id, price: price}], ['price'])
                   .then(() => {
                     console.log(`price: ${price}`)
+                    
                   })
               })
           });
-      }
+      })
     })
 }, 20000)
 
