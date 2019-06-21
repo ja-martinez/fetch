@@ -1,9 +1,10 @@
 const knex = require("../db/knex.js");
 const unirest = require('unirest');
-let flights = [];
 let query = {};
 
 module.exports = {
+
+  flights: [],
 
   home: (req, res) => {
     res.render("index")
@@ -58,19 +59,25 @@ module.exports = {
   },
 
   getWatchlist: (req, res) => {
-    knex.select('flight_id')
-      .from('watchlist')
+    // knex.select('flight_id')
+    //   .from('watchlist')
+    //   .where('user_id', req.session.user.id)
+    //   .then(flight_ids => {
+    //     flight_id = flight_id[0].flight_id;
+    //     knex.select('*')
+    //       .from('prices')
+    //       .where('flight_id', flight_id)
+    //       .fullOuterJoin('flights', 'prices.flight_id', 'flights.id')
+    //       .then(flights => {
+    //         res.render('watchlist', {flights: flights})
+    //       })
+    //   })
+
+    knex.select('flights.id', 'flights.origin', 'flights.destination', 'flights.departure', 'flights.arrival')
+      .from('watchList')
       .where('user_id', req.session.user.id)
-      .then(flight_ids => {
-        flight_id = flight_id[0].flight_id;
-        knex.select('*')
-          .from('prices')
-          .where('flight_id', flight_id)
-          .fullOuterJoin('flights', 'prices.flight_id', 'flights.id')
-          .then(flights => {
-            res.render('watchlist', {flights: flights})
-          })
-      })
+      .fullOuterJoin('flights', 'flights.id', 'watchList.flight_id')
+      
   },
 
   getFlights: (req, res) => {
@@ -364,7 +371,7 @@ module.exports = {
                   }
                   flight.inboundLayoverTime = flight.duration - flight.inboundFlyingTime;
 
-                  flights.push(flight);
+                  this.flights.push(flight);
                 }
               }
               res.render('flights', {
@@ -376,8 +383,7 @@ module.exports = {
   },
 
   getOne: (req, res) => {
-    res.render('singleflight', {
-      flight: flights[req.params.flightsIndex]
-    })
+    res.render('singleflight', {flight: this.flights[req.params.flightsIndex]})
+    console.log(flights);
   }
 }
