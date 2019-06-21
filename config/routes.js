@@ -4,11 +4,10 @@ const watchList = require("../controllers/watchList.js")
 module.exports = function(app){
 
   app.get('/', flights.home);
-  app.post('/flights/search', flights.getFlights);
-  
-  app.get('/flights/:flightsIndex', flights.getOne);
+  app.post('/flights/search', flights.getFlights(app));
+  app.get('/flights/:flightsIndex', flights.getOne(app));
   app.get('/register', flights.getRegister);
-  app.get('/error', flights.error)
+  app.get('/error', flights.error);
   app.post('/login', flights.login);
   app.post('/register', flights.register);
   app.use(authMiddleware);

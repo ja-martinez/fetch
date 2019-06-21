@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900&display=swap");
+
+/* GLOBAL */
+html,
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  letter-spacing: 0.02em;
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+p {
+  margin: 0px;
+  border: 0px;
+}
+
+
+/* HEADER */
+header {
+  font-size: 3vh;
+  color: #eee;
+}
+
+header a {
+  color: #eee;
+}
+header a:hover {
+  text-decoration: none;
+  color: #6b5;
+}
+
+nav {
+  background-color: none;
+  width: 100%;
+}
+
+.header_caption {
+  color: #eee;
+}
+
+.brand {
+  width: 6em;
+}
+
+
+
+.fold_wrapper {
+  padding-bottom: 5em;
+  height: 100vh;
+}
+
+/* TITLE */
+
+#title {
+  color: white;
+  height: 28vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-color: #222;
+  padding: 1em 2em;
+}
+
+#title h1 {
+  font-size: 5em;
+}
+
+#title p {
+  color:#bbbbbb;
+}
+/* MAIN */
+main {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+main:before {
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #111, #000);
+  opacity: 0.2;
+}
+
+/* WATCH CARD */
+#deck {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  padding: 2% 5% 0% 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.watch-card {
+  overflow: hidden;
+  display: flex;  
+  width: 100%;
+  color: #333;
+  font-size: 1em;
+  background-color: white;
+  justify-content:center;
+  padding:0.5em;
+}
+
+.card-x {
+  overflow: hidden;
+  display: flex;
+  
+  border-radius: 0.2em;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 100%;
+  color: #333;
+  font-size: 1em;
+  margin-bottom: 1em;
+  justify-content: center;
+}
+
+.card-x:hover {
+  transform: scale(1.05);
+  transition: 0.6s;
+}
+
+.watch-card small {
+  color: #6b5;
+}
+
+.watch-card a {
+  bottom: 3em;
+  border-radius: 0.5em;
+  color: #444;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 2px solid #ddd;
+}
+
+.delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  width: 4em;
+}
+
+.delete a {
+  color: white;
+  font-size: 2em;
+}
+
+.card-x a:hover {
+  color: #6b5;
+}
+
+
+
+.graph-one {
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-two {
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+
+.links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20%;
+}
+
+.inline{
+    display:flex;
+    align-items: center;
+}
+/* FOOTER */
+footer {
+  background: #222;
+  padding: 2em 0;
+  color: #333;
+}
+
+footer:hover {
+  color: #444;
+}
+
+.footer-brand {
+  display: block;
+  width: 4em;
+}
+
+footer ul {
+  justify-content: space-evenly;
+  text-decoration: none;
+  align-items: center;
+  list-style: none;
+  display: flex;
+}
+
+footer a {
+  text-decoration: none;
+  display: flex;
+  color: #333;
+}
+
+.flex-2 {
+  flex: 2;
+}
+.flex {
+  flex: 1;
+}
+
+.contact-link:hover {
+  color: #6b5;
+}
+
+.about {
+  padding: 0 4em 0 0;
+}
+
+/* TYPOGRAPY */
+
+.headline {
+  letter-spacing: 0.15em;
+  font-size: 1.8em;
+}
+
+.body-text,
+.header_caption p {
+  letter-spacing: 0.05em;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+label {
+  color: #eee;
+  font-size: 1.4em;
+}
+
+.our-mission {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background: #6b5;
+}
+
+.mission-statement {
+  padding: 0 5em;
+  text-align: center;
+}
+
+ /* .fold {
+  background: url("https://bit.ly/2MYEbTo") center top no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  width: 100%;
+} */
+/* .fold:before {
+  background-image: linear-gradient(to bottom right, #111, #000);
+  position: absolute;
+  opacity: 0.2;
+  content: "";
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}  */
