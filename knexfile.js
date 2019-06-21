@@ -4,8 +4,6 @@ module.exports = {
       connection: {
         database: "flightFetch",
         host: "localhost",
-        user: "jamg",
-        password: "Rpfeynman1"
       },
       migrations: {
           directory: __dirname + '/db/migrations',

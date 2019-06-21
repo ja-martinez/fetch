@@ -4,62 +4,34 @@
 html,
 body {
   font-family: "Source Sans Pro", sans-serif;
+  background-color: whitesmoke;
   letter-spacing: 0.02em;
   max-height: 100%;
   max-width: 100%;
   margin: 0;
-  background-color: whitesmoke;
 }
 
-
-p {
-  margin: 0px;
-  border: 0px;
-}
-
-aside {
-  margin: 0px;
-  border: 0px;
-}
 
 /* HEADER */
 header {
-  font-size: 3vh;
-  color: #eee;
   background: #222;
 }
 
 header a {
   color: #eee;
 }
+
 header a:hover {
   text-decoration: none;
   color: #6b5;
 }
 
-nav {
-  background-color: none;
-  width: 100%;
-}
-
-.header_caption {
-  color: #eee;
+section {
+  margin-top: 6.5em;
 }
 
 .brand {
   width: 6em;
-}
-
-.signIn {
-  border: 0.05em solid #333;
-  border-radius: 0.15em;
-  padding: 0.1em 0.3em;
-}
-
-.signIn:hover {
-  text-decoration: none;
-  background: #6b5;
-  color: #fff;
 }
 
 .fold_wrapper {
@@ -83,82 +55,53 @@ nav {
   color: #fff;
   right: 0;
   top: 0;
-  margin-top: 10em;
+  margin-top: 11em;
 }
 
 .dollas-sign {
   font-size: .6em;
 }
 
-/* MAIN */
-main {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-main:before {
-  content: "";
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: linear-gradient(to bottom right, #111, #000);
-  opacity: 0.2;
-}
-
-/* SORT  */
-
-#sort {
-  display: flex;
-  justify-content: flex-end;
-  height: 4em;
-  padding: 0px;
-}
-
-#sort button {
-  color: white;
-  display: flex;
-  width: 10em;
-  background-color: black;
-  height: 3em;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1em;
-  margin: 0;
-  border: none;
-}
-
-/* FLIGHT CARD */
-#deck {
-  margin-top: 5vh;
-  padding: 2% 5% 0% 5%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  object-fit: fit;
-}
-
 .flight {
-  overflow: hidden;
   display: flex;
-  padding: 1.5em;
+  overflow: hidden;
   border-radius: 0.2em;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 15px -2px #ccc;
   width: 100%;
-  color: #333;
+  color: #666;
   font-size: 1em;
-  background-color: white;
+  background: #fff;
   margin-bottom: 1em;
+}
+
+.airline img {
+  transform: scale(1) rotate(-90deg);
+  width: 100%;
+}
+
+.airline {
+  border-right: .08em dashed #ccc;
+  align-items: center;
+  display: flex;
+  width: 5em;
 }
 
 .departNreturn-wrapper {
   flex: 2;
-  margin-right: 2em;
 }
 
 .depart, .return {
-  display: flex;
   align-items: center;
+  padding: 1em 0;
+  display: flex;
+}
+
+.return {
+  border-top: .08em dashed #ccc;
+}
+
+.col1 {
+  padding: 0 1.5em;
 }
 
 .flight:hover {
@@ -170,44 +113,29 @@ main:before {
   color: #6b5;
 }
 
-.airline img {
-  width: 100%;
-  flex: flex;
-}
-
 .flight-info {
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 2.5em;
-  display: flex;
+  padding-left: 1em;
   flex: 2;
 }
 
-.price-view {
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  margin: -2em -2em -2em 0;
-  align-items: center;
-  background: #222;
-  padding: 0em 3em;
-  display: flex;
-  color: #fff;
-  flex: flex;
-}
-.price-view p {
-  font-size: 2em;
-  font-weight: 300;
+.flight-title {
+  padding: 0 1.5em;
+  width: 8em;
 }
 
-.price-view hidden {
-  position: absolute;
-  /* bottom: 3em; */
-  border-radius: .5em;
-  padding: .3em 1em;
-  text-align: center;
-  color: #fff;
-  width: 100%;
+.price-view {
+  border-left: .08em dashed #ccc;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  padding: 0em 2em;
+  display: flex;
+  color: #666;
+  ;
+}
+.price-view p {
+  font-size: 2.5em;
+  font-weight: 300;
 }
 
 .price-view:hover {
@@ -217,35 +145,6 @@ main:before {
   color: #fff;
 }
 
-/* .action-group {
-  width: 100%;
-  display: flex;
-} */
-
-/* ADVERTISMENTS
-
-#advert {
-  background-color: #fff;
-  height: 91vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 2em;
-} */
-
-.addBox {
-  background: red;
-  height: 20em;
-  width: 100%;
-  margin: none;
-  overflow: hidden;
-}
-
-.addBox img {
-  height: 20em;
-  width: 100%;
-  object-fit: fill;
-}
 /* FOOTER */
 footer {
   background: #222;
@@ -291,7 +190,7 @@ footer a {
   padding: 0 4em 0 0;
 }
 
-/* TYPOGRAPY */
+/* TYPOGRAPY
 
 .headline {
   letter-spacing: 0.15em;
@@ -303,22 +202,5 @@ footer a {
   letter-spacing: 0.05em;
   font-size: 1.4em;
   font-weight: 300;
-}
+} */
 
-label {
-  color: #eee;
-  font-size: 1.4em;
-}
-
-.our-mission {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  background: #6b5;
-}
-
-.mission-statement {
-  padding: 0 5em;
-  text-align: center;
-}
