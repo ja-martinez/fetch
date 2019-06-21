@@ -146,7 +146,8 @@ module.exports = {
                   flight.isRound = false;
                   flight.legs = [];
                   const agentId = itineraries[i].PricingOptions[0].Agents[0];
-                  flight.price = itineraries[i].PricingOptions[0].Price;
+                  let price = itineraries[i].PricingOptions[0].Price;
+                  flight.price = Number.parseFloat(price).toFixed(2);
                   const legId = itineraries[i].OutboundLegId;
 
                   for (let j = 0; j < agents.length; j++) {
