@@ -77,7 +77,6 @@
           <div class="row">
             <section id="deck" class="container-fluid">
               <%for (let i=0; i<flights.length; i++) {%>
-              <!-- FLIGHT CARD START -->
               <div class=card-x>
               <div class="delete">
                   <a href="/delete/watchlist/:id">X</a>
@@ -87,7 +86,6 @@
                   <div class="top">
                     <small>From</small>
                     <p>London</p>
-                    <!--<%=flights[i].origin%> -->
                   </div>
                   <div class="graph-one">
                     <small>Current Prices</small>
@@ -138,8 +136,8 @@
       function comparePrice() {
         var data = google.visualization.arrayToDataTable([
           ["Flight", "Price", { role: "style" }],
-          ["Cheapest", 300, "green"],
-          ["Average", 500, "black"]
+          ["Cheapest", 550, "green"],
+          ["Average", 600, "black"]
         ]);
 
         var view = new google.visualization.DataView(data);
@@ -176,12 +174,12 @@
         data.addColumn("number", "");
 
         data.addRows([
-          [0, 500],
-          [1, 500],
-          [2, 200],
-          [3, 900],
-          [4, 800],
-          [5, 1000]
+          [0, 300],
+          [1, 485],
+          [2, 490],
+          [3, 490],
+          [4, 570],
+          [5, 550]
         ]);
 
         var options = {
