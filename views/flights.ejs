@@ -54,11 +54,13 @@
       <%for (let i=0; i<flights.length; i++) {%>
 
         <!-- cards outermost container -->
+        <%if (!flights[i].isRound) {%>
         <div class="flight">
           <!-- cards inner container -->
           <div class="departNreturn-wrapper">
 
-            <!-- card one (depart) -->
+            <!-- card one (Single) -->
+            
             <div class="depart">
 
               <div class="airline">
@@ -90,7 +92,8 @@
 
               </div>
 
-            </div> 
+            </div>
+             
             <!-- card one end (depart) -->
           </div> 
           <!-- cards inner container end -->
@@ -103,6 +106,7 @@
           <!-- card price end -->
 
         </div>
+        <%} else {%>
         <!--  single card outermost container end -->
 
         <!-- multiple cards outermost container -->
@@ -121,23 +125,23 @@
 
                 <div>
                   <small>From</small>
-                  <p><%=flights[i].origin%></p>
+                  <p><%=flights[i].outboundOrigin%></p>
                   <small>Destination</small>
-                  <p><%=flights[i].destination%></p>
+                  <p><%=flights[i].outboundDestination%></p>
                 </div>
 
                 <div>
                   <small>Departure Date</small>
-                  <p><%=flights[i].departure.split('T')[0]%></p>
+                  <p><%=flights[i].outboundDeparture.split('T')[0]%></p>
                   <small>Departure Time</small>
-                  <p><%=flights[i].departure.split('T')[1]%></p>
+                  <p><%=flights[i].outboundDeparture.split('T')[1]%></p>
                 </div>
 
                 <div>
                   <small>Arrival Date</small>
-                  <p><%=flights[i].arrival.split('T')[0]%></p>
+                  <p><%=flights[i].outboundArrival.split('T')[0]%></p>
                   <small>Arrival Time</small>
-                  <p><%=flights[i].arrival.split('T')[1]%></p>
+                  <p><%=flights[i].outboundArrival.split('T')[1]%></p>
                 </div>                      
 
               </div>
@@ -158,23 +162,23 @@
 
                 <div>
                   <small>Origin</small>
-                  <p><%=flights[i].origin%></p>
+                  <p><%=flights[i].inboundOrigin%></p>
                   <small>Destination</small>
-                  <p><%=flights[i].destination%></p>
+                  <p><%=flights[i].inboundDestination%></p>
                 </div>                      
 
                 <div>
                   <small>Departure Date</small>
-                  <p><%=flights[i].departure.split('T')[0]%></p>
+                  <p><%=flights[i].inboundDeparture.split('T')[0]%></p>
                   <small>Departure Time</small>
-                  <p><%=flights[i].departure.split('T')[1]%></p>
+                  <p><%=flights[i].inboundDeparture.split('T')[1]%></p>
                 </div>
 
                 <div>
                   <small>Arrival Date</small>
-                  <p><%=flights[i].arrival.split('T')[0]%></p>
+                  <p><%=flights[i].inboundArrival.split('T')[0]%></p>
                   <small>Arrival Time</small>
-                  <p><%=flights[i].arrival.split('T')[1]%></p>
+                  <p><%=flights[i].inboundArrival.split('T')[1]%></p>
                 </div>
 
               </div>
@@ -194,7 +198,7 @@
 
         </div>
         <!-- multiple cards outermost container end -->
-
+      <%}%>
       <%}%>
       
     </section>
