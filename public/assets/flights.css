@@ -83,8 +83,8 @@ nav {
   position: fixed;
   color: #fff;
   right: 0;
-  bottom: 0;
-  margin-bottom: 6em;
+  top: 0;
+  margin-top: 10em;
 }
 
 #watchlist h1 {
