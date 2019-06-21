@@ -62,25 +62,25 @@ module.exports = {
   },
 
   getWatchlist: (req, res) => {
-    // knex.select('flight_id')
-    //   .from('watchlist')
-    //   .where('user_id', req.session.user.id)
-    //   .then(flight_ids => {
-    //     flight_id = flight_id[0].flight_id;
-    //     knex.select('*')
-    //       .from('prices')
-    //       .where('flight_id', flight_id)
-    //       .fullOuterJoin('flights', 'prices.flight_id', 'flights.id')
-    //       .then(flights => {
-    //         res.render('watchlist', {flights: flights})
-    //       })
-    //   })
-
-    knex.select('flights.id', 'flights.origin', 'flights.destination', 'flights.departure', 'flights.arrival')
+    knex.select('flights.id', 'flights.originPlace', 'flights.destinationPlace', 'flights.outboundDate', 'flights.inboundDate')
       .from('watchList')
       .where('user_id', req.session.user.id)
       .fullOuterJoin('flights', 'flights.id', 'watchList.flight_id')
-
+      .then(result => {
+        for (let i=0; i<result.length; i++) {
+          knex.select('price')
+            .from('prices')
+            .where('flight_id', result[i].id)
+            .then(prices => {
+              result[i].prices = prices[i];
+            })
+            console.log(result, "result", [i], "i")
+        } 
+        return result;
+      })
+      .then((result) => {
+        res.render('watchlist', {flights: result});
+      })
   },
 
   getFlights: (app) => {
@@ -158,6 +158,7 @@ module.exports = {
                     flight.legs = [];
                     const agentId = itineraries[i].PricingOptions[0].Agents[0];
                     let price = itineraries[i].PricingOptions[0].Price;
+                    flight.bookingUrl = itineraries[i].PricingOptions[0].DeeplinkUrl
                     flight.price = Number.parseFloat(price).toFixed(2);
                     const legId = itineraries[i].OutboundLegId;
 
@@ -248,7 +249,9 @@ module.exports = {
                     flight.outboundLegs = [];
                     flight.inboundLegs = [];
                     const agentId = itineraries[i].PricingOptions[0].Agents[0];
-                    flight.price = itineraries[i].PricingOptions[0].Price;
+                    let price = itineraries[i].PricingOptions[0].Price;
+                    flight.bookingUrl = itineraries[i].PricingOptions[0].DeeplinkUrl
+                    flight.price = Number.parseFloat(price).toFixed(2);
                     const outboundLegId = itineraries[i].OutboundLegId;
                     const inboundLegId = itineraries[i].InboundLegId;
 

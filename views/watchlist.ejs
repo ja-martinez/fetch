@@ -57,79 +57,9 @@
       </nav>
     </header>
 
+    <h1><%=JSON.stringify(flights)%></h1>
     <!-- Main -->
-    <main class="container-fluid fold">
-      <!-- ADD TO WATCHLIST -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div id="title" class="container-fluid">
-              <h1 class="display-4">myFlights</h1>
-              <p>
-                This watchlist is designed to help you make the best purchase
-                possible. <br />
-                Keep track of up ticket prices over time and compare dates by
-                adding up to ten searches to your watchlist.
-              </p>
-            </div>
-          </div>
-          <!-- FLIGHT CONTAINER -->
-          <div class="row">
-            <section id="deck" class="container-fluid">
-              <%for (let i=0; i<flights.length; i++) {%>
-              <!-- FLIGHT CARD START -->
-              <div class=card-x>
-              <div class="delete">
-                  <a href="/delete/watchlist/:id">X</a>
-                </div>
-              <div class="watch-card">
-                <div class="tickect-section">
-                  <div class="top">
-                    <small>From</small>
-                    <p>London</p>
-                    <!--<%=flights[i].origin%> -->
-                  </div>
-                  <div class="graph-one">
-                    <small>Current Prices</small>
-                    <div
-                      id="barchart_values"
-                      style="width:30em; height:10em"
-                    ></div>
-                  </div>
-                </div>
-                <div class="tickect-section">
-                  <div class="top">
-                    <small>To</small>
-                    <p>Mexicali</p>
-                    <%=flights[i].destination%>
-                  </div>
-                  <div class="graph-two">
-                    <small>Cheapest Price Over Time</small>
-                    <div id="chart_div" style="width:30em; height:10em"></div>
-                  </div>
-                </div>
-                <div class="tickect-section">
-                  <div class="top">
-                    <small>On</small>
-                    <p>11/11/1999</p>
-                    <%=flights[i].departure.split('T')[0]%>
-                  </div>
-                  <div class="links">
-                    <small>Links</small>
-                    <a href="">Cheapest</a>
-                    <a href="">Fastest</a>
-                    <a href="">All</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-              <%}%>
-              <!-- FLIGHT CARD END -->
-            </section>
-          </div>
-        </div>
-      </div>
-    </main>
+    
     <!-- Graph One -->
     <script type="text/javascript">
       google.charts.load("current", { packages: ["corechart"] });
