@@ -42,9 +42,7 @@
   <main role="main" class="mb-5">
     
     <!-- main header -->
-    <header class="main-header" id="watchlist">
-     <a href="#"><small>Add flights to watch list</small></a>    
-    </header>
+    <a href="#" class="main-header" id="watchlist"><small>Add flights to watch list</small></a>    
     <!-- main header end -->
     
     <!-- section -->
@@ -67,28 +65,47 @@
                   <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
               </div>
 
+              <div class="flight-title">
+                  <h1 class="lead">Outbound</h1>
+              </div>
+
               <div class="flight-info">
 
-                <div>
-                  <small>From</small>
-                  <p><%=flights[i].origin%></p>
-                  <small>Destination</small>
-                  <p><%=flights[i].destination%></p>
+                <div class="origin d-flex justify-content-between">
+                  
+                  <div class="col1 origin-info flex">
+                    <small>Origin</small>
+                    <p><%=flights[i].origin%></p>
+                  </div>
+                  <div class="origin-info flex">
+                    <small>Departure Date</small>
+                    <p><%=flights[i].departure.split('T')[0]%></p>                    
+                  </div>
+                  <div class="origin-info flex">
+                    <small>Departure Time</small>
+                    <p><%=flights[i].departure.split('T')[1]%></p>
+                  </div>
+
                 </div>
 
-                <div>
-                  <small>Departure Date</small>
-                  <p><%=flights[i].departure.split('T')[0]%></p>
-                  <small>Departure Time</small>
-                  <p><%=flights[i].departure.split('T')[1]%></p>
+                <div class="destination d-flex justify-content-between">
+                  
+                  <div class="col1 destination-info flex">
+                    <small>Destination</small>
+                    <p><%=flights[i].destination%></p>
+                  </div>
+                  <div class="destination-info flex">
+                    <small>Arrival Date</small>
+                    <p><%=flights[i].arrival.split('T')[0]%></p>
+                  </div>
+                  <div class="destination-info flex">
+                    <small>Arrival Time</small>
+                    <p><%=flights[i].arrival.split('T')[1]%></p>
+                  </div>
+
                 </div>
 
-                <div>
-                  <small>Arrival Date</small>
-                  <p><%=flights[i].arrival.split('T')[0]%></p>
-                  <small>Arrival Time</small>
-                  <p><%=flights[i].arrival.split('T')[1]%></p>
-                </div>                      
+                
 
               </div>
 
@@ -107,42 +124,58 @@
           <!-- card price end -->
 
         </div>
-        <%} else {%>
         <!--  single card outermost container end -->
+
+        <%} else {%>
 
         <!-- multiple cards outermost container -->
         <div class="flight">
+
+          <div class="airline">
+              <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+          </div>
+
+          
           <!-- multiple cards inner container -->
           <div class="departNreturn-wrapper">
-
+            
             <!-- card one (depart) -->
             <div class="depart">
-
-              <div class="airline">
-                  <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+              
+              <div class="flight-title">
+                  <h1 class="lead">Outbound</h1>
               </div>
 
               <div class="flight-info">
 
-                <div>
-                  <small>From</small>
-                  <p><%=flights[i].outboundOrigin%></p>
-                  <small>Destination</small>
-                  <p><%=flights[i].outboundDestination%></p>
+                <div class="origin d-flex justify-content-between">
+                  <div class="col1 origin-info flex">
+                    <small>Origin</small>
+                    <p><%=flights[i].outboundOrigin%></p>
+                  </div>
+                  <div class="origin-info flex">
+                    <small>Departure Date</small>
+                    <p><%=flights[i].outboundDeparture.split('T')[0]%></p>
+                  </div>
+                  <div class="origin-info flex">
+                    <small>Departure Time</small>
+                    <p><%=flights[i].outboundDeparture.split('T')[1]%></p>
+                  </div>
                 </div>
-
-                <div>
-                  <small>Departure Date</small>
-                  <p><%=flights[i].outboundDeparture.split('T')[0]%></p>
-                  <small>Departure Time</small>
-                  <p><%=flights[i].outboundDeparture.split('T')[1]%></p>
-                </div>
-
-                <div>
-                  <small>Arrival Date</small>
-                  <p><%=flights[i].outboundArrival.split('T')[0]%></p>
-                  <small>Arrival Time</small>
-                  <p><%=flights[i].outboundArrival.split('T')[1]%></p>
+                
+                <div class="destination d-flex justify-content-between">
+                  <div class="col1 destination-info flex">
+                    <small>Destination</small>
+                    <p><%=flights[i].outboundDestination%></p>
+                  </div>
+                  <div class="destination-info flex">
+                    <small>Arrival Date</small>
+                    <p><%=flights[i].outboundArrival.split('T')[0]%></p>
+                  </div>
+                  <div class="destination-info flex">
+                    <small>Arrival Time</small>
+                    <p><%=flights[i].outboundArrival.split('T')[1]%></p>
+                  </div>
                 </div>                      
 
               </div>
@@ -150,36 +183,47 @@
             </div> 
             <!-- card one end (depart) -->
 
-            <hr>
+            <!--  -->
 
             <!-- card two (return) -->
             <div class="return">
 
-              <div class="airline">
-                  <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+              <div class="flight-title">
+                <h1 class="lead">Inbound</h1>
               </div>
 
-              <div class="flight-info">
+              <div class="flight-info flex">
 
-                <div>
-                  <small>Origin</small>
-                  <p><%=flights[i].inboundOrigin%></p>
-                  <small>Destination</small>
-                  <p><%=flights[i].inboundDestination%></p>
-                </div>                      
-
-                <div>
-                  <small>Departure Date</small>
-                  <p><%=flights[i].inboundDeparture.split('T')[0]%></p>
-                  <small>Departure Time</small>
-                  <p><%=flights[i].inboundDeparture.split('T')[1]%></p>
+                <div class="return-origin-info d-flex justify-content-between">
+                  <div class="col1 flex return-origin-info">
+                    <small>Origin</small>
+                    <p><%=flights[i].inboundOrigin%></p>
+                  </div>    
+                  <div class="flex return-origin-info">
+                    <small>Departure Date</small>
+                    <p><%=flights[i].inboundDeparture.split('T')[0]%></p>
+                  </div>
+                  <div class="flex return-origin-info">
+                    <small>Departure Time</small>
+                    <p><%=flights[i].inboundDeparture.split('T')[1]%></p>
+                  </div>
                 </div>
 
-                <div>
-                  <small>Arrival Date</small>
-                  <p><%=flights[i].inboundArrival.split('T')[0]%></p>
-                  <small>Arrival Time</small>
-                  <p><%=flights[i].inboundArrival.split('T')[1]%></p>
+                
+
+                <div class="return-destination-info d-flex justify-content-between">
+                  <div class="col1 flex return-destination-info">
+                    <small>Destination</small>
+                    <p><%=flights[i].inboundDestination%></p>
+                  </div>                
+                  <div class="flex return-destination-info">
+                    <small>Arrival Date</small>
+                    <p><%=flights[i].inboundArrival.split('T')[0]%></p>
+                  </div>                
+                  <div class="flex return-destination-info">
+                    <small>Arrival Time</small>
+                    <p><%=flights[i].inboundArrival.split('T')[1]%></p>
+                  </div>
                 </div>
 
               </div>
