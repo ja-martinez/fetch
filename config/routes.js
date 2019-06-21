@@ -5,6 +5,7 @@ module.exports = function(app){
 
   app.get('/', flights.home);
   app.post('/flights/search', flights.getFlights);
+  app.post('/flights/add-to-watchlist', flights.addToWatchlist)
   app.get('/flights/:flightsIndex', flights.getOne);
   app.get('/register', flights.getRegister);
   app.get('/error', flights.error)

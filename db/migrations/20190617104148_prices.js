@@ -7,8 +7,7 @@ exports.up = (knex, Promise) => {
         .inTable('flights')
         .onDelete('CASCADE')
         .index();
-        table.integer("price").notNullable();
-        table.integer("time")
+        table.float("price").notNullable();
         table.timestamps(true, true)
     })
   };
