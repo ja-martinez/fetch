@@ -10,12 +10,12 @@
     <!-- BOOTSTRAP STYLES -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- FETCH STYLES -->
-    <link rel="stylesheet" type="text/css" href="/assets/singleflight.css">
+    <link rel="stylesheet" href="/assets/singleflight.css" />
 
     <!-- FETCH FAVICON -->
     <link rel="shortcut icon" type="image/png" href="/assets/brand/fetch-favicon.png"/>
 
-    <title>Flight Fetch | Home</title>
+    <title>Flight Fetch | Flight Page</title>
 
 </head>
 <body>
@@ -33,9 +33,7 @@
                         </div>
                         <!-- NAV-LINKS -->
                         <div>
-                            <a class="mr-3" href="#">About</a>
-                            <a href="#" class="mr-3">Feature</a>
-                            <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign In</a>
+                            <a class="mr-3" href="/">Home</a>
                         </div>
                     </div>
                 </div>
@@ -49,48 +47,11 @@
 
         <section class="main">
             <div class="container cont">
-<!-- 
-                <div class="trip-info">
-                    <% for(let i = 0; i < flight.legs.lenght; i++) { %>
-                        <img src="<%= flight.legs[i].carrierImgUrl %>" alt="carrier" class="carrier">
-                        <div class="card">
-                            <div class="mini-card">
-                                <span><%= flight.legs[i].departure %></span>
-                                <h3><%= flight.legs[i].origin %></h3>
-                                <span><%= flight.legs[i].departure %></span>
-                            </div>
-                            <hr>
-                            <div class="mini-card">
-                                <span><%= flight.legs[i].arrival %></span>
-                                <h3><%= flight.legs[i].destination %></h3>
-                                <span><%= flight.legs[i].arrival %></span>
-                            </div>
-                        </div>
-                    <%}%>
-                </div> -->
+                
+                <h1><%= flight.origin %></h1>
 
             </div>
         </section>
-        <!-- <div class="passenger-info">
-            <table>
-                <tr>
-                    <td>Deals</td>
-                    <td>#</td>
-                </tr>
-                <tr>
-                    <td>Transfer</td>
-                    <td>Self</td>
-                </tr>
-                <tr>
-                    <td>Passengers</td>
-                    <td>2 adults</td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td>1000 $</td>
-                </tr>
-            </table>
-        </div> -->
     
     </main>
 
@@ -103,9 +64,10 @@
     </div>
 
 </body>
+
 <footer role="footer">
     
-    <div class="footer-body">
+    <div class="footer-body container">
         <div class="v-con">
             
             <ul>

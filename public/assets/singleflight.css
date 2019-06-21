@@ -3,48 +3,12 @@
 
 html,body{
     font-family: 'Source Sans Pro', sans-serif;
+    background: #eee;
     letter-spacing: .02em;
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+    width: 100%; 
     padding: 0;
     margin: 0;
-}
-
-.cont {
-    margin-top: 4.65em;
-    padding: 8em 1em; 
-}
-
-.trip-info, .mini-card {
-    display: flex;
-}
-.trip-info {
-    margin-bottom: 1em;
-}
-
-.card {
-    padding: 0 1em;
-    /* border-left: .08em dashed #999; */
-}
-
-.mini-card {
-    width: 20em;
-    padding: 1em 0;
-    justify-content: space-between;
-    align-items: baseline;
-}
-
-.carrier {
-    background: #6b5;
-    border-radius: .2em;
-    overflow: hidden;
-    /* border-right: .1em dashed #999; */
-}
-
-hr {
-    border: .02em dashed #ccc;
-    margin: 0 1em;
-    width: 100%;
 }
 
 /* ==================================== HEADER */
@@ -64,7 +28,8 @@ header a { color: #eee }
 
 /* ==================================== MAIN */
 .main {
-    background: #eee;
+    background: #ccc;
+    margin-top: 8em; 
     height: 100vh;
     width: 100%;
 
