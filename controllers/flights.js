@@ -378,7 +378,7 @@ module.exports = {
                 flights: flights
               })
             })
-        }, 5000)
+        }, 60000)
       });
   },
 
