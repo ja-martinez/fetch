@@ -5,7 +5,7 @@ let query = {};
 module.exports = {
 
   home: (req, res) => {
-    res.render("index")
+    res.render("index", {user: req.session.user})
   },
 
   getRegister: (req, res) => {
@@ -24,7 +24,6 @@ module.exports = {
   },
 
   login: (req, res) => {
-    console.log('tryinnn')
     knex('users')
       .where({
         email: req.body.email
@@ -38,6 +37,18 @@ module.exports = {
           res.redirect('/')
         }
       })
+  },
+
+  logout: (req, res) => {
+    if (req.session) {
+      req.session.destroy(err => {
+        if (err) {
+          console.error(err);
+        } else {
+          res.redirect ('/')
+        }
+      })
+    }
   },
 
   error: (req, res) => {
@@ -383,7 +394,8 @@ module.exports = {
                 }
                 app.set('flights', flights);
                 res.render('flights', {
-                  flights: flights
+                  flights: flights,
+                  user: req.session.user
                 })
               })
           }, 5000)

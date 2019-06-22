@@ -9,6 +9,7 @@ module.exports = function(app){
   app.get('/register', flights.getRegister);
   app.get('/error', flights.error);
   app.post('/login', flights.login);
+  app.get('/logout', flights.logout);
   app.post('/register', flights.register);
   app.use(authMiddleware);
   app.post('/flights/add-to-watchlist', flights.addToWatchlist(app));

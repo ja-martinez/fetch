@@ -28,6 +28,12 @@
           <!-- BRAND -->
           <div>
             <a href="/"><img class="brand" src="/assets/brand/fetch-logo.png" alt="brand" /></a>
+            <%if (!user) {%>
+            <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Log
+                In</a>
+            <%} else {%>
+            <a href="/logout" class="signIn">Log Out</a>
+            <%}%>
           </div>
           <!-- NAV-LINKS -->
           <div>
