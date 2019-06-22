@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/assets/flights.css" />
 
   <!-- FETCH FAVICON -->
-  <link rel="shortcut icon" type="image/png" href="/assets/brand/fetch-favicon.png"/>
+  <link rel="shortcut icon" type="image/png" href="/assets/brand/fetch-favicon.png" />
 
   <title>Flight Fetch | Flights</title>
 </head>
@@ -28,16 +28,16 @@
           <!-- BRAND -->
           <div>
             <a href="/"><img class="brand" src="/assets/brand/fetch-logo.png" alt="brand" /></a>
-            <%if (!user) {%>
-            <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Log
-                In</a>
-            <%} else {%>
-            <a href="/logout" class="signIn">Log Out</a>
-            <%}%>
           </div>
           <!-- NAV-LINKS -->
           <div>
             <a class="mr-3" href="/">Home</a>
+            <%if (!user) {%>
+            <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Log
+              In</a>
+            <%} else {%>
+            <a href="/logout" class="signIn">Log Out</a>
+            <%}%>
           </div>
         </div>
       </div>
@@ -60,217 +60,220 @@
       <!-- card generator -->
       <%for (let i=0; i<flights.length; i++) {%>
 
-        <!-- cards outermost container -->
-        <%if (!flights[i].isRound) {%>
-        <div class="flight">
-          <!-- cards inner container -->
-          <div class="departNreturn-wrapper">
+            <!-- cards outermost container -->
+            <%if (!flights[i].isRound) {%>
+            <div class="flight">
+              <!-- cards inner container -->
+              <div class="departNreturn-wrapper">
 
-            <!-- card one (Single) -->
-            
-            <div class="depart">
+                <!-- card one (Single) -->
+
+                <div class="depart">
+
+                  <div class="airline">
+                    <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+                  </div>
+
+                  <div class="flight-title">
+                    <h1 class="lead">Outbound</h1>
+                  </div>
+
+                  <div class="flight-info">
+
+                    <div class="origin d-flex justify-content-between">
+
+                      <div class="col1 origin-info flex">
+                        <small>Origin</small>
+                        <p><%=flights[i].origin%></p>
+                      </div>
+                      <div class="origin-info flex">
+                        <small>Departure Date</small>
+                        <p><%=flights[i].departure.split('T')[0]%></p>
+                      </div>
+                      <div class="origin-info flex">
+                        <small>Departure Time</small>
+                        <p><%=flights[i].departure.split('T')[1]%></p>
+                      </div>
+
+                    </div>
+
+                    <div class="destination d-flex justify-content-between">
+
+                      <div class="col1 destination-info flex">
+                        <small>Destination</small>
+                        <p><%=flights[i].destination%></p>
+                      </div>
+                      <div class="destination-info flex">
+                        <small>Arrival Date</small>
+                        <p><%=flights[i].arrival.split('T')[0]%></p>
+                      </div>
+                      <div class="destination-info flex">
+                        <small>Arrival Time</small>
+                        <p><%=flights[i].arrival.split('T')[1]%></p>
+                      </div>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+                <!-- card one end (depart) -->
+              </div>
+              <!-- cards inner container end -->
+
+              <!-- card price -->
+              <a class="price-view" href="<%=flights[i].bookingUrl%>" alt="go to price">
+                <div>
+                  <p><span class="dollas-sign">$ </span> <%=flights[i].price%></p>
+                </div>
+              </a>
+              <!-- card price end -->
+
+            </div>
+            <!--  single card outermost container end -->
+
+            <%} else {%>
+
+            <!-- multiple cards outermost container -->
+            <div class="flight">
 
               <div class="airline">
-                  <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
+                <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
               </div>
 
-              <div class="flight-title">
-                  <h1 class="lead">Outbound</h1>
-              </div>
 
-              <div class="flight-info">
+              <!-- multiple cards inner container -->
+              <div class="departNreturn-wrapper">
 
-                <div class="origin d-flex justify-content-between">
-                  
-                  <div class="col1 origin-info flex">
-                    <small>Origin</small>
-                    <p><%=flights[i].origin%></p>
+                <!-- card one (depart) -->
+                <div class="depart">
+
+                  <div class="flight-title">
+                    <h1 class="lead">Outbound</h1>
                   </div>
-                  <div class="origin-info flex">
-                    <small>Departure Date</small>
-                    <p><%=flights[i].departure.split('T')[0]%></p>                    
-                  </div>
-                  <div class="origin-info flex">
-                    <small>Departure Time</small>
-                    <p><%=flights[i].departure.split('T')[1]%></p>
+
+                  <div class="flight-info">
+
+                    <div class="origin d-flex justify-content-between">
+                      <div class="col1 origin-info flex">
+                        <small>Origin</small>
+                        <p><%=flights[i].outboundOrigin%></p>
+                      </div>
+                      <div class="origin-info flex">
+                        <small>Departure Date</small>
+                        <p><%=flights[i].outboundDeparture.split('T')[0]%></p>
+                      </div>
+                      <div class="origin-info flex">
+                        <small>Departure Time</small>
+                        <p><%=flights[i].outboundDeparture.split('T')[1]%></p>
+                      </div>
+                    </div>
+
+                    <div class="destination d-flex justify-content-between">
+                      <div class="col1 destination-info flex">
+                        <small>Destination</small>
+                        <p><%=flights[i].outboundDestination%></p>
+                      </div>
+                      <div class="destination-info flex">
+                        <small>Arrival Date</small>
+                        <p><%=flights[i].outboundArrival.split('T')[0]%></p>
+                      </div>
+                      <div class="destination-info flex">
+                        <small>Arrival Time</small>
+                        <p><%=flights[i].outboundArrival.split('T')[1]%></p>
+                      </div>
+                    </div>
+
                   </div>
 
                 </div>
+                <!-- card one end (depart) -->
 
-                <div class="destination d-flex justify-content-between">
-                  
-                  <div class="col1 destination-info flex">
-                    <small>Destination</small>
-                    <p><%=flights[i].destination%></p>
+                <!--  -->
+
+                <!-- card two (return) -->
+                <div class="return">
+
+                  <div class="flight-title">
+                    <h1 class="lead">Inbound</h1>
                   </div>
-                  <div class="destination-info flex">
-                    <small>Arrival Date</small>
-                    <p><%=flights[i].arrival.split('T')[0]%></p>
-                  </div>
-                  <div class="destination-info flex">
-                    <small>Arrival Time</small>
-                    <p><%=flights[i].arrival.split('T')[1]%></p>
+
+                  <div class="flight-info flex">
+
+                    <div class="return-origin-info d-flex justify-content-between">
+                      <div class="col1 flex return-origin-info">
+                        <small>Origin</small>
+                        <p><%=flights[i].inboundOrigin%></p>
+                      </div>
+                      <div class="flex return-origin-info">
+                        <small>Departure Date</small>
+                        <p><%=flights[i].inboundDeparture.split('T')[0]%></p>
+                      </div>
+                      <div class="flex return-origin-info">
+                        <small>Departure Time</small>
+                        <p><%=flights[i].inboundDeparture.split('T')[1]%></p>
+                      </div>
+                    </div>
+
+
+
+                    <div class="return-destination-info d-flex justify-content-between">
+                      <div class="col1 flex return-destination-info">
+                        <small>Destination</small>
+                        <p><%=flights[i].inboundDestination%></p>
+                      </div>
+                      <div class="flex return-destination-info">
+                        <small>Arrival Date</small>
+                        <p><%=flights[i].inboundArrival.split('T')[0]%></p>
+                      </div>
+                      <div class="flex return-destination-info">
+                        <small>Arrival Time</small>
+                        <p><%=flights[i].inboundArrival.split('T')[1]%></p>
+                      </div>
+                    </div>
+
                   </div>
 
                 </div>
-
-                
+                <!-- card two end (return) -->
 
               </div>
+              <!-- cards inner container end -->
+
+              <!-- card price -->
+              <a class="price-view" href="<%=flights[i].bookingUrl%>" alt="got to price">
+                <div>
+                  <p class="lead"><span class="dollas-sign">$ </span> <%=flights[i].price%></p>
+                </div>
+              </a>
+              <!-- card price end -->
 
             </div>
-             
-            <!-- card one end (depart) -->
-          </div> 
-          <!-- cards inner container end -->
-
-          <!-- card price -->
-          <a  class="price-view" href="<%=flights[i].bookingUrl%>" alt="go to price">
-            <div>
-              <p><span class="dollas-sign">$ </span> <%=flights[i].price%></p>
-            </div>
-          </a>
-          <!-- card price end -->
-
-        </div>
-        <!--  single card outermost container end -->
-
-        <%} else {%>
-
-        <!-- multiple cards outermost container -->
-        <div class="flight">
-
-          <div class="airline">
-              <img src="<%= flights[i].agentImgUrl %>" alt="Agent_img" />
-          </div>
-
-          
-          <!-- multiple cards inner container -->
-          <div class="departNreturn-wrapper">
-            
-            <!-- card one (depart) -->
-            <div class="depart">
-              
-              <div class="flight-title">
-                  <h1 class="lead">Outbound</h1>
-              </div>
-
-              <div class="flight-info">
-
-                <div class="origin d-flex justify-content-between">
-                  <div class="col1 origin-info flex">
-                    <small>Origin</small>
-                    <p><%=flights[i].outboundOrigin%></p>
-                  </div>
-                  <div class="origin-info flex">
-                    <small>Departure Date</small>
-                    <p><%=flights[i].outboundDeparture.split('T')[0]%></p>
-                  </div>
-                  <div class="origin-info flex">
-                    <small>Departure Time</small>
-                    <p><%=flights[i].outboundDeparture.split('T')[1]%></p>
-                  </div>
-                </div>
-                
-                <div class="destination d-flex justify-content-between">
-                  <div class="col1 destination-info flex">
-                    <small>Destination</small>
-                    <p><%=flights[i].outboundDestination%></p>
-                  </div>
-                  <div class="destination-info flex">
-                    <small>Arrival Date</small>
-                    <p><%=flights[i].outboundArrival.split('T')[0]%></p>
-                  </div>
-                  <div class="destination-info flex">
-                    <small>Arrival Time</small>
-                    <p><%=flights[i].outboundArrival.split('T')[1]%></p>
-                  </div>
-                </div>                      
-
-              </div>
-
-            </div> 
-            <!-- card one end (depart) -->
-
-            <!--  -->
-
-            <!-- card two (return) -->
-            <div class="return">
-
-              <div class="flight-title">
-                <h1 class="lead">Inbound</h1>
-              </div>
-
-              <div class="flight-info flex">
-
-                <div class="return-origin-info d-flex justify-content-between">
-                  <div class="col1 flex return-origin-info">
-                    <small>Origin</small>
-                    <p><%=flights[i].inboundOrigin%></p>
-                  </div>    
-                  <div class="flex return-origin-info">
-                    <small>Departure Date</small>
-                    <p><%=flights[i].inboundDeparture.split('T')[0]%></p>
-                  </div>
-                  <div class="flex return-origin-info">
-                    <small>Departure Time</small>
-                    <p><%=flights[i].inboundDeparture.split('T')[1]%></p>
-                  </div>
-                </div>
-
-                
-
-                <div class="return-destination-info d-flex justify-content-between">
-                  <div class="col1 flex return-destination-info">
-                    <small>Destination</small>
-                    <p><%=flights[i].inboundDestination%></p>
-                  </div>                
-                  <div class="flex return-destination-info">
-                    <small>Arrival Date</small>
-                    <p><%=flights[i].inboundArrival.split('T')[0]%></p>
-                  </div>                
-                  <div class="flex return-destination-info">
-                    <small>Arrival Time</small>
-                    <p><%=flights[i].inboundArrival.split('T')[1]%></p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div> 
-            <!-- card two end (return) -->
-
-          </div> 
-          <!-- cards inner container end -->
-
-          <!-- card price -->
-          <a  class="price-view" href="<%=flights[i].bookingUrl%>" alt="got to price">
-            <div>
-              <p class="lead"><span class="dollas-sign">$ </span> <%=flights[i].price%></p>
-            </div>
-          </a>
-          <!-- card price end -->
-
-        </div>
-        <!-- multiple cards outermost container end -->
+            <!-- multiple cards outermost container end -->
+            <%}%>
       <%}%>
-      <%}%>
-      
-    </section>
-    <!-- section end -->
-          
-  </main>
 
-  <!-- BOOTSTRAP SCRIPT -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+            </section>
+            <!-- section end -->
+
+            </main>
+
+            <!-- BOOTSTRAP SCRIPT -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+              integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+              crossorigin="anonymous">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+              integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+              crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+              integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+              crossorigin="anonymous">
+            </script>
 
 </body>
 
