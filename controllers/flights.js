@@ -73,25 +73,30 @@ module.exports = {
     }
   },
 
+  // The problem is that return is run before forEach finishes
   getWatchlist: (req, res) => {
+    let flights = [];
     knex.select('flights.id', 'flights.originPlace', 'flights.destinationPlace', 'flights.outboundDate', 'flights.inboundDate')
       .from('watchList')
       .where('user_id', req.session.user.id)
       .fullOuterJoin('flights', 'flights.id', 'watchList.flight_id')
       .then(result => {
-        for (let i=0; i<result.length; i++) {
+        flights = result;
+        result.forEach((element, i) => {
           knex.select('price')
             .from('prices')
-            .where('flight_id', result[i].id)
+            .where('flight_id', element.id)
             .then(prices => {
-              result[i].prices = prices[i];
+              result[i].prices = [];
+              for (let j=0; j<prices.length; j++) {
+                result[i].prices.push(prices[j].price)
+              }
             })
-            console.log(result, "result", [i], "i")
-        } 
-        return result;
+        }) 
       })
-      .then((result) => {
-        res.render('watchlist', {flights: result});
+      .then(() => {
+        console.log('before rendering', flights)
+        res.render('watchlist', {flights: flights});
       })
   },
 
