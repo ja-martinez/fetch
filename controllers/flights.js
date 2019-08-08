@@ -1,30 +1,31 @@
 const knex = require("../db/knex.js");
-const unirest = require('unirest');
+const unirest = require("unirest");
 let query = {};
 
 module.exports = {
-
   home: (req, res) => {
-    res.render("index", {user: req.session.user})
+    res.render("index", { user: req.session.user });
   },
 
   getRegister: (req, res) => {
-    res.render('register');
+    res.render("register");
   },
 
   register: (req, res) => {
-    knex('users')
-      .insert([{
-        email: req.body.email,
-        password: req.body.password
-      }])
+    knex("users")
+      .insert([
+        {
+          email: req.body.email,
+          password: req.body.password
+        }
+      ])
       .then(() => {
-        res.redirect('/')
-      })
+        res.redirect("/");
+      });
   },
 
   login: (req, res) => {
-    knex('users')
+    knex("users")
       .where({
         email: req.body.email
       })
@@ -32,11 +33,11 @@ module.exports = {
         let user = result[0];
         if (user.password === req.body.password) {
           req.session.user = user;
-          res.redirect('/');
+          res.redirect("/");
         } else {
-          res.redirect('/')
+          res.redirect("/");
         }
-      })
+      });
   },
 
   logout: (req, res) => {
@@ -45,62 +46,152 @@ module.exports = {
         if (err) {
           console.error(err);
         } else {
-          res.redirect ('/')
+          res.redirect("/");
         }
-      })
+      });
     }
   },
 
   error: (req, res) => {
-    res.render('server-crash');
+    res.render("server-crash");
   },
 
-  addToWatchlist: (app) => {
+  addToWatchlist: app => {
     return (req, res) => {
-      knex('flights')
-      .insert([app.get('query')], ['id'])
-      .then((flightId) => {
-        flightId = flightId[0].id;
-        knex('watchList')
-          .insert([{
-            user_id: req.session.user.id,
-            flight_id: flightId
-          }])
-          .then(() => {
-            res.redirect('/');
-          })
-      })
-    }
-  },
-
-  // The problem is that return is run before forEach finishes
-  getWatchlist: (req, res) => {
-    let flights = [];
-    knex.select('flights.id', 'flights.originPlace', 'flights.destinationPlace', 'flights.outboundDate', 'flights.inboundDate')
-      .from('watchList')
-      .where('user_id', req.session.user.id)
-      .fullOuterJoin('flights', 'flights.id', 'watchList.flight_id')
-      .then(result => {
-        flights = result;
-        result.forEach((element, i) => {
-          knex.select('price')
-            .from('prices')
-            .where('flight_id', element.id)
-            .then(prices => {
-              result[i].prices = [];
-              for (let j=0; j<prices.length; j++) {
-                result[i].prices.push(prices[j].price)
+      knex("flights")
+        .insert(app.get("query"), ["id"])
+        .then(flightId => {
+          flightId = flightId[0].id;
+          knex("watchList")
+            .insert([
+              {
+                user_id: req.session.user.id,
+                flight_id: flightId
               }
-            })
-        }) 
-      })
-      .then(() => {
-        console.log('before rendering', flights)
-        res.render('watchlist', {flights: flights});
-      })
+            ])
+            .then(() => {
+              res.redirect("/");
+            });
+        });
+    };
   },
 
-  getFlights: (app) => {
+  getWatchlist: (req, res) => {
+    knex("watchList")
+      .where("user_id", req.session.user.id)
+      .rightJoin("flights", "watchList.flight_id", "flights.id")
+      .then(flights => {
+        let flightsCount = 0;
+        let flightsArray = [];
+        flights.forEach(flight => {
+          
+          let outbound = {};
+          outbound.year = parseInt(flight.outboundDate.slice(0, 4));
+          outbound.month = parseInt(flight.outboundDate.slice(5, 7));
+          outbound.day = parseInt(flight.outboundDate.slice(8));
+          let outboundDate = new Date(outbound.year, outbound.month - 1, outbound.day)
+
+          let dateMinus1 = new Date(outbound.year, outbound.month - 1, outbound.day);
+          let dateMinus2 = new Date(outbound.year, outbound.month - 1, outbound.day);
+          let datePlus1 =  new Date(outbound.year, outbound.month - 1, outbound.day);
+          let datePlus2 =  new Date(outbound.year, outbound.month - 1, outbound.day);
+  
+          dateMinus1.setDate(outboundDate.getDate() - 1)
+          dateMinus2.setDate(outboundDate.getDate() - 2)
+          datePlus1.setDate(outboundDate.getDate() + 1)
+          datePlus2.setDate(outboundDate.getDate() + 2)
+  
+          let outboundMinus1 = {};
+          let outboundMinus2 = {};
+          let outboundPlus1 = {};
+          let outboundPlus2 = {};
+
+          outbound.year = outbound.year.toString();
+          outbound.month = outbound.month.toString().padStart(2, '0');
+          outbound.day = outbound.day.toString().padStart(2, '0');
+  
+          outboundMinus1.year = dateMinus1.getFullYear().toString();
+          outboundMinus1.month = (dateMinus1.getMonth() + 1).toString().padStart(2, '0');
+          outboundMinus1.day = dateMinus1.getDate().toString().padStart(2, '0');
+  
+          outboundMinus2.year = dateMinus2.getFullYear().toString();
+          outboundMinus2.month = (dateMinus2.getMonth() + 1).toString().padStart(2, '0');
+          outboundMinus2.day = dateMinus2.getDate().toString().padStart(2, '0');
+          
+          outboundPlus1.year = datePlus1.getFullYear().toString();
+          outboundPlus1.month = (datePlus1.getMonth() + 1).toString().padStart(2, '0');
+          outboundPlus1.day = datePlus1.getDate().toString().padStart(2, '0');
+  
+          outboundPlus2.year = datePlus2.getFullYear().toString();
+          outboundPlus2.month = (datePlus2.getMonth() + 1).toString().padStart(2, '0');
+          outboundPlus2.day = datePlus2.getDate().toString().padStart(2, '0');
+
+          const dates = [outboundMinus2, outboundMinus1, outbound, outboundPlus1, outboundPlus2];
+          let datePricesObj = {};
+          let count = 0;
+
+          dates.forEach((date, index) => {
+            const completeDate = `${date.year}-${date.month}-${date.day}`;
+            console.log(completeDate, flight.outboundDate)
+
+            unirest(
+              "GET",
+              `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${flight.originPlace}/${flight.destinationPlace}/${completeDate}`
+            )
+              .query({
+                inboundpartialdate: flight.inboundDate
+              })
+              .headers({
+                "x-rapidapi-host":
+                  "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                "x-rapidapi-key":
+                  "4f35d21e85mshd99b830c3d8fc00p1bb8d5jsn462cba9bbdea"
+              })
+              .end(function(response) {
+                count++;
+                if (response.error) throw new Error(response.error);
+                let price = response.body.Quotes[0].MinPrice;
+                console.log(price);
+                datePricesObj[completeDate] = price;
+                if (count === dates.length) {
+                  flightsCount++;
+                  flightsArray.push(datePricesObj);
+                }
+                if (flightsCount === flights.length) {
+                  res.render('watchlist', {user: req.session.user, flights: flightsArray})
+                }
+              });
+
+          })
+        });
+      });
+
+    // let flights = [];
+    // knex.select('flights.id', 'flights.originPlace', 'flights.destinationPlace', 'flights.outboundDate', 'flights.inboundDate')
+    //   .from('watchList')
+    //   .where('user_id', req.session.user.id)
+    //   .fullOuterJoin('flights', 'flights.id', 'watchList.flight_id')
+    //   .then(result => {
+    //     flights = result;
+    //     return result.map((flight_info) => {
+    //       knex.select('price')
+    //         .from('prices')
+    //         .where('flight_id', flight_info.id)
+    //         .then(prices => {
+    //           result[i].prices = [];
+    //           for (let j=0; j<prices.length; j++) {
+    //             result[i].prices.push(prices[j].price)
+    //           }
+    //         })
+    //     })
+    //   })
+    //   .then(() => {
+    //     console.log('before rendering', flights)
+    //     res.render('watchlist', {flights: flights});
+    //   })
+  },
+
+  getFlights: app => {
     return (req, res) => {
       const cabinClass = req.body.cabinClass;
       const adults = req.body.adults;
@@ -113,7 +204,7 @@ module.exports = {
       const destinationPlace = req.body.destination;
       const outboundDate = req.body.outboundDate;
       const inboundDate = req.body.inboundDate;
-      
+
       query.cabinClass = req.body.cabinClass;
       query.adults = req.body.adults;
       query.children = req.body.children;
@@ -125,13 +216,22 @@ module.exports = {
       query.destinationPlace = req.body.destination;
       query.outboundDate = req.body.outboundDate;
       query.inboundDate = req.body.inboundDate;
-      app.set('query', query);
+      app.set("query", query);
 
       const flightType = req.body.flightType;
 
-      unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
-        .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
-        .header("X-RapidAPI-Key", "4f35d21e85mshd99b830c3d8fc00p1bb8d5jsn462cba9bbdea")
+      unirest
+        .post(
+          "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0"
+        )
+        .header(
+          "X-RapidAPI-Host",
+          "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
+        )
+        .header(
+          "X-RapidAPI-Key",
+          "4f35d21e85mshd99b830c3d8fc00p1bb8d5jsn462cba9bbdea"
+        )
         .header("Content-Type", "application/x-www-form-urlencoded")
         .send(`cabinClass=${cabinClass}`)
         .send(`children=${children}`)
@@ -144,18 +244,27 @@ module.exports = {
         .send(`outboundDate=${outboundDate}`)
         .send(`inboundDate=${inboundDate}`)
         .send(`adults=${adults}`)
-        .end(function (result) {
+        .end(function(result) {
           if (result.body.ValidationErrors) {
-            res.redirect('/error');
+            res.redirect("/error");
             return false;
           }
           const sessionKey = result.headers.location.slice(-36);
 
           setTimeout(() => {
-            unirest.get(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/${sessionKey}?sortType=price&sortOrder=asc&pageIndex=0&pageSize=10`)
-              .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
-              .header("X-RapidAPI-Key", "4f35d21e85mshd99b830c3d8fc00p1bb8d5jsn462cba9bbdea")
-              .end(function (result) {
+            unirest
+              .get(
+                `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/${sessionKey}?sortType=price&sortOrder=asc&pageIndex=0&pageSize=10`
+              )
+              .header(
+                "X-RapidAPI-Host",
+                "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
+              )
+              .header(
+                "X-RapidAPI-Key",
+                "4f35d21e85mshd99b830c3d8fc00p1bb8d5jsn462cba9bbdea"
+              )
+              .end(function(result) {
                 const itineraries = result.body.Itineraries;
                 const legs = result.body.Legs;
                 const carriers = result.body.Carriers;
@@ -165,9 +274,9 @@ module.exports = {
 
                 let flights = [];
 
-                if (flightType === 'one-way') {
-                  let originId = '';
-                  let destinationId = '';
+                if (flightType === "one-way") {
+                  let originId = "";
+                  let destinationId = "";
 
                   for (let i = 0; i < itineraries.length; i++) {
                     let flight = {};
@@ -175,7 +284,8 @@ module.exports = {
                     flight.legs = [];
                     const agentId = itineraries[i].PricingOptions[0].Agents[0];
                     let price = itineraries[i].PricingOptions[0].Price;
-                    flight.bookingUrl = itineraries[i].PricingOptions[0].DeeplinkUrl
+                    flight.bookingUrl =
+                      itineraries[i].PricingOptions[0].DeeplinkUrl;
                     flight.price = Number.parseFloat(price).toFixed(2);
                     const legId = itineraries[i].OutboundLegId;
 
@@ -198,8 +308,6 @@ module.exports = {
                       }
                     }
 
-
-
                     for (let j = 0; j < segments.length; j++) {
                       for (let k = 0; k < segmentIds.length; k++) {
                         if (segments[j].Id === segmentIds[k]) {
@@ -208,8 +316,8 @@ module.exports = {
                           leg.destinationId = segments[j].DestinationStation;
                           leg.departure = segments[j].DepartureDateTime;
                           leg.arrival = segments[j].DepartureDateTime;
-                          leg.duration = segments[j].Duration
-                          leg.carrierId = segments[j].Carrier
+                          leg.duration = segments[j].Duration;
+                          leg.carrierId = segments[j].Carrier;
                           leg.flightNumber = segments[j].FlightNumber;
                           flight.legs.push(leg);
                         }
@@ -220,8 +328,8 @@ module.exports = {
                       for (let k = 0; k < flight.legs.length; k++) {
                         if (carriers[j].Id === flight.legs[k].carrierId) {
                           flight.legs[k].carrierName = carriers[j].Name;
-                          flight.legs[k].carrierImgUrl = carriers[j].ImageUrl
-                          delete flight.legs[k].carrierId
+                          flight.legs[k].carrierImgUrl = carriers[j].ImageUrl;
+                          delete flight.legs[k].carrierId;
                         }
                       }
                     }
@@ -240,7 +348,7 @@ module.exports = {
                         }
                         if (places[j].Id === flight.legs[k].destinationId) {
                           flight.legs[k].destination = places[j].Name;
-                          delete flight.legs[k].destinationId
+                          delete flight.legs[k].destinationId;
                         }
                       }
                     }
@@ -253,12 +361,11 @@ module.exports = {
 
                     flights.push(flight);
                   }
-                } else if (flightType === 'round') {
-                  let outboundOriginId = '';
-                  let inboundOriginId = '';
-                  let outboundDestinationId = '';
-                  let inboundDestinationId = '';
-
+                } else if (flightType === "round") {
+                  let outboundOriginId = "";
+                  let inboundOriginId = "";
+                  let outboundDestinationId = "";
+                  let inboundDestinationId = "";
 
                   for (let i = 0; i < itineraries.length; i++) {
                     let flight = {};
@@ -267,7 +374,8 @@ module.exports = {
                     flight.inboundLegs = [];
                     const agentId = itineraries[i].PricingOptions[0].Agents[0];
                     let price = itineraries[i].PricingOptions[0].Price;
-                    flight.bookingUrl = itineraries[i].PricingOptions[0].DeeplinkUrl
+                    flight.bookingUrl =
+                      itineraries[i].PricingOptions[0].DeeplinkUrl;
                     flight.price = Number.parseFloat(price).toFixed(2);
                     const outboundLegId = itineraries[i].OutboundLegId;
                     const inboundLegId = itineraries[i].InboundLegId;
@@ -299,8 +407,6 @@ module.exports = {
                       }
                     }
 
-
-
                     for (let j = 0; j < segments.length; j++) {
                       for (let k = 0; k < outboundSegmentIds.length; k++) {
                         if (segments[j].Id === outboundSegmentIds[k]) {
@@ -309,8 +415,8 @@ module.exports = {
                           leg.destinationId = segments[j].DestinationStation;
                           leg.departure = segments[j].DepartureDateTime;
                           leg.arrival = segments[j].DepartureDateTime;
-                          leg.duration = segments[j].Duration
-                          leg.carrierId = segments[j].Carrier
+                          leg.duration = segments[j].Duration;
+                          leg.carrierId = segments[j].Carrier;
                           leg.flightNumber = segments[j].FlightNumber;
                           flight.outboundLegs.push(leg);
                         }
@@ -322,8 +428,8 @@ module.exports = {
                           leg.destinationId = segments[j].DestinationStation;
                           leg.departure = segments[j].DepartureDateTime;
                           leg.arrival = segments[j].DepartureDateTime;
-                          leg.duration = segments[j].Duration
-                          leg.carrierId = segments[j].Carrier
+                          leg.duration = segments[j].Duration;
+                          leg.carrierId = segments[j].Carrier;
                           leg.flightNumber = segments[j].FlightNumber;
                           flight.inboundLegs.push(leg);
                         }
@@ -332,17 +438,23 @@ module.exports = {
 
                     for (let j = 0; j < carriers.length; j++) {
                       for (let k = 0; k < flight.outboundLegs.length; k++) {
-                        if (carriers[j].Id === flight.outboundLegs[k].carrierId) {
+                        if (
+                          carriers[j].Id === flight.outboundLegs[k].carrierId
+                        ) {
                           flight.outboundLegs[k].carrierName = carriers[j].Name;
-                          flight.outboundLegs[k].carrierImgUrl = carriers[j].ImageUrl
-                          delete flight.outboundLegs[k].carrierId
+                          flight.outboundLegs[k].carrierImgUrl =
+                            carriers[j].ImageUrl;
+                          delete flight.outboundLegs[k].carrierId;
                         }
                       }
                       for (let k = 0; k < flight.inboundLegs.length; k++) {
-                        if (carriers[j].Id === flight.inboundLegs[k].carrierId) {
+                        if (
+                          carriers[j].Id === flight.inboundLegs[k].carrierId
+                        ) {
                           flight.inboundLegs[k].carrierName = carriers[j].Name;
-                          flight.inboundLegs[k].carrierImgUrl = carriers[j].ImageUrl
-                          delete flight.inboundLegs[k].carrierId
+                          flight.inboundLegs[k].carrierImgUrl =
+                            carriers[j].ImageUrl;
+                          delete flight.inboundLegs[k].carrierId;
                         }
                       }
                     }
@@ -365,9 +477,11 @@ module.exports = {
                           flight.outboundLegs[k].origin = places[j].Name;
                           delete flight.outboundLegs[k].originId;
                         }
-                        if (places[j].Id === flight.outboundLegs[k].destinationId) {
+                        if (
+                          places[j].Id === flight.outboundLegs[k].destinationId
+                        ) {
                           flight.outboundLegs[k].destination = places[j].Name;
-                          delete flight.outboundLegs[k].destinationId
+                          delete flight.outboundLegs[k].destinationId;
                         }
                       }
                       for (let k = 0; k < flight.inboundLegs.length; k++) {
@@ -375,7 +489,9 @@ module.exports = {
                           flight.inboundLegs[k].origin = places[j].Name;
                           delete flight.inboundLegs[k].originId;
                         }
-                        if (places[j].Id === flight.inboundLegs[k].destinationId) {
+                        if (
+                          places[j].Id === flight.inboundLegs[k].destinationId
+                        ) {
                           flight.inboundLegs[k].destination = places[j].Name;
                           delete flight.inboundLegs[k].destinationId;
                         }
@@ -386,33 +502,37 @@ module.exports = {
                     flight.inboundFlyingTime = 0;
 
                     for (let j = 0; j < flight.outboundLegs.length; j++) {
-                      flight.outboundFlyingTime += flight.outboundLegs[j].duration;
+                      flight.outboundFlyingTime +=
+                        flight.outboundLegs[j].duration;
                     }
-                    flight.outboundLayoverTime = flight.duration - flight.outboundFlyingTime;
+                    flight.outboundLayoverTime =
+                      flight.duration - flight.outboundFlyingTime;
 
                     for (let j = 0; j < flight.inboundLegs.length; j++) {
-                      flight.inboundFlyingTime += flight.inboundLegs[j].duration;
+                      flight.inboundFlyingTime +=
+                        flight.inboundLegs[j].duration;
                     }
-                    flight.inboundLayoverTime = flight.duration - flight.inboundFlyingTime;
+                    flight.inboundLayoverTime =
+                      flight.duration - flight.inboundFlyingTime;
                     flights.push(flight);
                   }
                 }
-                app.set('flights', flights);
-                res.render('flights', {
+                app.set("flights", flights);
+                res.render("flights", {
                   flights: flights,
                   user: req.session.user
-                })
-              })
-          }, 5000)
+                });
+              });
+          }, 5000);
         });
-    }
+    };
   },
 
-  getOne: (app) => {
+  getOne: app => {
     return (req, res) => {
-      res.render('singleflight', {
-        flight: app.get('flights')[req.params.flightsIndex]
-      })
-    }
+      res.render("singleflight", {
+        flight: app.get("flights")[req.params.flightsIndex]
+      });
+    };
   }
-}
+};
