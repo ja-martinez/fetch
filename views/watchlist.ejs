@@ -57,7 +57,7 @@
       </nav>
     </header>
     <!-- Main -->
-    <h1><%=JSON.stringify(flights)%></h1>
+
     <main class="container-fluid fold">
       <!-- ADD TO WATCHLIST -->
       <div class="row">
@@ -76,142 +76,160 @@
           <!-- FLIGHT CONTAINER -->
           <div class="row">
             <section id="deck" class="container-fluid">
-  
-              <div class=card-x>
-              <div class="delete">
-                  <a href="/delete/watchlist/:id">X</a>
+              <% for (let index in flights) { %>
+                <!-- CARD START -->
+                <div class="card-x">
+                  <div class="watch-card">
+                    <div class="tickect-section">
+                      <div class="top">
+                        <small>From</small>
+                        <p><%= flights[index].origin %></p>
+                      </div>
+                      <div class="graph-one">
+                        <small>Average and Cheapest</small>
+                        <div
+                          id="barchart-<%= index %>"
+                          style="width:30em; height:10em"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="tickect-section">
+                      <div class="top">
+                        <small>To</small>
+                        <p><%= flights[index].destination %></p>
+                      </div>
+                      <div class="graph-two">
+                        <small>Cheapest Price By Departure Date</small>
+                        <div id="columnchart-<%= index %>" style="width:30em; height:10em"></div>
+                      </div>
+                    </div>
+                    <div class="tickect-section">
+                      <div class="top">
+                        <!-- <small>On</small>
+                        <p>11/11/1999</p> -->
+                      </div>
+                      <div class="links">
+                        <!-- <small>Links</small>
+                        <a href="">Cheapest</a>
+                        <a href="">Fastest</a>
+                        <a href="">All</a> -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              <div class="watch-card">
-                <div class="tickect-section">
-                  <div class="top">
-                    <small>From</small>
-                    <p>London</p>
-                  </div>
-                  <div class="graph-one">
-                    <small>Current Prices</small>
-                    <div
-                      id="barchart_values"
-                      style="width:30em; height:10em"
-                    ></div>
-                  </div>
-                </div>
-                <div class="tickect-section">
-                  <div class="top">
-                    <small>To</small>
-                    <p>Mexicali</p>
-                  </div>
-                  <div class="graph-two">
-                    <small>Cheapest Price Over Time</small>
-                    <div id="chart_div" style="width:30em; height:10em"></div>
-                  </div>
-                </div>
-                <div class="tickect-section">
-                  <div class="top">
-                    <small>On</small>
-                    <p>11/11/1999</p>
-                  
-                  </div>
-                  <div class="links">
-                    <small>Links</small>
-                    <a href="">Cheapest</a>
-                    <a href="">Fastest</a>
-                    <a href="">All</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <% } %>
               <!-- FLIGHT CARD END -->
             </section>
           </div>
         </div>
       </div>
     </main>
-    <!-- Graph One -->
-    <script type="text/javascript">
-      google.charts.load("current", { packages: ["corechart"] });
-      google.charts.load("current", { packages: ["corechart", "line"] });
-      google.charts.setOnLoadCallback(comparePrice);
-      function comparePrice() {
-        var data = google.visualization.arrayToDataTable([
-          ["Flight", "Price", { role: "style" }],
-          ["Cheapest", 550, "green"],
-          ["Average", 600, "black"]
-        ]);
 
-        var view = new google.visualization.DataView(data);
-        view.setColumns([
-          0,
-          1,
-          {
-            calc: "stringify",
-            sourceColumn: 1,
-            type: "string",
-            role: "annotation"
-          },
-          2
-        ]);
-
-        var options = {
-          title: "Prices",
-          bar: { groupWidth: "95%" },
-          legend: { position: "none" },
-          fontSize: 12,
-          bold: true
-        };
-        var chart = new google.visualization.BarChart(
-          document.getElementById("barchart_values")
-        );
-        chart.draw(view, options);
-      }
-
-      google.charts.setOnLoadCallback(compareTime);
-
-      function compareTime() {
-        var data = new google.visualization.DataTable();
-        data.addColumn("number", "X");
-        data.addColumn("number", "");
-
-        data.addRows([
-          [0, 300],
-          [1, 485],
-          [2, 490],
-          [3, 490],
-          [4, 570],
-          [5, 550]
-        ]);
-
-        var options = {
-          hAxis: {
-            title: "Time",
-            textStyle: {
-              color: "black"
-            },
-            titleTextStyle: {
-              color: "black",
-              fontSize: 15,
-              italic: false
-            }
-          },
-          vAxis: {
-            title: "Price",
-            textStyle: {
-              color: "black"
-            },
-            titleTextStyle: {
-              color: "black",
-              fontSize: 15,
-              bold: false,
-              italic: false
-            }
-          },
-          colors: ["Green"]
-        };
-        var chart = new google.visualization.LineChart(
-          document.getElementById("chart_div")
-        );
-        chart.draw(data, options);
-      }
+    <script>
+      let variables = {}
     </script>
+
+    <% for (let index in flights) {%>
+      <script type="text/javascript">
+        variables[<%= index %>] = {}
+        variables[<%= index %>].flight = <%- JSON.stringify(flights[index]) %>;
+        variables[<%= index %>].minPrice = 10000000000;
+        variables[<%= index %>].sum = 0
+        for (let key in variables[<%= index %>].flight.dates) {
+          variables[<%= index %>].price = variables[<%= index %>].flight.dates[key];
+          if (variables[<%= index %>].price < variables[<%= index %>].minPrice) {
+            variables[<%= index %>].minPrice = variables[<%= index %>].price;
+          }
+          variables[<%= index %>].sum += variables[<%= index %>].price;
+        }
+        variables[<%= index %>].avg = variables[<%= index %>].sum / Object.keys(variables[<%= index %>].flight.dates).length
+
+        google.charts.load("current", {
+          packages: ["corechart"]
+        });
+        // graph one
+        google.charts.setOnLoadCallback(comparePrice);
+
+        function comparePrice() {
+          variables[<%= index %>].data = google.visualization.arrayToDataTable([
+            ["Flight", "Price", {
+              role: "style"
+            }],
+            ["Cheapest", variables[<%= index %>].minPrice, "black"],
+            ["Average", variables[<%= index %>].avg, "black"]
+          ]);
+
+          variables[<%= index %>].view = new google.visualization.DataView(variables[<%= index %>].data);
+          variables[<%= index %>].view.setColumns([
+            0,
+            1,
+            {
+              calc: "stringify",
+              sourceColumn: 1,
+              type: "string",
+              role: "annotation"
+            },
+            2
+          ]);
+
+          variables[<%= index %>].options = {
+            title: "Prices",
+            bar: {
+              groupWidth: "95%"
+            },
+            legend: {
+              position: "none"
+            },
+            fontSize: 12,
+            bold: true
+          };
+          variables[<%= index %>].chart = new google.visualization.BarChart(
+            document.getElementById("barchart-<%= index %>")
+          );
+          variables[<%= index %>].chart.draw(variables[<%= index %>].view, variables[<%= index %>].options);
+        }
+
+        // graph two
+        google.charts.setOnLoadCallback(compareTime);
+
+        function compareTime() {
+          variables[<%= index %>].dataRough = [
+            ["Element", "Density", {
+              role: "style"
+            }]
+          ];
+
+          for (let date in variables[<%= index %>].flight.dates) {
+            variables[<%= index %>].dataRough.push([date, variables[<%= index %>].flight.dates[date], 'green'])
+          }
+          variables[<%= index %>].data = google.visualization.arrayToDataTable(variables[<%= index %>].dataRough);
+
+          variables[<%= index %>].view = new google.visualization.DataView(variables[<%= index %>].data);
+          variables[<%= index %>].view.setColumns([0, 1,
+            {
+              calc: "stringify",
+              sourceColumn: 1,
+              type: "string",
+              role: "annotation"
+            },
+            2
+          ]);
+
+          variables[<%= index %>].options = {
+            width: 600,
+            height: 160,
+            bar: {
+              groupWidth: "95%"
+            },
+            legend: {
+              position: "none"
+            },
+          };
+          variables[<%= index %>].chart = new google.visualization.ColumnChart(document.getElementById("columnchart-<%= index %>"));
+          variables[<%= index %>].chart.draw(variables[<%= index %>].view, variables[<%= index %>].options);
+        }
+      </script>
+    <% } %>
   </body>
   <footer role="footer">
     <div class="footer-body">

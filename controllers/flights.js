@@ -84,62 +84,208 @@ module.exports = {
         let flightsCount = 0;
         let flightsArray = [];
         flights.forEach(flight => {
-          
           let outbound = {};
           outbound.year = parseInt(flight.outboundDate.slice(0, 4));
           outbound.month = parseInt(flight.outboundDate.slice(5, 7));
           outbound.day = parseInt(flight.outboundDate.slice(8));
-          let outboundDate = new Date(outbound.year, outbound.month - 1, outbound.day)
+          let outboundDate = new Date(
+            outbound.year,
+            outbound.month - 1,
+            outbound.day
+          );
 
-          let dateMinus1 = new Date(outbound.year, outbound.month - 1, outbound.day);
-          let dateMinus2 = new Date(outbound.year, outbound.month - 1, outbound.day);
-          let datePlus1 =  new Date(outbound.year, outbound.month - 1, outbound.day);
-          let datePlus2 =  new Date(outbound.year, outbound.month - 1, outbound.day);
-  
-          dateMinus1.setDate(outboundDate.getDate() - 1)
-          dateMinus2.setDate(outboundDate.getDate() - 2)
-          datePlus1.setDate(outboundDate.getDate() + 1)
-          datePlus2.setDate(outboundDate.getDate() + 2)
-  
+          let dateMinus1 = new Date(
+            outbound.year,
+            outbound.month - 1,
+            outbound.day
+          );
+          let dateMinus2 = new Date(
+            outbound.year,
+            outbound.month - 1,
+            outbound.day
+          );
+          let datePlus1 = new Date(
+            outbound.year,
+            outbound.month - 1,
+            outbound.day
+          );
+          let datePlus2 = new Date(
+            outbound.year,
+            outbound.month - 1,
+            outbound.day
+          );
+
+          dateMinus1.setDate(outboundDate.getDate() - 1);
+          dateMinus2.setDate(outboundDate.getDate() - 2);
+          datePlus1.setDate(outboundDate.getDate() + 1);
+          datePlus2.setDate(outboundDate.getDate() + 2);
+
           let outboundMinus1 = {};
           let outboundMinus2 = {};
           let outboundPlus1 = {};
           let outboundPlus2 = {};
 
           outbound.year = outbound.year.toString();
-          outbound.month = outbound.month.toString().padStart(2, '0');
-          outbound.day = outbound.day.toString().padStart(2, '0');
-  
-          outboundMinus1.year = dateMinus1.getFullYear().toString();
-          outboundMinus1.month = (dateMinus1.getMonth() + 1).toString().padStart(2, '0');
-          outboundMinus1.day = dateMinus1.getDate().toString().padStart(2, '0');
-  
-          outboundMinus2.year = dateMinus2.getFullYear().toString();
-          outboundMinus2.month = (dateMinus2.getMonth() + 1).toString().padStart(2, '0');
-          outboundMinus2.day = dateMinus2.getDate().toString().padStart(2, '0');
-          
-          outboundPlus1.year = datePlus1.getFullYear().toString();
-          outboundPlus1.month = (datePlus1.getMonth() + 1).toString().padStart(2, '0');
-          outboundPlus1.day = datePlus1.getDate().toString().padStart(2, '0');
-  
-          outboundPlus2.year = datePlus2.getFullYear().toString();
-          outboundPlus2.month = (datePlus2.getMonth() + 1).toString().padStart(2, '0');
-          outboundPlus2.day = datePlus2.getDate().toString().padStart(2, '0');
+          outbound.month = outbound.month.toString().padStart(2, "0");
+          outbound.day = outbound.day.toString().padStart(2, "0");
 
-          const dates = [outboundMinus2, outboundMinus1, outbound, outboundPlus1, outboundPlus2];
-          let datePricesObj = {};
+          outboundMinus1.year = dateMinus1.getFullYear().toString();
+          outboundMinus1.month = (dateMinus1.getMonth() + 1)
+            .toString()
+            .padStart(2, "0");
+          outboundMinus1.day = dateMinus1
+            .getDate()
+            .toString()
+            .padStart(2, "0");
+
+          outboundMinus2.year = dateMinus2.getFullYear().toString();
+          outboundMinus2.month = (dateMinus2.getMonth() + 1)
+            .toString()
+            .padStart(2, "0");
+          outboundMinus2.day = dateMinus2
+            .getDate()
+            .toString()
+            .padStart(2, "0");
+
+          outboundPlus1.year = datePlus1.getFullYear().toString();
+          outboundPlus1.month = (datePlus1.getMonth() + 1)
+            .toString()
+            .padStart(2, "0");
+          outboundPlus1.day = datePlus1
+            .getDate()
+            .toString()
+            .padStart(2, "0");
+
+          outboundPlus2.year = datePlus2.getFullYear().toString();
+          outboundPlus2.month = (datePlus2.getMonth() + 1)
+            .toString()
+            .padStart(2, "0");
+          outboundPlus2.day = datePlus2
+            .getDate()
+            .toString()
+            .padStart(2, "0");
+
+          const dates = [
+            outboundMinus2,
+            outboundMinus1,
+            outbound,
+            outboundPlus1,
+            outboundPlus2
+          ];
+
+          // inbound dates
+          let inboundDates;
+          if (flight.inboundDate) {
+            let inbound = {};
+            inbound.year = parseInt(flight.inboundDate.slice(0, 4));
+            inbound.month = parseInt(flight.inboundDate.slice(5, 7));
+            inbound.day = parseInt(flight.inboundDate.slice(8));
+            let inboundDate = new Date(
+              inbound.year,
+              inbound.month - 1,
+              inbound.day
+            );
+
+            let dateMinus1 = new Date(
+              inbound.year,
+              inbound.month - 1,
+              inbound.day
+            );
+            let dateMinus2 = new Date(
+              inbound.year,
+              inbound.month - 1,
+              inbound.day
+            );
+            let datePlus1 = new Date(
+              inbound.year,
+              inbound.month - 1,
+              inbound.day
+            );
+            let datePlus2 = new Date(
+              inbound.year,
+              inbound.month - 1,
+              inbound.day
+            );
+
+            dateMinus1.setDate(inboundDate.getDate() - 1);
+            dateMinus2.setDate(inboundDate.getDate() - 2);
+            datePlus1.setDate(inboundDate.getDate() + 1);
+            datePlus2.setDate(inboundDate.getDate() + 2);
+
+            let inboundMinus1 = {};
+            let inboundMinus2 = {};
+            let inboundPlus1 = {};
+            let inboundPlus2 = {};
+
+            inbound.year = inbound.year.toString();
+            inbound.month = inbound.month.toString().padStart(2, "0");
+            inbound.day = inbound.day.toString().padStart(2, "0");
+
+            inboundMinus1.year = dateMinus1.getFullYear().toString();
+            inboundMinus1.month = (dateMinus1.getMonth() + 1)
+              .toString()
+              .padStart(2, "0");
+            inboundMinus1.day = dateMinus1
+              .getDate()
+              .toString()
+              .padStart(2, "0");
+
+            inboundMinus2.year = dateMinus2.getFullYear().toString();
+            inboundMinus2.month = (dateMinus2.getMonth() + 1)
+              .toString()
+              .padStart(2, "0");
+            inboundMinus2.day = dateMinus2
+              .getDate()
+              .toString()
+              .padStart(2, "0");
+
+            inboundPlus1.year = datePlus1.getFullYear().toString();
+            inboundPlus1.month = (datePlus1.getMonth() + 1)
+              .toString()
+              .padStart(2, "0");
+            inboundPlus1.day = datePlus1
+              .getDate()
+              .toString()
+              .padStart(2, "0");
+
+            inboundPlus2.year = datePlus2.getFullYear().toString();
+            inboundPlus2.month = (datePlus2.getMonth() + 1)
+              .toString()
+              .padStart(2, "0");
+            inboundPlus2.day = datePlus2
+              .getDate()
+              .toString()
+              .padStart(2, "0");
+
+            inboundDates = [
+              inboundMinus2,
+              inboundMinus1,
+              inbound,
+              inboundPlus1,
+              inboundPlus2
+            ];
+          }
+
+          let datePricesObj = {origin: flight.originPlace, destination: flight.destinationPlace, dates: {}};
           let count = 0;
 
           dates.forEach((date, index) => {
             const completeDate = `${date.year}-${date.month}-${date.day}`;
-            console.log(completeDate, flight.outboundDate)
+            let completeInboundDate;
+            if (flight.inboundDate) {
+              completeInboundDate = `${inboundDates[index].year}-${inboundDates[index].month}-${inboundDates[index].day}`;              
+            } else {
+              completeInboundDate = flight.inboundDate;
+            }
 
             unirest(
               "GET",
-              `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${flight.originPlace}/${flight.destinationPlace}/${completeDate}`
+              `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${
+                flight.originPlace
+              }/${flight.destinationPlace}/${completeDate}`
             )
               .query({
-                inboundpartialdate: flight.inboundDate
+                inboundpartialdate: completeInboundDate
               })
               .headers({
                 "x-rapidapi-host":
@@ -151,44 +297,21 @@ module.exports = {
                 count++;
                 if (response.error) throw new Error(response.error);
                 let price = response.body.Quotes[0].MinPrice;
-                console.log(price);
-                datePricesObj[completeDate] = price;
+                datePricesObj['dates'][completeDate] = price;
                 if (count === dates.length) {
                   flightsCount++;
                   flightsArray.push(datePricesObj);
                 }
                 if (flightsCount === flights.length) {
-                  res.render('watchlist', {user: req.session.user, flights: flightsArray})
+                  res.render("watchlist", {
+                    user: req.session.user,
+                    flights: flightsArray
+                  });
                 }
               });
-
-          })
+          });
         });
       });
-
-    // let flights = [];
-    // knex.select('flights.id', 'flights.originPlace', 'flights.destinationPlace', 'flights.outboundDate', 'flights.inboundDate')
-    //   .from('watchList')
-    //   .where('user_id', req.session.user.id)
-    //   .fullOuterJoin('flights', 'flights.id', 'watchList.flight_id')
-    //   .then(result => {
-    //     flights = result;
-    //     return result.map((flight_info) => {
-    //       knex.select('price')
-    //         .from('prices')
-    //         .where('flight_id', flight_info.id)
-    //         .then(prices => {
-    //           result[i].prices = [];
-    //           for (let j=0; j<prices.length; j++) {
-    //             result[i].prices.push(prices[j].price)
-    //           }
-    //         })
-    //     })
-    //   })
-    //   .then(() => {
-    //     console.log('before rendering', flights)
-    //     res.render('watchlist', {flights: flights});
-    //   })
   },
 
   getFlights: app => {

@@ -2,10 +2,10 @@
   "name": "template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js || true"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,8 @@
     "knex": "^0.13.0",
     "pg": "^7.3.0",
     "unirest": "^0.6.0"
+  },
+  "engines": {
+    "node": "10.15.3"
   }
 }

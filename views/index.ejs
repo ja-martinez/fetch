@@ -81,12 +81,12 @@
             <!-- NAV-LINKS -->
             <div>
               <a class="mr-3" href="#our-mission">Fetch Mission</a>
-              <a href="#our-team" class="mr-3">Team Fetch</a>
               <%if (!user) {%>
-              <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign
-                In</a>
-              <%} else {%>
-              <a href="/logout">Log Out</a>
+                <a href="#" class="signIn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign
+                  In</a>
+                  <%} else {%>
+                    <a href="/myFlights" class="mr-3">myFlights</a>
+                    <a href="/logout">Log Out</a>
               <%}%>
             </div>
           </div>
